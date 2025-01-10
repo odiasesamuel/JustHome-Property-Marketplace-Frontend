@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { User } from "lucide-react";
 
-type NavBarType = {
+type HeaderType = {
   className: string;
 };
 
-const NavBar: React.FC<NavBarType> = ({ className }) => {
+const Header: React.FC<HeaderType> = ({ className }) => {
   return (
     <div className={`${className} w-full flex items-center justify-between relative text-appGreen`}>
       <div className="w-[10%] h-[30px] flex items-center">
@@ -21,13 +22,15 @@ const NavBar: React.FC<NavBarType> = ({ className }) => {
       </nav>
 
       <div className="w-[17%] h-[30px] flex justify-end">
-        <button className="w-[30px] h-full rounded-full border border-appGreen flex items-center justify-center">
+        <Button className="w-[30px] h-full rounded-full">
           <User className="w-4" />
-        </button>
-        <button className=" w-[150px] h-full rounded-full ml-3 flex items-center justify-center border border-appGreen text-sm">Add Property</button>
+        </Button>
+        <Button variant="outline" className="px-6 ml-3 text-sm">
+          Add Property
+        </Button>
       </div>
     </div>
   );
 };
 
-export default NavBar;
+export default Header;
