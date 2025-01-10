@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Main from "@/components/layout/main";
 import Footer from "@/components/layout/footer";
+import NavBar from "@/components/layout/navBar";
 import { inter, roboto } from "@/font/font";
 
 const geistSans = Geist({
@@ -29,7 +30,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        <div className="bg-white grid grid-cols-[repeat(12,_1fr)] grid-rows-[auto_1fr] min-h-screen ">
+        <div className="bg-white grid grid-cols-[repeat(12,_1fr)] grid-rows-[auto_1fr] min-h-screen max-w-[1535px] px-[3.5%] mx-auto">
+          <NavBar className="col-start-1 col-end-13 h-[100px]"></NavBar>
           <Main className="bg-purple-700 h-[1240px] col-start-1 col-end-13">{children}</Main>
           <Footer className="bg-green-700 h-[300px] col-start-1 col-end-13"></Footer>
         </div>
