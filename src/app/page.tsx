@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
+import { ArrowRight, Search } from "lucide-react";
 
 type HomeProps = {};
 
@@ -44,6 +44,22 @@ const Home: React.FC<HomeProps> = () => {
                 </Button>
               </div>
             </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="mt-[100px]">
+        <Card className="bg-appGreen h-[200px] flex items-center px-20">
+          <CardContent className="w-full flex justify-between items-end">
+            <div className="text-white">
+              <h1 className="text-2xl font-medium mb-2">Sign in to streamline your search</h1>
+              <p className="text-sm font-light">Save Properties, create alerts and keep track of enquires you send to agents.</p>
+            </div>
+
+            <Button className="bg-appYellow text-appGreen font-semibold px-6 py-4">
+              Sign in or create an account
+              <ArrowRight />
+            </Button>
           </CardContent>
         </Card>
       </div>
