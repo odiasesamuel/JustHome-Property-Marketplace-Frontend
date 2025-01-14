@@ -10,6 +10,7 @@ export default {
   			foreground: 'hsl(var(--foreground))',
   			appGreen: '#1F4B43',
 			appYellow: "#E7C873",
+			appBlack: "#1A1A1A",
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
