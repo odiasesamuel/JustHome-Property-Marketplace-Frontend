@@ -14,11 +14,10 @@ const Home: React.FC<HomeProps> = () => {
           <Card className="w-1/2 flex flex-col items-center mt-[50px] border-none shadow-none text-appGreen bg-inherit">
             <Button variant="outline">LET US GUIDE YOU HOME</Button>
             <CardHeader>
-              <CardTitle className="text-5xl font-medium mb-4">Find Your Perfect Home</CardTitle>
-              {/* <CardTitle className="text-5xl font-medium">
-                Your<span className="text-[#E7C873]"> Property</span>, Our Priority
-              </CardTitle> */}
-              <CardDescription className="text-center text-appGreen">Search properties for sale and to rent in Nigerian</CardDescription>
+              <CardTitle className="text-5xl font-medium mb-4">
+                Find Your Perfect Home
+              </CardTitle>
+              <CardDescription className="text-center text-appGreen">Search properties for sale and to rent in Lagos and Abuja</CardDescription>
             </CardHeader>
             <CardContent className="w-full flex flex-col items-center mt-5">
               <div className="w-[80%] mb-10 relative">
