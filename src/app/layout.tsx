@@ -33,7 +33,7 @@ export default function RootLayout({
         <div className="bg-white grid grid-cols-[repeat(12,_1fr)] grid-rows-[auto_1fr] min-h-screen max-w-[1535px] mx-auto">
           <Header className="col-start-1 col-end-13 h-[100px]"></Header>
           <Main className="col-start-1 col-end-13">{children}</Main>
-          <Footer className="bg-green-700 h-[300px] col-start-1 col-end-13 mt-[700px]"></Footer>
+          <Footer className="col-start-1 col-end-13"></Footer>
         </div>
       </body>
     </html>
