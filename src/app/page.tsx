@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, House, MapPin, Search } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 type HomeProps = {};
 
@@ -12,16 +13,16 @@ const Home: React.FC<HomeProps> = () => {
       <div className="px-[3.5%]">
         <div className="bg-[url('/images/area-bg.png')] bg-no-repeat bg-center bg-cover h-[530px] flex flex-col items-center text-appGreen">
           <Card className="w-1/2 flex flex-col items-center mt-[50px] border-none shadow-none text-appGreen bg-inherit">
-            <Button variant="outline">LET US GUIDE YOU HOME</Button>
+            <Link href="/listing">
+              <Button variant="outline">LET US GUIDE YOU HOME</Button>
+            </Link>
             <CardHeader>
-              <CardTitle className="text-5xl font-medium mb-4">
-                Find Your Perfect Home
-              </CardTitle>
+              <CardTitle className="text-5xl font-medium mb-4">Find Your Perfect Home</CardTitle>
               <CardDescription className="text-center text-appGreen">Search properties for sale and to rent in Lagos and Abuja</CardDescription>
             </CardHeader>
             <CardContent className="w-full flex flex-col items-center mt-5">
               <div className="w-[80%] mb-10 relative">
-                <Input type="text" className="w-full rounded-full px-5 py-4 text-sm  shadow-md focus:outline-none placeholder:text-appGreen" placeholder="Enter Name, Keywords..." />
+                <Input type="text" className="w-full rounded-full px-5 py-4 text-sm  shadow-md focus:outline-none placeholder:text-appGreen" placeholder="Enter state, area, Keywords..." />
                 <Button type="submit" className="bg-[#E7C873] rounded-full absolute top-1/2 right-2 transform -translate-y-1/2 w-10 h-10 flex items-center justify-center">
                   <Search className="w-4 text-appGreen" />
                 </Button>
@@ -300,7 +301,7 @@ const Home: React.FC<HomeProps> = () => {
         </div>
       </div>
 
-      <div className="mt-[100px] px-[3.5%]">
+      <div className="mt-[100px]">
         <Card className="rounded-none flex flex-col items-center text-center text-appBlack border-none shadow-none">
           <CardHeader className="">
             <CardTitle className="text-3xl">Properties by Area</CardTitle>

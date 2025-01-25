@@ -15,8 +15,8 @@ const Header: React.FC<HeaderType> = ({ className }) => {
         <h1 className="text-lg font-medium">JustHome</h1>
       </div>
       <nav className="w-[30%] h-[30px] absolute left-1/2 -translate-x-1/2 flex items-center justify-between font-medium ase">
-        <Link href="">Home</Link>
-        <Link href="">Listing</Link>
+        <Link href="/">Home</Link>
+        <Link href="/listing">Listing</Link>
         <Link href="">Blog</Link>
         <Link href="">Contact</Link>
       </nav>
