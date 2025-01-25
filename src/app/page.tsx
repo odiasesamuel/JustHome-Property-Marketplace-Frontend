@@ -27,16 +27,16 @@ const Home: React.FC<HomeProps> = () => {
                   <Search className="w-4 text-appGreen" />
                 </Button>
               </div>
-              <div className="h-[150px] text-center w-[38%]">
+              <div className="h-[150px] text-center w-[45%]">
                 <p className="text-sm font-medium">Explore all things Property</p>
                 <div className="mt-8 flex justify-between text-xs">
-                  <Button variant="outline" className="border border-[#EBEBEB] px-2 py-1 rounded-full">
+                  <Button variant="outline" className="border border-[#EBEBEB] px-3 py-1 rounded-full">
                     All Properties
                   </Button>
-                  <Button variant="outline" className="border border-[#EBEBEB] px-2 py-1 rounded-full">
+                  <Button variant="outline" className="border border-[#EBEBEB] px-3 py-1 rounded-full">
                     For Sale
                   </Button>
-                  <Button variant="outline" className="border border-[#EBEBEB] px-2 py-1 rounded-full">
+                  <Button variant="outline" className="border border-[#EBEBEB] px-3 py-1 rounded-full">
                     For Rent
                   </Button>
                 </div>

@@ -3,8 +3,20 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, House, MapPin, Search } from "lucide-react";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
 
 const Listing = () => {
+  const formatCurrency = (number: number) => {
+    return new Intl.NumberFormat("en-NG", {
+      style: "currency",
+      currency: "NGN",
+      minimumFractionDigits: 0,
+    })
+      .format(number)
+      .replace("₦", "₦ "); // Add a space after the ₦ symbol
+  };
+
   return (
     <div className="flex flex-col gap-3 px-[3.5%]">
       <Card className="rounded-none  border-none shadow-none flex flex-col items-center text-center text-appBlack">
@@ -22,21 +34,65 @@ const Listing = () => {
           </div>
 
           <div className="w-3/4 flex justify-between text-xs">
-            <Button variant="outline" className="border border-appBlack px-2 py-1 rounded-full">
+            <Button variant="outline" className="border border-appBlack px-3 py-1 rounded-full">
               All Properties
             </Button>
-            <Button variant="outline" className="border border-appBlack px-2 py-1 rounded-full">
+            <Button variant="outline" className="border border-appBlack px-3 py-1 rounded-full">
               For Sale
             </Button>
-            <Button variant="outline" className="border border-appBlack px-2 py-1 rounded-full">
+            <Button variant="outline" className="border border-appBlack px-3 py-1 rounded-full">
               For Rent
             </Button>
-            <Button variant="outline" className="border border-appBlack px-2 py-1 rounded-full">
+            <Button variant="outline" className="border border-appBlack px-3 py-1 rounded-full">
               Duplex
             </Button>
-            <Button variant="outline" className="border border-appBlack px-2 py-1 rounded-full">
+            <Button variant="outline" className="border border-appBlack px-3 py-1 rounded-full">
               Flat
             </Button>
+          </div>
+
+          <div className="w-3/4 flex justify-center text-xs gap-x-8">
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="min-price" className="text-left text-xs">
+                Min Price
+              </Label>
+              <Select>
+                <SelectTrigger id="min-price" className="w-[180px]">
+                  <SelectValue placeholder="No Min" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Min Price</SelectLabel>
+                    <SelectItem value="100000">{formatCurrency(100000)}</SelectItem>
+                    <SelectItem value="200000">{formatCurrency(200000)}</SelectItem>
+                    <SelectItem value="300000">{formatCurrency(300000)}</SelectItem>
+                    <SelectItem value="400000">{formatCurrency(400000)}</SelectItem>
+                    <SelectItem value="500000">{formatCurrency(500000)}</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="max-price" className="text-left text-xs">
+                Max Price
+              </Label>
+              <Select>
+                <SelectTrigger id="max-price" className="w-[180px]">
+                  <SelectValue placeholder="No Max" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Max Price</SelectLabel>
+                    <SelectItem value="100000">{formatCurrency(100000)}</SelectItem>
+                    <SelectItem value="200000">{formatCurrency(200000)}</SelectItem>
+                    <SelectItem value="300000">{formatCurrency(300000)}</SelectItem>
+                    <SelectItem value="400000">{formatCurrency(400000)}</SelectItem>
+                    <SelectItem value="500000">{formatCurrency(500000)}</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
         </CardHeader>
         <CardContent className="w-full flex justify-center flex-wrap gap-5 mt-5">
