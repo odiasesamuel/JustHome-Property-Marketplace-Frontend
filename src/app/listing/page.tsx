@@ -14,7 +14,7 @@ const Listing = () => {
       minimumFractionDigits: 0,
     })
       .format(number)
-      .replace("₦", "₦ "); // Add a space after the ₦ symbol
+      .replace("₦", "₦ ");
   };
 
   return (
