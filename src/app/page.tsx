@@ -13,7 +13,7 @@ const Home: React.FC<HomeProps> = () => {
       <div className="px-[3.5%]">
         <div className="bg-[url('/images/area-bg.png')] bg-no-repeat bg-center bg-cover h-[530px] flex flex-col items-center text-appGreen">
           <Card className="w-1/2 flex flex-col items-center mt-[50px] border-none shadow-none text-appGreen bg-inherit">
-            <Link href="/listing?perPage=10&page=1">
+            <Link href="/listing?perPage=12&page=1">
               <Button variant="outline">LET US GUIDE YOU HOME</Button>
             </Link>
             <CardHeader>

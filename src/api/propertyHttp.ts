@@ -2,12 +2,15 @@ import axios from "axios";
 
 type GetPropertyParams = {
   signal?: AbortSignal;
-  page: string | null;
+  perPage: number | null;
+  page: number | null;
 };
 
-export const getProperty = async ({ signal, page }: GetPropertyParams) => {
+export const BASE_URL = "http://localhost:5000";
+
+export const getProperty = async ({ signal, page, perPage }: GetPropertyParams) => {
   try {
-    const response = await axios.get(`http://localhost:5000/property?perPage=10&page=${page}`, {
+    const response = await axios.get(`${BASE_URL}/property?perPage=${perPage}&page=${page}`, {
       signal,
     });
     return response.data;

@@ -6,18 +6,9 @@ import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
+import { formatCurrency } from "@/utils/formatCurrency";
 
 const Listing = () => {
-  const formatCurrency = (number: number) => {
-    return new Intl.NumberFormat("en-NG", {
-      style: "currency",
-      currency: "NGN",
-      minimumFractionDigits: 0,
-    })
-      .format(number)
-      .replace("₦", "₦ ");
-  };
-
   return (
     <div className="flex flex-col gap-3 px-[3.5%]">
       <Card className="rounded-none  border-none shadow-none flex flex-col items-center text-center text-appBlack">
@@ -99,10 +90,6 @@ const Listing = () => {
 
         <PropertyListContainer />
       </Card>
-      <Button className="text-appBlack font-semibold px-6 py-4 rounded-full self-center mx-auto">
-        See All Listing
-        <ArrowRight />
-      </Button>
     </div>
   );
 };
