@@ -30,6 +30,7 @@ export const PropertyList = () => {
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["propertyList", page, perPage],
     queryFn: ({ signal }) => getProperty({ signal, perPage, page }),
+    gcTime: 10 * 60 * 1000,
   });
 
   if (data) {
