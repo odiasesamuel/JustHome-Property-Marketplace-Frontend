@@ -45,7 +45,7 @@ export const PropertyList = () => {
             return (
               <Card className="w-[23%] h-[380px] bg-no-repeat bg-center bg-cover relative text-black text-sm border-none shadow-none" style={{ backgroundImage: `url(${backgroundImg})` }} key={property._id}>
                 <CardHeader>
-                  <CardTitle className="absolute text-xs bg-appGreen px-4 py-2 rounded-full font-normal text-white">{property.forSaleOrRent === "Sale" ? "FOR SALE" : property.forSaleOrRent === "Rent" ? "FOR RENT" : "FOR RENT"}</CardTitle>
+                  <CardTitle className={`absolute text-xs px-4 py-2 rounded-full font-normal ${property.forSaleOrRent === "Sale" ? "bg-appGreen text-white" : property.forSaleOrRent === "Rent" ? "bg-appYellow text-appBlack" : "bg-appYellow text-appBlack"}`}>{property.forSaleOrRent === "Sale" ? "FOR SALE" : property.forSaleOrRent === "Rent" ? "FOR RENT" : "FOR RENT"}</CardTitle>
                 </CardHeader>
                 <CardContent className="w-[90%] absolute left-1/2 transform -translate-x-1/2 bottom-3 bg-white rounded-md p-3">
                   <p className="text-left font-semibold">{property.name}</p>
