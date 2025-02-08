@@ -72,11 +72,11 @@ export const PropertyList = () => {
         <Pagination>
           <PaginationContent>
             <PaginationItem>
-              <PaginationPrevious href={`?perPage=${perPage}&page=${Math.max(page - 1, 1)}`} />
+              <PaginationPrevious href={`?page=${Math.max(page - 1, 1)}&perPage=${perPage}`} />
             </PaginationItem>
 
             <PaginationItem>
-              <PaginationLink href={`?perPage=${perPage}&page=1`} className={`px-3 py-2 rounded-md ${page === 1 ? "bg-appGreen text-white font-bold" : "hover:bg-gray-200"}`}>
+              <PaginationLink href={`?page=1&perPage=${perPage}`} className={`px-3 py-2 rounded-md ${page === 1 ? "bg-appGreen text-white font-bold" : "hover:bg-gray-200"}`}>
                 1
               </PaginationLink>
             </PaginationItem>
@@ -94,7 +94,7 @@ export const PropertyList = () => {
               if (pageNum >= page - 2 && pageNum <= page + 2) {
                 return (
                   <PaginationItem key={pageNum}>
-                    <PaginationLink href={`?perPage=${perPage}&page=${pageNum}`} className={`px-3 py-2 rounded-md ${pageNum === page ? "bg-appGreen text-white font-bold" : "hover:bg-gray-200"}`}>
+                    <PaginationLink href={`?page=${pageNum}&perPage=${perPage}`} className={`px-3 py-2 rounded-md ${pageNum === page ? "bg-appGreen text-white font-bold" : "hover:bg-gray-200"}`}>
                       {pageNum}
                     </PaginationLink>
                   </PaginationItem>
@@ -109,13 +109,13 @@ export const PropertyList = () => {
             )}
 
             <PaginationItem>
-              <PaginationLink href={`?perPage=${perPage}&page=${pageCount}`} className={`px-3 py-2 rounded-md ${page === pageCount ? "bg-appGreen text-white font-bold" : "hover:bg-gray-200"}`}>
+              <PaginationLink href={`?page=${pageCount}&perPage=${perPage}`} className={`px-3 py-2 rounded-md ${page === pageCount ? "bg-appGreen text-white font-bold" : "hover:bg-gray-200"}`}>
                 {pageCount}
               </PaginationLink>
             </PaginationItem>
 
             <PaginationItem>
-              <PaginationNext href={`?perPage=${perPage}&page=${Math.min(page + 1, pageCount)}`} />
+              <PaginationNext href={`?page=${Math.min(page + 1, pageCount)}&perPage=${perPage}`} />
             </PaginationItem>
           </PaginationContent>
         </Pagination>

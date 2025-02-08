@@ -10,7 +10,7 @@ export const BASE_URL = "http://localhost:5000";
 
 export const getProperty = async ({ signal, page, perPage }: GetPropertyParams) => {
   try {
-    const response = await axios.get(`${BASE_URL}/property?perPage=${perPage}&page=${page}`, {
+    const response = await axios.get(`${BASE_URL}/property?page=${page}&perPage=${perPage}`, {
       signal,
     });
     return response.data;
