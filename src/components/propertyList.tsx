@@ -10,7 +10,6 @@ import { PaginationComponent } from "./paginationComponent";
 
 import { useSearchParams } from "next/navigation";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { MapPin } from "lucide-react";
 import Image from "next/image";
 import { formatCurrency } from "@/utils/formatCurrency";
@@ -72,7 +71,7 @@ export const PropertyList = () => {
           })}
         </CardContent>
 
-        <PaginationComponent page={page} perPage={perPage} pageCount={pageCount} />
+        <PaginationComponent page={page} perPage={perPage} pageCount={pageCount} search={search} />
       </>
     );
   }

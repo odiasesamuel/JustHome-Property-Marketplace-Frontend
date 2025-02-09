@@ -4,18 +4,23 @@ type PaginationProps = {
   page: number;
   perPage: number;
   pageCount: number;
+  search: string | null;
 };
 
-export const PaginationComponent = ({ page, perPage, pageCount }: PaginationProps) => {
+export const PaginationComponent = ({ page, perPage, pageCount, search }: PaginationProps) => {
+  const params = new URLSearchParams();
+  if (search) params.append("search", search);
+
+
   return (
     <Pagination>
       <PaginationContent>
         <PaginationItem>
-          <PaginationPrevious href={`?page=${Math.max(page - 1, 1)}&perPage=${perPage}`} />
+          <PaginationPrevious href={`?page=${Math.max(page - 1, 1)}&perPage=${perPage}&${params.toString()}`} />
         </PaginationItem>
 
         <PaginationItem>
-          <PaginationLink href={`?page=1&perPage=${perPage}`} className={`px-3 py-2 rounded-md ${page === 1 ? "bg-appGreen text-white font-bold" : "hover:bg-gray-200"}`}>
+          <PaginationLink href={`?page=1&perPage=${perPage}&${params.toString()}`} className={`px-3 py-2 rounded-md ${page === 1 ? "bg-appGreen text-white font-bold" : "hover:bg-gray-200"}`}>
             1
           </PaginationLink>
         </PaginationItem>
@@ -33,7 +38,7 @@ export const PaginationComponent = ({ page, perPage, pageCount }: PaginationProp
           if (pageNum >= page - 2 && pageNum <= page + 2) {
             return (
               <PaginationItem key={pageNum}>
-                <PaginationLink href={`?page=${pageNum}&perPage=${perPage}`} className={`px-3 py-2 rounded-md ${pageNum === page ? "bg-appGreen text-white font-bold" : "hover:bg-gray-200"}`}>
+                <PaginationLink href={`?page=${pageNum}&perPage=${perPage}&${params.toString()}`} className={`px-3 py-2 rounded-md ${pageNum === page ? "bg-appGreen text-white font-bold" : "hover:bg-gray-200"}`}>
                   {pageNum}
                 </PaginationLink>
               </PaginationItem>
@@ -48,13 +53,13 @@ export const PaginationComponent = ({ page, perPage, pageCount }: PaginationProp
         )}
 
         <PaginationItem>
-          <PaginationLink href={`?page=${pageCount}&perPage=${perPage}`} className={`px-3 py-2 rounded-md ${page === pageCount ? "bg-appGreen text-white font-bold" : "hover:bg-gray-200"}`}>
+          <PaginationLink href={`?page=${pageCount}&perPage=${perPage}&${params.toString()}`} className={`px-3 py-2 rounded-md ${page === pageCount ? "bg-appGreen text-white font-bold" : "hover:bg-gray-200"}`}>
             {pageCount}
           </PaginationLink>
         </PaginationItem>
 
         <PaginationItem>
-          <PaginationNext href={`?page=${Math.min(page + 1, pageCount)}&perPage=${perPage}`} />
+          <PaginationNext href={`?page=${Math.min(page + 1, pageCount)}&perPage=${perPage}&${params.toString()}`} />
         </PaginationItem>
       </PaginationContent>
     </Pagination>
