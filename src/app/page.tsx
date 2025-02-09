@@ -13,9 +13,9 @@ const Home: React.FC<HomeProps> = () => {
       <div className="px-[3.5%]">
         <div className="bg-[url('/images/area-bg.png')] bg-no-repeat bg-center bg-cover h-[530px] flex flex-col items-center text-appGreen">
           <Card className="w-1/2 flex flex-col items-center mt-[50px] border-none shadow-none text-appGreen bg-inherit">
-            <Link href="/listing?page=1&perPage=12">
-              <Button variant="outline">LET US GUIDE YOU HOME</Button>
-            </Link>
+            <Button asChild variant="outline">
+              <Link href="/listing?page=1&perPage=12">LET US GUIDE YOU HOME</Link>
+            </Button>
             <CardHeader>
               <CardTitle className="text-5xl font-medium mb-4">Find Your Perfect Home</CardTitle>
               <CardDescription className="text-center text-appGreen">Search properties for sale and to rent in Lagos and Abuja</CardDescription>
@@ -30,8 +30,8 @@ const Home: React.FC<HomeProps> = () => {
               <div className="h-[150px] text-center w-[45%]">
                 <p className="text-sm font-medium">Explore all things Property</p>
                 <div className="mt-8 flex justify-between text-xs">
-                  <Button variant="outline" className="border border-[#EBEBEB] px-3 py-1 rounded-full">
-                    All Properties
+                  <Button asChild variant="outline" className="border border-[#EBEBEB] px-3 py-1 rounded-full">
+                    <Link href="/listing?page=1&perPage=12">All Properties</Link>
                   </Button>
                   <Button variant="outline" className="border border-[#EBEBEB] px-3 py-1 rounded-full">
                     For Sale

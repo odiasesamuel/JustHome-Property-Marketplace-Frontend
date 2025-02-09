@@ -6,7 +6,6 @@ import { useQuery } from "@tanstack/react-query";
 import { getProperty } from "@/api/propertyHttp";
 // import data from "@/api/propertyList.json";
 import { PaginationComponent } from "./paginationComponent";
-
 import { useSearchParams } from "next/navigation";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { MapPin } from "lucide-react";
