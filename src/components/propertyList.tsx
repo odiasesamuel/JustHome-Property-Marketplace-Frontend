@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getProperty } from "@/api/propertyHttp";
 // import data from "@/api/propertyList.json";
 import { BASE_URL } from "@/api/propertyHttp";
+import { PaginationComponent } from "./paginationComponent";
 
 import { useSearchParams } from "next/navigation";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -26,10 +27,11 @@ export const PropertyList = () => {
   const searchParams = useSearchParams();
   const perPage = Number(searchParams.get("perPage")) || 12;
   const page = Number(searchParams.get("page")) || 1;
+  const search = searchParams.get("search");
 
   const { data, isPending, isError, error } = useQuery({
-    queryKey: ["propertyList", page, perPage],
-    queryFn: ({ signal }) => getProperty({ signal, perPage, page }),
+    queryKey: ["propertyList", page, perPage, search],
+    queryFn: ({ signal }) => getProperty({ signal, perPage, page, search }),
     gcTime: 10 * 60 * 1000,
   });
 
@@ -70,56 +72,7 @@ export const PropertyList = () => {
           })}
         </CardContent>
 
-        <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious href={`?page=${Math.max(page - 1, 1)}&perPage=${perPage}`} />
-            </PaginationItem>
-
-            <PaginationItem>
-              <PaginationLink href={`?page=1&perPage=${perPage}`} className={`px-3 py-2 rounded-md ${page === 1 ? "bg-appGreen text-white font-bold" : "hover:bg-gray-200"}`}>
-                1
-              </PaginationLink>
-            </PaginationItem>
-
-            {page > 3 && (
-              <PaginationItem>
-                <PaginationEllipsis />
-              </PaginationItem>
-            )}
-
-            {[...Array(pageCount)].map((_, index) => {
-              const pageNum = index + 1;
-              if (pageNum === 1 || pageNum === pageCount) return null; // Already handled above
-
-              if (pageNum >= page - 2 && pageNum <= page + 2) {
-                return (
-                  <PaginationItem key={pageNum}>
-                    <PaginationLink href={`?page=${pageNum}&perPage=${perPage}`} className={`px-3 py-2 rounded-md ${pageNum === page ? "bg-appGreen text-white font-bold" : "hover:bg-gray-200"}`}>
-                      {pageNum}
-                    </PaginationLink>
-                  </PaginationItem>
-                );
-              }
-            })}
-
-            {page < pageCount - 2 && (
-              <PaginationItem>
-                <PaginationEllipsis />
-              </PaginationItem>
-            )}
-
-            <PaginationItem>
-              <PaginationLink href={`?page=${pageCount}&perPage=${perPage}`} className={`px-3 py-2 rounded-md ${page === pageCount ? "bg-appGreen text-white font-bold" : "hover:bg-gray-200"}`}>
-                {pageCount}
-              </PaginationLink>
-            </PaginationItem>
-
-            <PaginationItem>
-              <PaginationNext href={`?page=${Math.min(page + 1, pageCount)}&perPage=${perPage}`} />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
+        <PaginationComponent page={page} perPage={perPage} pageCount={pageCount} />
       </>
     );
   }

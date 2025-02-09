@@ -1,8 +1,8 @@
 import { PropertyListContainer } from "@/components/propertyList";
+import SearchBar from "@/components/searchBar";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, MapPin, Search } from "lucide-react";
-import Image from "next/image";
+import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -18,12 +18,7 @@ const Listing = () => {
           </CardTitle>
           <CardDescription>Browse. Compare. Move in. Finding your ideal home has never been simpler.</CardDescription>
 
-          <div className="w-full relative">
-            <Input type="text" className="w-full rounded-full px-5 py-4 text-sm  shadow-md focus:outline-none placeholder:text-appGreen" placeholder="Enter state, area, Keywords..." />
-            <Button type="submit" className="bg-[#E7C873] rounded-full absolute top-1/2 right-2 transform -translate-y-1/2 w-10 h-10 flex items-center justify-center">
-              <Search className="w-4 text-appGreen" />
-            </Button>
-          </div>
+          <SearchBar />
 
           <div className="w-3/4 flex justify-between text-xs">
             <Button variant="outline" className="border border-appBlack px-3 py-1 rounded-full">
