@@ -16,7 +16,6 @@ const SearchBar = () => {
     const query = searchRef.current?.value.trim();
     if (!query) return;
 
-    console.log(query);
     router.push(`/listing?page=1&perPage=12&search=${encodeURIComponent(query)}`);
   };
 

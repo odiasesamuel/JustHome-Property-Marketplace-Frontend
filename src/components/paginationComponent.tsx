@@ -11,12 +11,13 @@ export const PaginationComponent = ({ page, perPage, pageCount, search }: Pagina
   const params = new URLSearchParams();
   if (search) params.append("search", search);
 
+  if (pageCount <= 1) return null;
 
   return (
     <Pagination>
       <PaginationContent>
         <PaginationItem>
-          <PaginationPrevious href={`?page=${Math.max(page - 1, 1)}&perPage=${perPage}&${params.toString()}`} />
+          <PaginationPrevious href={page > 1 ? `?page=${page - 1}&perPage=${perPage}&${params.toString()}` : "#"} className={page === 1 ? "pointer-events-none opacity-50" : ""} />
         </PaginationItem>
 
         <PaginationItem>
@@ -59,7 +60,7 @@ export const PaginationComponent = ({ page, perPage, pageCount, search }: Pagina
         </PaginationItem>
 
         <PaginationItem>
-          <PaginationNext href={`?page=${Math.min(page + 1, pageCount)}&perPage=${perPage}&${params.toString()}`} />
+          <PaginationNext href={page < pageCount ? `?page=${page + 1}&perPage=${perPage}&${params.toString()}` : "#"} className={page === pageCount ? "pointer-events-none opacity-50" : ""} />
         </PaginationItem>
       </PaginationContent>
     </Pagination>

@@ -5,11 +5,10 @@ import { queryClient } from "@/api/queryClient";
 import { useQuery } from "@tanstack/react-query";
 import { getProperty } from "@/api/propertyHttp";
 // import data from "@/api/propertyList.json";
-import { BASE_URL } from "@/api/propertyHttp";
 import { PaginationComponent } from "./paginationComponent";
 
 import { useSearchParams } from "next/navigation";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { MapPin } from "lucide-react";
 import Image from "next/image";
 import { formatCurrency } from "@/utils/formatCurrency";
