@@ -1,12 +1,10 @@
 "use client";
 
-import React from "react";
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { useSearchParams, useRouter } from "next/navigation";
-import Link from "next/link";
 
 const PropertyFilter: React.FC<{}> = () => {
   const searchParams = useSearchParams();
@@ -19,62 +17,73 @@ const PropertyFilter: React.FC<{}> = () => {
 
   const router = useRouter();
   let params = new URLSearchParams(searchParams);
-  const appendSaleQueryParameter = () => {
+
+  const showAllProperties = () => {
+    router.push("/listing?page=1&perPage=12");
+  };
+
+  const filterPropertiesForSale = () => {
     if (forSaleOrRent === "Sale") {
       params.delete("forSaleOrRent");
     } else {
       params.set("forSaleOrRent", "Sale");
     }
-    console.log(params.toString());
     router.push(`/listing?${params.toString()}`);
   };
 
-  const appendRentQueryParameter = () => {
+  const filterPropertiesForRent = () => {
     if (forSaleOrRent === "Rent") {
       params.delete("forSaleOrRent");
     } else {
       params.set("forSaleOrRent", "Rent");
     }
-    console.log(params.toString());
     router.push(`/listing?${params.toString()}`);
   };
 
-  const appendDuplexQueryParameter = () => {
+  const filterDuplexProperties = () => {
     if (propertyType === "Duplex") {
       params.delete("propertyType");
     } else {
       params.set("propertyType", "Duplex");
     }
-    console.log(params.toString());
     router.push(`/listing?${params.toString()}`);
   };
 
-  const appendFlatQueryParameter = () => {
+  const filterFlatProperties = () => {
     if (propertyType === "Flat") {
       params.delete("propertyType");
     } else {
       params.set("propertyType", "Flat");
     }
-    console.log(params.toString());
+    router.push(`/listing?${params.toString()}`);
+  };
+
+  const filterMinPriceProperties = (value: string) => {
+    params.set("minPrice", value);
+    router.push(`/listing?${params.toString()}`);
+  };
+
+  const filterMaxPriceProperties = (value: string) => {
+    params.set("maxPrice", value);
     router.push(`/listing?${params.toString()}`);
   };
 
   return (
     <>
       <div className="w-3/4 flex justify-between text-xs">
-        <Button asChild variant="outline" className={`border px-3 py-1 rounded-full ${!search && !propertyType && !forSaleOrRent && !minPrice && !maxPrice ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`}>
-          <Link href="/listing?page=1&perPage=12">All Properties</Link>
+        <Button variant="outline" className={`border px-3 py-1 rounded-full ${!search && !propertyType && !forSaleOrRent && !minPrice && !maxPrice ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`} onClick={showAllProperties}>
+          All Properties
         </Button>
-        <Button variant="outline" className={`border px-3 py-1 rounded-full ${forSaleOrRent === "Sale" ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`} onClick={appendSaleQueryParameter}>
+        <Button variant="outline" className={`border px-3 py-1 rounded-full ${forSaleOrRent === "Sale" ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`} onClick={filterPropertiesForSale}>
           For Sale
         </Button>
-        <Button variant="outline" className={`border px-3 py-1 rounded-full ${forSaleOrRent === "Rent" ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`} onClick={appendRentQueryParameter}>
+        <Button variant="outline" className={`border px-3 py-1 rounded-full ${forSaleOrRent === "Rent" ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`} onClick={filterPropertiesForRent}>
           For Rent
         </Button>
-        <Button variant="outline" className={`border px-3 py-1 rounded-full ${propertyType === "Duplex" ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`} onClick={appendDuplexQueryParameter}>
+        <Button variant="outline" className={`border px-3 py-1 rounded-full ${propertyType === "Duplex" ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`} onClick={filterDuplexProperties}>
           Duplex
         </Button>
-        <Button variant="outline" className={`border px-3 py-1 rounded-full ${propertyType === "Flat" ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`} onClick={appendFlatQueryParameter}>
+        <Button variant="outline" className={`border px-3 py-1 rounded-full ${propertyType === "Flat" ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`} onClick={filterFlatProperties}>
           Flat
         </Button>
       </div>
@@ -84,7 +93,7 @@ const PropertyFilter: React.FC<{}> = () => {
           <Label htmlFor="min-price" className="text-left text-xs">
             Min Price
           </Label>
-          <Select>
+          <Select value={minPrice ? minPrice : ""} onValueChange={filterMinPriceProperties}>
             <SelectTrigger id="min-price" className={`w-[180px] ${minPrice ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`}>
               <SelectValue placeholder="No Min" />
             </SelectTrigger>
@@ -105,7 +114,7 @@ const PropertyFilter: React.FC<{}> = () => {
           <Label htmlFor="max-price" className="text-left text-xs">
             Max Price
           </Label>
-          <Select>
+          <Select value={maxPrice ? maxPrice : ""} onValueChange={filterMaxPriceProperties}>
             <SelectTrigger id="max-price" className={`w-[180px] ${maxPrice ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`}>
               <SelectValue placeholder="No Max" />
             </SelectTrigger>

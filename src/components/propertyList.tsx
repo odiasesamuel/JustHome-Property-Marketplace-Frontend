@@ -25,6 +25,10 @@ export const PropertyList = () => {
   const perPage = Number(searchParams.get("perPage")) || 12;
   const page = Number(searchParams.get("page")) || 1;
   const search = searchParams.get("search");
+  const forSaleOrRent = searchParams.get("forSaleOrRent");
+  const propertyType = searchParams.get("propertyType");
+  const minPrice = searchParams.get("minPrice");
+  const maxPrice = searchParams.get("maxPrice");
 
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["propertyList", page, perPage, search],
