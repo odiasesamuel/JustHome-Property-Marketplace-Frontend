@@ -6,6 +6,7 @@ import Main from "@/components/layout/main";
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
 import { inter, roboto } from "@/font/font";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,6 +36,7 @@ export default function RootLayout({
           <Main className="col-start-1 col-end-13">{children}</Main>
           <Footer className="col-start-1 col-end-13"></Footer>
         </div>
+        <Toaster />
       </body>
     </html>
   );

@@ -1,5 +1,6 @@
 "use client";
 
+import { useToast } from "@/hooks/use-toast";
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -62,24 +63,34 @@ const PropertyFilter: React.FC<{}> = () => {
     router.push(`/listing?${params.toString()}`);
   };
 
+  const { toast } = useToast();
+
   const filterMinPriceProperties = (value: string) => {
-    params.set("minPrice", value);
-    router.push(`/listing?${params.toString()}`);
     if (maxPrice !== null && maxPrice < value) {
       console.log("Min Price can't be greater than max price");
-    } else {
-      console.log("success");
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Minimum Price can't be greater than maximum price",
+      });
+      return;
     }
+    params.set("minPrice", value);
+    router.push(`/listing?${params.toString()}`);
   };
 
   const filterMaxPriceProperties = (value: string) => {
-    params.set("maxPrice", value);
-    router.push(`/listing?${params.toString()}`);
     if (minPrice !== null && minPrice > value) {
       console.log("Min Price can't be greater than max price");
-    } else {
-      console.log("success");
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Minimum Price can't be greater than maximum price",
+      });
+      return;
     }
+    params.set("maxPrice", value);
+    router.push(`/listing?${params.toString()}`);
   };
 
   return (
