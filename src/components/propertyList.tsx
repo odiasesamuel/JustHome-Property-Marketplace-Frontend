@@ -31,8 +31,8 @@ export const PropertyList = () => {
   const maxPrice = searchParams.get("maxPrice");
 
   const { data, isPending, isError, error } = useQuery({
-    queryKey: ["propertyList", page, perPage, search],
-    queryFn: ({ signal }) => getProperty({ signal, perPage, page, search }),
+    queryKey: ["propertyList", page, perPage, search, forSaleOrRent, propertyType, minPrice, maxPrice],
+    queryFn: ({ signal }) => getProperty({ signal, perPage, page, search, forSaleOrRent, propertyType, minPrice, maxPrice }),
     gcTime: 10 * 60 * 1000,
   });
 
@@ -73,7 +73,7 @@ export const PropertyList = () => {
           })}
         </CardContent>
 
-        <PaginationComponent page={page} perPage={perPage} pageCount={pageCount} search={search} />
+        <PaginationComponent page={page} perPage={perPage} pageCount={pageCount} search={search} forSaleOrRent={forSaleOrRent} propertyType={propertyType} minPrice={minPrice} maxPrice={maxPrice} />
       </>
     );
   }

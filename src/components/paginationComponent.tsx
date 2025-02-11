@@ -5,11 +5,19 @@ type PaginationProps = {
   perPage: number;
   pageCount: number;
   search: string | null;
+  forSaleOrRent: string | null;
+  propertyType: string | null;
+  minPrice: string | null;
+  maxPrice: string | null;
 };
 
-export const PaginationComponent = ({ page, perPage, pageCount, search }: PaginationProps) => {
+export const PaginationComponent = ({ page, perPage, pageCount, search, forSaleOrRent, propertyType, minPrice, maxPrice }: PaginationProps) => {
   const params = new URLSearchParams();
   if (search) params.append("search", search);
+  if (forSaleOrRent) params.append("forSaleOrRent", forSaleOrRent);
+  if (propertyType) params.append("propertyType", propertyType);
+  if (minPrice) params.append("minPrice", minPrice);
+  if (maxPrice) params.append("maxPrice", maxPrice);
 
   if (pageCount <= 1) return null;
 

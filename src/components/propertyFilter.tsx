@@ -26,6 +26,7 @@ const PropertyFilter: React.FC<{}> = () => {
     if (forSaleOrRent === "Sale") {
       params.delete("forSaleOrRent");
     } else {
+      params.set("page", "1");
       params.set("forSaleOrRent", "Sale");
     }
     router.push(`/listing?${params.toString()}`);
@@ -35,6 +36,7 @@ const PropertyFilter: React.FC<{}> = () => {
     if (forSaleOrRent === "Rent") {
       params.delete("forSaleOrRent");
     } else {
+      params.set("page", "1");
       params.set("forSaleOrRent", "Rent");
     }
     router.push(`/listing?${params.toString()}`);
@@ -44,6 +46,7 @@ const PropertyFilter: React.FC<{}> = () => {
     if (propertyType === "Duplex") {
       params.delete("propertyType");
     } else {
+      params.set("page", "1");
       params.set("propertyType", "Duplex");
     }
     router.push(`/listing?${params.toString()}`);
@@ -53,6 +56,7 @@ const PropertyFilter: React.FC<{}> = () => {
     if (propertyType === "Flat") {
       params.delete("propertyType");
     } else {
+      params.set("page", "1");
       params.set("propertyType", "Flat");
     }
     router.push(`/listing?${params.toString()}`);
