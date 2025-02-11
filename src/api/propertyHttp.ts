@@ -35,7 +35,7 @@ export const getProperty = async ({ signal, page, perPage, search, forSaleOrRent
       console.log("Request canceled:", error.message);
       return;
     }
-    console.error("Error fetching properties:", error);
+    // console.error("Error fetching properties:", error);
     throw error;
   }
 };

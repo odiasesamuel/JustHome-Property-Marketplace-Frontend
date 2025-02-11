@@ -1,10 +1,12 @@
 "use client";
 
+import { useEffect } from "react";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/api/queryClient";
 import { useQuery } from "@tanstack/react-query";
 import { getProperty } from "@/api/propertyHttp";
 // import data from "@/api/propertyList.json";
+import { useToast } from "@/hooks/use-toast";
 import { PaginationComponent } from "./paginationComponent";
 import { useSearchParams } from "next/navigation";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -35,6 +37,19 @@ export const PropertyList = () => {
     queryFn: ({ signal }) => getProperty({ signal, perPage, page, search, forSaleOrRent, propertyType, minPrice, maxPrice }),
     gcTime: 10 * 60 * 1000,
   });
+
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (isError) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error?.message || "Error loading properties data",
+      });
+      console.log(error);
+    }
+  }, [isError, error, toast]);
 
   if (data) {
     const pageCount = Math.ceil(data.totalProperties / perPage);
