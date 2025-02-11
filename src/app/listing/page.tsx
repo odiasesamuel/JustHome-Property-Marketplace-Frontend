@@ -17,7 +17,7 @@ const Listing = () => {
           </CardTitle>
           <CardDescription>Browse. Compare. Move in. Finding your ideal home has never been simpler.</CardDescription>
 
-          <SearchBar />
+          <SearchBar className="w-full" />
 
           <PropertyFilter />
         </CardHeader>

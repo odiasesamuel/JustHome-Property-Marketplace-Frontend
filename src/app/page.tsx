@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import SearchBar from "@/components/searchBar";
 import { ArrowRight, House, MapPin, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,23 +22,18 @@ const Home: React.FC<HomeProps> = () => {
               <CardDescription className="text-center text-appGreen">Search properties for sale and to rent in Lagos and Abuja</CardDescription>
             </CardHeader>
             <CardContent className="w-full flex flex-col items-center mt-5">
-              <div className="w-[80%] mb-10 relative">
-                <Input type="text" className="w-full rounded-full px-5 py-4 text-sm  shadow-md focus:outline-none placeholder:text-appGreen" placeholder="Enter state, area, Keywords..." />
-                <Button type="submit" className="bg-[#E7C873] rounded-full absolute top-1/2 right-2 transform -translate-y-1/2 w-10 h-10 flex items-center justify-center">
-                  <Search className="w-4 text-appGreen" />
-                </Button>
-              </div>
+              <SearchBar className="w-[80%] mb-10" />
               <div className="h-[150px] text-center w-[45%]">
                 <p className="text-sm font-medium">Explore all things Property</p>
                 <div className="mt-8 flex justify-between text-xs">
                   <Button asChild variant="outline" className="border border-[#EBEBEB] px-3 py-1 rounded-full">
                     <Link href="/listing?page=1&perPage=12">All Properties</Link>
                   </Button>
-                  <Button variant="outline" className="border border-[#EBEBEB] px-3 py-1 rounded-full">
-                    For Sale
+                  <Button asChild variant="outline" className="border border-[#EBEBEB] px-3 py-1 rounded-full">
+                    <Link href="/listing?page=1&perPage=12&forSaleOrRent=Sale">For Sale</Link>
                   </Button>
-                  <Button variant="outline" className="border border-[#EBEBEB] px-3 py-1 rounded-full">
-                    For Rent
+                  <Button asChild variant="outline" className="border border-[#EBEBEB] px-3 py-1 rounded-full">
+                    <Link href="/listing?page=1&perPage=12&forSaleOrRent=Rent">For Rent</Link>
                   </Button>
                 </div>
               </div>
@@ -304,7 +300,7 @@ const Home: React.FC<HomeProps> = () => {
       <div className="mt-[100px]">
         <Card className="rounded-none flex flex-col items-center text-center text-appBlack border-none shadow-none">
           <CardHeader className="">
-            <CardTitle className="text-3xl">Properties by Area</CardTitle>
+            <CardTitle className="text-3xl">Explore Cities</CardTitle>
             <CardDescription>Explore a curated selection of properties across prime locations, tailored to meet your lifestyle and investment needs.</CardDescription>
           </CardHeader>
           <CardContent className="w-[80%] h-fit flex flex-wrap justify-center mt-5 gap-10">

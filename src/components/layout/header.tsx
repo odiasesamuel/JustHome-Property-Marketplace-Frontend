@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { User } from "lucide-react";
+import NavLink from "./navLink";
 
 type HeaderType = {
   className: string;
@@ -15,10 +16,10 @@ const Header: React.FC<HeaderType> = ({ className }) => {
         <h1 className="text-lg font-medium">JustHome</h1>
       </div>
       <nav className="w-[20%] h-[30px] absolute left-1/2 -translate-x-1/2 flex items-center justify-between font-medium ase">
-        <Link href="/">Home</Link>
-        <Link href="/listing?page=1&perPage=12">Listing</Link>
-        {/* <Link href="">Blog</Link> */}
-        <Link href="/contact">Contact</Link>
+        <NavLink href="/">Home</NavLink>
+        <NavLink href="/listing?page=1&perPage=12">Listing</NavLink>
+        {/* <NavLink href="">Blog</NavLink> */}
+        <NavLink href="/contact">Contact</NavLink>
       </nav>
 
       <div className="w-[17%] h-[30px] flex justify-end">
