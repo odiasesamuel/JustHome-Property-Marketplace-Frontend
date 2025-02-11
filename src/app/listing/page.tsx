@@ -2,10 +2,6 @@ import { PropertyListContainer } from "@/components/propertyList";
 import SearchBar from "@/components/searchBar";
 import PropertyFilter from "@/components/propertyFilter";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Label } from "@/components/ui/label";
-import { formatCurrency } from "@/utils/formatCurrency";
 
 const Listing = () => {
   return (
