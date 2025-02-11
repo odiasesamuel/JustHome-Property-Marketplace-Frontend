@@ -65,11 +65,21 @@ const PropertyFilter: React.FC<{}> = () => {
   const filterMinPriceProperties = (value: string) => {
     params.set("minPrice", value);
     router.push(`/listing?${params.toString()}`);
+    if (maxPrice !== null && maxPrice < value) {
+      console.log("Min Price can't be greater than max price");
+    } else {
+      console.log("success");
+    }
   };
 
   const filterMaxPriceProperties = (value: string) => {
     params.set("maxPrice", value);
     router.push(`/listing?${params.toString()}`);
+    if (minPrice !== null && minPrice > value) {
+      console.log("Min Price can't be greater than max price");
+    } else {
+      console.log("success");
+    }
   };
 
   return (
