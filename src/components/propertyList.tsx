@@ -1,28 +1,20 @@
 "use client";
 
 import { useEffect } from "react";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { queryClient } from "@/api/queryClient";
 import { useQuery } from "@tanstack/react-query";
 import { getProperty } from "@/api/propertyHttp";
 // import data from "@/api/propertyList.json";
 import { useToast } from "@/hooks/use-toast";
 import { PaginationComponent } from "./paginationComponent";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { MapPin } from "lucide-react";
 import Image from "next/image";
 import { formatCurrency } from "@/utils/formatCurrency";
+import { generateSlug } from "@/utils/generateSlug";
 
-export const PropertyListContainer = () => {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <PropertyList />
-    </QueryClientProvider>
-  );
-};
-
-export const PropertyList = () => {
+const PropertyList = () => {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const perPage = Number(searchParams.get("perPage")) || 12;
   const page = Number(searchParams.get("page")) || 1;
@@ -54,6 +46,11 @@ export const PropertyList = () => {
   if (data) {
     const pageCount = Math.ceil(data.totalProperties / perPage);
     const propertyList = data.properties;
+    const navigateToPropertyDetails = (property: any) => {
+      const id = generateSlug(property.name, property._id);
+      router.push(`/listing/${id}`);
+      console.log(id);
+    };
 
     return (
       <>
@@ -61,7 +58,7 @@ export const PropertyList = () => {
           {propertyList.map((property: any) => {
             const backgroundImg = property.imageUrls[0];
             return (
-              <Card className="w-[23%] h-[380px] bg-no-repeat bg-center bg-cover relative text-black text-sm border-none shadow-none" style={{ backgroundImage: `url(${backgroundImg})` }} key={property._id}>
+              <Card className="w-[23%] h-[380px] bg-no-repeat bg-center bg-cover relative text-black text-sm border-none shadow-none cursor-pointer" style={{ backgroundImage: `url(${backgroundImg})` }} key={property._id} onClick={() => navigateToPropertyDetails(property)}>
                 <CardHeader>
                   <CardTitle className={`absolute text-xs px-4 py-2 rounded-full font-normal ${property.forSaleOrRent === "Sale" ? "bg-appGreen text-white" : property.forSaleOrRent === "Rent" ? "bg-appYellow text-appBlack" : "bg-appYellow text-appBlack"}`}>{property.forSaleOrRent === "Sale" ? "FOR SALE" : property.forSaleOrRent === "Rent" ? "FOR RENT" : "FOR RENT"}</CardTitle>
                 </CardHeader>
@@ -93,3 +90,5 @@ export const PropertyList = () => {
     );
   }
 };
+
+export default PropertyList;

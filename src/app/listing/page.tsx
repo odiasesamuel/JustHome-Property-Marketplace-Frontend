@@ -1,4 +1,4 @@
-import { PropertyListContainer } from "@/components/propertyList";
+import PropertyList from "@/components/propertyList";
 import SearchBar from "@/components/searchBar";
 import PropertyFilter from "@/components/propertyFilter";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -18,7 +18,7 @@ const Listing = () => {
           <PropertyFilter />
         </CardHeader>
 
-        <PropertyListContainer />
+        <PropertyList />
       </Card>
     </div>
   );
