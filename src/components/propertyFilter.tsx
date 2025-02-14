@@ -67,7 +67,6 @@ const PropertyFilter: React.FC<{}> = () => {
 
   const filterMinPriceProperties = (value: string) => {
     if (maxPrice !== null && maxPrice < value) {
-      console.log("Min Price can't be greater than max price");
       toast({
         variant: "destructive",
         title: "Error",
@@ -81,7 +80,6 @@ const PropertyFilter: React.FC<{}> = () => {
 
   const filterMaxPriceProperties = (value: string) => {
     if (minPrice !== null && minPrice > value) {
-      console.log("Min Price can't be greater than max price");
       toast({
         variant: "destructive",
         title: "Error",

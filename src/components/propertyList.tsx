@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getProperty } from "@/api/propertyHttp";
+import { getPropertyList } from "@/api/propertyHttp";
 // import data from "@/api/propertyList.json";
 import { useToast } from "@/hooks/use-toast";
 import { PaginationComponent } from "./paginationComponent";
@@ -26,7 +26,7 @@ const PropertyList = () => {
 
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["propertyList", page, perPage, search, forSaleOrRent, propertyType, minPrice, maxPrice],
-    queryFn: ({ signal }) => getProperty({ signal, perPage, page, search, forSaleOrRent, propertyType, minPrice, maxPrice }),
+    queryFn: ({ signal }) => getPropertyList({ signal, perPage, page, search, forSaleOrRent, propertyType, minPrice, maxPrice }),
     gcTime: 10 * 60 * 1000,
   });
 
@@ -49,7 +49,6 @@ const PropertyList = () => {
     const navigateToPropertyDetails = (property: any) => {
       const id = generateSlug(property.name, property._id);
       router.push(`/listing/${id}`);
-      console.log(id);
     };
 
     return (
