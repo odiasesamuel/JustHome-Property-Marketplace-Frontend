@@ -6,69 +6,80 @@ import { useQuery } from "@tanstack/react-query";
 import { getPropertyDetails } from "@/api/propertyHttp";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import ImageCarousel from "@/components/imageCarousel";
+import ImageViewer from "@/components/imageViewer";
 import { MapPin } from "lucide-react";
+import { formatCurrency } from "@/utils/formatCurrency";
+import { PropertyResponse } from "@/types/apiResponse";
+// import data from "@/api/property.json";
 
 const Property = () => {
-  // const param = useParams();
-  // const slug = param.slug as string;
-  // const propertyId = slug.split("-").pop();
-  // console.log(propertyId);
+  const param = useParams();
+  const slug = param.slug as string;
+  const propertyId = slug.split("-").pop();
+  console.log(propertyId);
 
-  // const { data, isPending, isError, error } = useQuery({
-  //   queryKey: ["property", propertyId],
-  //   queryFn: ({ signal }) => getPropertyDetails({ signal, propertyId }),
-  //   gcTime: 10 * 60 * 1000,
-  // });
+  const { data, isPending, isError, error } = useQuery<PropertyResponse>({
+    queryKey: ["property", propertyId],
+    queryFn: ({ signal }) => getPropertyDetails({ signal, propertyId }),
+    gcTime: 10 * 60 * 1000,
+  });
 
-  // console.log(data);
+  if (data) {
+    console.log(data);
 
-  return (
-    <div className="px-[3.5%]">
-      <Card className="">
-        <CardHeader>
-          <CardTitle className="flex justify-between mb-2 text-lg">
-            <span>4 Bedroom Luxury Penthouse Maisonettes</span>
-            <span>#500,000</span>
-          </CardTitle>
+    return (
+      <div className="px-[3.5%]">
+        <Card className="">
+          <CardHeader>
+            <CardTitle className="flex justify-between mb-2 text-lg">
+              <span>{data.property.name}</span>
+              <span>{formatCurrency(data.property.price)}</span>
+            </CardTitle>
 
-          <div className="flex items-center gap-x-1">
-            <MapPin strokeWidth={1.5} size={20} />
-            <span className="font-light text-sm">Parkview, Ikoyi, Lagos</span>
-          </div>
-        </CardHeader>
+            <div className="flex items-center gap-x-1">
+              <MapPin strokeWidth={1.5} size={20} />
+              <span className="font-light text-sm">Parkview, Ikoyi, Lagos</span>
+            </div>
+          </CardHeader>
 
-        <CardContent className="flex justify-center">
-          <Carousel
-            opts={{
-              align: "start",
-            }}
-            className="w-[95%]"
-          >
-            <CarouselContent>
-              {Array.from({ length: 5 }).map((_, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                  <div className="p-0">
-                    <Card className="border-none">
-                      <CardContent className="p-0 cursor-pointer">
-                        <ImageCarousel>
-                          <Image src="/images/nigerian_house.jpg" alt={`property image ${index}`} width={500} height={500} className="w-full h-auto object-contain rounded-lg" />
-                        </ImageCarousel>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
-        </CardContent>
+          <CardContent className="flex justify-center mb-3">
+            <Carousel
+              opts={{
+                align: "start",
+              }}
+              className="w-[95%]"
+            >
+              <CarouselContent>
+                {data.property.imageUrls.map((imageUrl, index) => (
+                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                    <div className="p-0">
+                      <Card className="border-none">
+                        <CardContent className="p-0 cursor-pointer">
+                          <ImageViewer currentImg={imageUrl} imageUrls={data.property.imageUrls}>
+                            {/* Used img over Image for placeholder image on error */}
+                            <div className="w-full h-[500px] overflow-hidden">
+                              <img src={`${imageUrl}`} alt={`property image ${index}`} className="w-full h-full object-cover rounded-lg" onError={(e) => (e.currentTarget.src = "/images/image_placeholder.jpg")} />
+                            </div>
+                          </ImageViewer>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          </CardContent>
 
-        <CardFooter>Footer</CardFooter>
-      </Card>
-    </div>
-  );
+          <CardFooter>
+            <h1 className="text-lg font-semibold leading-none tracking-tight">Description</h1>
+            <p></p>
+          </CardFooter>
+        </Card>
+      </div>
+    );
+  }
 };
 
 export default Property;

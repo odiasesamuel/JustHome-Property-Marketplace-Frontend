@@ -42,3 +42,4 @@ next-env.d.ts
 
 # data
 src/api/propertyList.json
+src/api/property.json
