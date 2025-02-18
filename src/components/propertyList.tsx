@@ -12,6 +12,7 @@ import { MapPin } from "lucide-react";
 import Image from "next/image";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { generateSlug } from "@/utils/generateSlug";
+import { PropertyListResponse } from "@/types/apiResponse";
 
 const PropertyList = () => {
   const router = useRouter();
@@ -24,7 +25,7 @@ const PropertyList = () => {
   const minPrice = searchParams.get("minPrice");
   const maxPrice = searchParams.get("maxPrice");
 
-  const { data, isPending, isError, error } = useQuery({
+  const { data, isPending, isError, error } = useQuery<PropertyListResponse>({
     queryKey: ["propertyList", page, perPage, search, forSaleOrRent, propertyType, minPrice, maxPrice],
     queryFn: ({ signal }) => getPropertyList({ signal, perPage, page, search, forSaleOrRent, propertyType, minPrice, maxPrice }),
     gcTime: 10 * 60 * 1000,

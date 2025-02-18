@@ -30,3 +30,9 @@ export type PropertyResponse = {
   message: string;
   property: Property;
 };
+
+export type PropertyListResponse = {
+  message: string;
+  properties: Property[];
+  totalProperties: number;
+};
