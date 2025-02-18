@@ -10,6 +10,7 @@ import ImageViewer from "@/components/imageViewer";
 import { MapPin } from "lucide-react";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { PropertyResponse } from "@/types/apiResponse";
+import React, { Fragment } from "react";
 // import data from "@/api/property.json";
 
 const Property = () => {
@@ -72,14 +73,29 @@ const Property = () => {
             </Carousel>
           </CardContent>
 
-          <CardFooter>
+          <CardFooter className="flex-col items-start gap-y-5">
             <h1 className="text-lg font-semibold leading-none tracking-tight">Description</h1>
-            <p></p>
+            <DescriptionBody description={data.property.description} />
           </CardFooter>
         </Card>
       </div>
     );
   }
+};
+
+const DescriptionBody: React.FC<{ description: string }> = ({ description }) => {
+  if (!description.includes("\n")) return <p>{description}</p>;
+
+  return (
+    <>
+      {description.split("\n").map((line, index) => (
+        <Fragment key={index}>
+          {line}
+          <br />
+        </Fragment>
+      ))}
+    </>
+  );
 };
 
 export default Property;
