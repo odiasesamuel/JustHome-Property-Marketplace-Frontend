@@ -1,12 +1,14 @@
 "use client";
 
 import { Fragment, useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { getPropertyDetails } from "@/api/propertyHttp";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Button } from "@/components/ui/button";
 import ImageViewer from "@/components/imageViewer";
 import { MapPin } from "lucide-react";
 import { formatCurrency } from "@/utils/formatCurrency";
@@ -38,6 +40,9 @@ const Property = () => {
     }
   }, [isError, error, toast]);
 
+  const router = useRouter();
+  const navigateBackToPropertyList = () => router.back();
+
   if (data) {
     console.log(data);
 
@@ -50,9 +55,18 @@ const Property = () => {
               <span>{formatCurrency(data.property.price)}</span>
             </CardTitle>
 
-            <div className="flex items-center gap-x-1">
-              <MapPin strokeWidth={1.5} size={20} />
-              <span className="font-light text-sm">Parkview, Ikoyi, Lagos</span>
+            <div className="flex items-center gap-x-8">
+              <div className="flex items-center gap-x-1">
+                <MapPin strokeWidth={1.5} size={20} />
+                <span className="font-light text-sm">Parkview, Ikoyi, Lagos</span>
+              </div>
+              <div className="flex gap-2">
+                <Image alt="icon of bed" src="/images/bed.svg" width={20} height={20} className="" />
+                <span>{data.property.numberOfRooms}</span>
+                <span className="text-[#E2E2E2]">|</span>
+                <Image alt="icon of bed" src="/images/shower.svg" width={20} height={20} className="" />
+                <span>1</span>
+              </div>
             </div>
           </CardHeader>
 
@@ -86,10 +100,22 @@ const Property = () => {
             </Carousel>
           </CardContent>
 
-          <CardFooter className="flex-col items-start gap-y-5">
-            <h1 className="text-lg font-semibold leading-none tracking-tight">Description</h1>
-            <DescriptionBody description={data.property.description} />
+          <CardFooter className="flex-col items-start gap-y-8">
+            <div>
+              <h1 className="text-lg font-semibold leading-none tracking-tight mb-3">Description</h1>
+              <DescriptionBody description={data.property.description} />
+            </div>
+
+            <div>
+              <h1 className="text-lg font-semibold leading-none tracking-tight mb-3">Contact</h1>
+              {data.property.email !== "xxxxxx@gmail.com" && <p>{`Email: ${data.property.email}`}</p>}
+              <p>{`Phone Number: ${data.property.phoneNumber}`}</p>
+            </div>
           </CardFooter>
+
+          <Button variant="outline" className="rounded-lg m-6 text-sm" onClick={navigateBackToPropertyList}>
+            Back to property list
+          </Button>
         </Card>
       </div>
     );
