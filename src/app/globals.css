@@ -20,6 +20,56 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 } */
 
+@keyframes tap-upper-1 {
+  0%, 50%, 100% {
+    transform: rotate(10deg) scale(0.4);
+  }
+  40% {
+    transform: rotate(50deg) scale(0.4);
+  }
+}
+
+@keyframes tap-upper-2 {
+  0%, 50%, 100% {
+    transform: rotate(10deg) scale(0.6);
+  }
+  40% {
+    transform: rotate(50deg) scale(0.6);
+  }
+}
+
+@keyframes tap-upper-3 {
+  0%, 50%, 100% {
+    transform: rotate(10deg) scale(0.8);
+  }
+  40% {
+    transform: rotate(50deg) scale(0.8);
+  }
+}
+
+@keyframes tap-upper-4 {
+  0%, 50%, 100% {
+    transform: rotate(10deg) scale(1);
+  }
+  40% {
+    transform: rotate(50deg) scale(1);
+  }
+}
+
+.animate-tap-upper-1 {
+  animation: tap-upper-1 1.2s ease-in-out infinite;
+}
+.animate-tap-upper-2 {
+  animation: tap-upper-2 1.2s ease-in-out infinite 0.1s;
+}
+.animate-tap-upper-3 {
+  animation: tap-upper-3 1.2s ease-in-out infinite 0.2s;
+}
+.animate-tap-upper-4 {
+  animation: tap-upper-4 1.2s ease-in-out infinite 0.3s;
+}
+
+
 @layer base {
   :root {
     --background: 0 0% 100%;
