@@ -10,7 +10,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
 import ImageViewer from "@/components/imageViewer";
-import { AnimatedHand } from "@/components/animatedHand";
+import { AnimatedHand } from "@/components/ui/loader";
 import { MapPin } from "lucide-react";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { PropertyResponse } from "@/types/apiResponse";
@@ -45,7 +45,6 @@ const Property = () => {
   const navigateBackToPropertyList = () => router.back();
 
   if (isPending) {
-    console.log("isPending");
     return (
       <div className="flex justify-center items-center h-screen">
         <AnimatedHand />

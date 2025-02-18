@@ -21,7 +21,9 @@ body {
 } */
 
 @keyframes tap-upper-1 {
-  0%, 50%, 100% {
+  0%,
+  50%,
+  100% {
     transform: rotate(10deg) scale(0.4);
   }
   40% {
@@ -30,7 +32,9 @@ body {
 }
 
 @keyframes tap-upper-2 {
-  0%, 50%, 100% {
+  0%,
+  50%,
+  100% {
     transform: rotate(10deg) scale(0.6);
   }
   40% {
@@ -39,7 +43,9 @@ body {
 }
 
 @keyframes tap-upper-3 {
-  0%, 50%, 100% {
+  0%,
+  50%,
+  100% {
     transform: rotate(10deg) scale(0.8);
   }
   40% {
@@ -48,11 +54,28 @@ body {
 }
 
 @keyframes tap-upper-4 {
-  0%, 50%, 100% {
+  0%,
+  50%,
+  100% {
     transform: rotate(10deg) scale(1);
   }
   40% {
     transform: rotate(50deg) scale(1);
+  }
+}
+
+@keyframes moving {
+  0% {
+    left: 0;
+    width: 0%;
+  }
+  50% {
+    width: 100%;
+    left: 0;
+  }
+  100% {
+    width: 0%;
+    left: 100%;
   }
 }
 
@@ -69,6 +92,9 @@ body {
   animation: tap-upper-4 1.2s ease-in-out infinite 0.3s;
 }
 
+.animate-moving {
+  animation: moving 1s ease-in-out infinite;
+}
 
 @layer base {
   :root {

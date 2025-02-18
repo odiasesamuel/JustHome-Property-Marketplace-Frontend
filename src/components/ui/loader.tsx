@@ -1,3 +1,11 @@
+export const LoadingBar = () => {
+  return (
+    <div className="relative w-[130px] h-[4px] bg-black/20 rounded-[30px] overflow-hidden">
+      <div className="absolute top-0 left-0 h-full bg-appGreen rounded-[30px] animate-moving"></div>
+    </div>
+  );
+};
+
 export const AnimatedHand: React.FC<{}> = () => {
   return (
     <div className="relative w-20 h-16 ml-20">

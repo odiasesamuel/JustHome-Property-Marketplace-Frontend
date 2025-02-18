@@ -9,6 +9,7 @@ import { PaginationComponent } from "./paginationComponent";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { MapPin } from "lucide-react";
+import { LoadingBar } from "./ui/loader";
 import Image from "next/image";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { generateSlug } from "@/utils/generateSlug";
@@ -48,6 +49,14 @@ const PropertyList = () => {
   const handleImageError = (id: string) => {
     setImageError((prev) => ({ ...prev, [id]: true }));
   };
+
+  if (isPending) {
+    return (
+      // <div className="flex justify-center items-center h-screen">
+      <LoadingBar />
+      // </div>
+    );
+  }
 
   if (data) {
     const pageCount = Math.ceil(data.totalProperties / perPage);
