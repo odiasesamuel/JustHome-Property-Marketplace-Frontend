@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getPropertyList } from "@/api/propertyHttp";
 // import data from "@/api/propertyList.json";
@@ -44,6 +44,11 @@ const PropertyList = () => {
     }
   }, [isError, error, toast]);
 
+  const [imageError, setImageError] = useState<{ [key: string]: boolean }>({});
+  const handleImageError = (id: string) => {
+    setImageError((prev) => ({ ...prev, [id]: true }));
+  };
+
   if (data) {
     const pageCount = Math.ceil(data.totalProperties / perPage);
     const propertyList = data.properties;
@@ -55,10 +60,15 @@ const PropertyList = () => {
     return (
       <>
         <CardContent className="w-full flex justify-center flex-wrap gap-5 my-5">
-          {propertyList.map((property: any) => {
-            const backgroundImg = property.imageUrls[0];
+          {propertyList.map((property) => {
+            const hasValidImage = property.imageUrls.length > 0 && !imageError[property._id];
+            const backgroundImg = hasValidImage ? property.imageUrls[0] : "/images/image_placeholder.jpg";
+
             return (
               <Card className="w-[23%] h-[380px] bg-no-repeat bg-center bg-cover relative text-black text-sm border-none shadow-none cursor-pointer" style={{ backgroundImage: `url(${backgroundImg})` }} key={property._id} onClick={() => navigateToPropertyDetails(property)}>
+                {/* Fallback image trick */}
+                <img src={backgroundImg} onError={() => handleImageError(property._id)} className="hidden" />
+
                 <CardHeader>
                   <CardTitle className={`absolute text-xs px-4 py-2 rounded-full font-normal ${property.forSaleOrRent === "Sale" ? "bg-appGreen text-white" : property.forSaleOrRent === "Rent" ? "bg-appYellow text-appBlack" : "bg-appYellow text-appBlack"}`}>{property.forSaleOrRent === "Sale" ? "FOR SALE" : property.forSaleOrRent === "Rent" ? "FOR RENT" : "FOR RENT"}</CardTitle>
                 </CardHeader>
