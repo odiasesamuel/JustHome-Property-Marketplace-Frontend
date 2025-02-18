@@ -1,8 +1,9 @@
 "use client";
 
-import Image from "next/image";
+import { Fragment, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
+import { useToast } from "@/hooks/use-toast";
 import { getPropertyDetails } from "@/api/propertyHttp";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -10,7 +11,6 @@ import ImageViewer from "@/components/imageViewer";
 import { MapPin } from "lucide-react";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { PropertyResponse } from "@/types/apiResponse";
-import React, { Fragment } from "react";
 // import data from "@/api/property.json";
 
 const Property = () => {
@@ -24,6 +24,19 @@ const Property = () => {
     queryFn: ({ signal }) => getPropertyDetails({ signal, propertyId }),
     gcTime: 10 * 60 * 1000,
   });
+
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (isError) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error?.message || "Error loading properties data",
+      });
+      console.log(error);
+    }
+  }, [isError, error, toast]);
 
   if (data) {
     console.log(data);

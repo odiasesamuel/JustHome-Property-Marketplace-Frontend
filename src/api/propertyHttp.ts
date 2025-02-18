@@ -53,7 +53,7 @@ export const getPropertyDetails = async ({ signal, propertyId }: GetPropertyDeta
       console.log("Request canceled:", error.message);
       return;
     }
-    console.error("Error fetching properties:", error);
+    // console.error("Error fetching properties:", error);
     throw error;
   }
 };
