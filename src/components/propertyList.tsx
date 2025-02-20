@@ -50,13 +50,7 @@ const PropertyList = () => {
     setImageError((prev) => ({ ...prev, [id]: true }));
   };
 
-  if (isPending) {
-    return (
-      // <div className="flex justify-center items-center h-screen">
-      <LoadingBar />
-      // </div>
-    );
-  }
+  if (isPending) return <LoadingBar />;
 
   if (data) {
     const pageCount = Math.ceil(data.totalProperties / perPage);

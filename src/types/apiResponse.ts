@@ -1,13 +1,3 @@
-type PropertyOwner = {
-  _id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  accountType: string;
-  password: string;
-  __v: number;
-};
-
 type Property = {
   _id: string;
   name: string;
@@ -22,7 +12,6 @@ type Property = {
   propertyType: string;
   forSaleOrRent: string;
   price: number;
-  propertyOwnerId: PropertyOwner;
   imageUrls: string[];
 };
 
