@@ -53,8 +53,6 @@ const Property = () => {
   }
 
   if (data) {
-    console.log(data);
-
     return (
       <div className="px-[3.5%]">
         <Card className="">

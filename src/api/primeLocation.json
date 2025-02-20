@@ -1,0 +1,77 @@
+{
+    "message": "Fetched prime locations successfully",
+    "location": [
+        {
+            "_id": "67b65824dfb5c1b88aff5974",
+            "name": "Victoria Island",
+            "image": "https://rkmrzjsjtgpmcacoafpq.supabase.co/storage/v1/object/public/rental-marketplace-images//victoria_island.jpg",
+            "__v": 0
+        },
+        {
+            "_id": "67b65840dfb5c1b88aff5976",
+            "name": "Lekki",
+            "image": "https://rkmrzjsjtgpmcacoafpq.supabase.co/storage/v1/object/public/rental-marketplace-images//lekki.jpg",
+            "__v": 0
+        },
+        {
+            "_id": "67b65864dfb5c1b88aff5978",
+            "name": "Ajah",
+            "image": "https://rkmrzjsjtgpmcacoafpq.supabase.co/storage/v1/object/public/rental-marketplace-images//ajah.jpg",
+            "__v": 0
+        },
+        {
+            "_id": "67b65876dfb5c1b88aff597a",
+            "name": "Ikeja",
+            "image": "https://rkmrzjsjtgpmcacoafpq.supabase.co/storage/v1/object/public/rental-marketplace-images//ikeja.jpg",
+            "__v": 0
+        },
+        {
+            "_id": "67b659c6dfb5c1b88aff597c",
+            "name": "Surulere",
+            "image": "https://rkmrzjsjtgpmcacoafpq.supabase.co/storage/v1/object/public/rental-marketplace-images//Surulere.jpg",
+            "__v": 0
+        },
+        {
+            "_id": "67b659f9dfb5c1b88aff597e",
+            "name": "Yaba",
+            "image": "https://rkmrzjsjtgpmcacoafpq.supabase.co/storage/v1/object/public/rental-marketplace-images//yaba.jpg",
+            "__v": 0
+        },
+        {
+            "_id": "67b65a1bdfb5c1b88aff5980",
+            "name": "Magodo",
+            "image": "https://rkmrzjsjtgpmcacoafpq.supabase.co/storage/v1/object/public/rental-marketplace-images//magodo.jpg",
+            "__v": 0
+        },
+        {
+            "_id": "67b65a31dfb5c1b88aff5982",
+            "name": "Abule Egba",
+            "image": "https://rkmrzjsjtgpmcacoafpq.supabase.co/storage/v1/object/public/rental-marketplace-images//auble_egba.jpg",
+            "__v": 0
+        },
+        {
+            "_id": "67b65ad2dfb5c1b88aff5984",
+            "name": "Asokoro",
+            "image": "https://rkmrzjsjtgpmcacoafpq.supabase.co/storage/v1/object/public/rental-marketplace-images//asokoro.jpg",
+            "__v": 0
+        },
+        {
+            "_id": "67b65bc0dfb5c1b88aff5986",
+            "name": "Maitama",
+            "image": "https://rkmrzjsjtgpmcacoafpq.supabase.co/storage/v1/object/public/rental-marketplace-images//maitama.jpg",
+            "__v": 0
+        },
+        {
+            "_id": "67b65ce0dfb5c1b88aff5988",
+            "name": "Jabi",
+            "image": "https://rkmrzjsjtgpmcacoafpq.supabase.co/storage/v1/object/public/rental-marketplace-images//jabi.jpg",
+            "__v": 0
+        },
+        {
+            "_id": "67b65cfadfb5c1b88aff598a",
+            "name": "Kubwa",
+            "image": "https://rkmrzjsjtgpmcacoafpq.supabase.co/storage/v1/object/public/rental-marketplace-images//kubwa.jpg",
+            "__v": 0
+        }
+    ]
+}

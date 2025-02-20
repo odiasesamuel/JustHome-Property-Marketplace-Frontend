@@ -1,7 +1,8 @@
+import ExploreCities from "@/components/exploreCities";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import SearchBar from "@/components/searchBar";
-import { ArrowRight, House, MapPin, Search } from "lucide-react";
+import { ArrowRight, House } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -132,48 +133,7 @@ const Home: React.FC<HomeProps> = () => {
         </div>
       </div>
 
-      <div className="mt-[100px]">
-        <Card className="rounded-none flex flex-col items-center text-center text-appBlack border-none shadow-none">
-          <CardHeader className="">
-            <CardTitle className="text-3xl">Explore Cities</CardTitle>
-            <CardDescription>Explore a curated selection of properties across prime locations, tailored to meet your lifestyle and investment needs.</CardDescription>
-          </CardHeader>
-          <CardContent className="w-[80%] h-fit flex flex-wrap justify-center mt-5 gap-10">
-            <div className="flex w-[18%] items-center gap-x-3 h-[100px] font-medium">
-              <div className="w-1/2 h-full rounded-xl bg-[url('/images/property_img.png')] bg-no-repeat bg-center bg-cover "></div>
-              <p>New York</p>
-            </div>
-            <div className="flex w-[18%] items-center gap-x-3 h-[100px] font-medium">
-              <div className="w-1/2 h-full rounded-xl bg-[url('/images/property_img.png')] bg-no-repeat bg-center bg-cover "></div>
-              <p>New York</p>
-            </div>
-            <div className="flex w-[18%] items-center gap-x-3 h-[100px] font-medium">
-              <div className="w-1/2 h-full rounded-xl bg-[url('/images/property_img.png')] bg-no-repeat bg-center bg-cover "></div>
-              <p>New York</p>
-            </div>
-            <div className="flex w-[18%] items-center gap-x-3 h-[100px] font-medium">
-              <div className="w-1/2 h-full rounded-xl bg-[url('/images/property_img.png')] bg-no-repeat bg-center bg-cover "></div>
-              <p>New York</p>
-            </div>
-            <div className="flex w-[18%] items-center gap-x-3 h-[100px] font-medium">
-              <div className="w-1/2 h-full rounded-xl bg-[url('/images/property_img.png')] bg-no-repeat bg-center bg-cover "></div>
-              <p>New York</p>
-            </div>
-            <div className="flex w-[18%] items-center gap-x-3 h-[100px] font-medium">
-              <div className="w-1/2 h-full rounded-xl bg-[url('/images/property_img.png')] bg-no-repeat bg-center bg-cover "></div>
-              <p>New York</p>
-            </div>
-            <div className="flex w-[18%] items-center gap-x-3 h-[100px] font-medium">
-              <div className="w-1/2 h-full rounded-xl bg-[url('/images/property_img.png')] bg-no-repeat bg-center bg-cover "></div>
-              <p>New York</p>
-            </div>
-            <div className="flex w-[18%] items-center gap-x-3 h-[100px] font-medium">
-              <div className="w-1/2 h-full rounded-xl bg-[url('/images/property_img.png')] bg-no-repeat bg-center bg-cover "></div>
-              <p>New York</p>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+      <ExploreCities />
     </>
   );
 };
