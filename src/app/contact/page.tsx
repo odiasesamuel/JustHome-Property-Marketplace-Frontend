@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowRight, Mail, Phone } from "lucide-react";
+import ContactForm from "@/components/contactForm";
 
 const Contact = () => {
   return (
@@ -35,7 +36,7 @@ const Contact = () => {
         </CardContent>
       </Card>
 
-      <Card className="rounded-none w-[70%]">
+      {/* <Card className="rounded-none w-[70%]">
         <CardContent className="pt-6">
           <div className="flex justify-between">
             <Input type="text" placeholder="Your Name" className="bg-[#F5F5F5] w-[32%] rounded-none p-4 text-appGreen placeholder:text-appGreen" />
@@ -51,7 +52,8 @@ const Contact = () => {
             </Button>
           </div>
         </CardContent>
-      </Card>
+      </Card> */}
+      <ContactForm />
     </div>
   );
 };

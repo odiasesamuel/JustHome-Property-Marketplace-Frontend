@@ -41,7 +41,6 @@ const PropertyList = () => {
         title: "Error",
         description: error?.message || "Error loading properties data",
       });
-      console.log(error);
     }
   }, [isError, error, toast]);
 
