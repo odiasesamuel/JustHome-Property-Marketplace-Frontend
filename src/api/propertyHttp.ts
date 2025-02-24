@@ -1,4 +1,5 @@
 import axios from "axios";
+import apiClient from "./apiClient";
 
 type GetPropertyListParams = {
   signal?: AbortSignal;
@@ -30,7 +31,7 @@ export const getPropertyList = async ({ signal, page, perPage, search, forSaleOr
     if (minPrice) params.append("minPrice", minPrice);
     if (maxPrice) params.append("maxPrice", maxPrice);
 
-    const response = await axios.get(`${BASE_URL}/property?${params.toString()}`, { signal });
+    const response = await apiClient.get(`${BASE_URL}/property?${params.toString()}`, { signal });
 
     return response.data;
   } catch (error) {
@@ -45,7 +46,7 @@ export const getPropertyList = async ({ signal, page, perPage, search, forSaleOr
 
 export const getPropertyDetails = async ({ signal, propertyId }: GetPropertyDetails) => {
   try {
-    const response = await axios.get(`${BASE_URL}/property/${propertyId}`, { signal });
+    const response = await apiClient.get(`${BASE_URL}/property/${propertyId}`, { signal });
 
     return response.data;
   } catch (error) {
