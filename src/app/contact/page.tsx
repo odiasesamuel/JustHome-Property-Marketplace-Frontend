@@ -35,24 +35,6 @@ const Contact = () => {
           </div>
         </CardContent>
       </Card>
-
-      {/* <Card className="rounded-none w-[70%]">
-        <CardContent className="pt-6">
-          <div className="flex justify-between">
-            <Input type="text" placeholder="Your Name" className="bg-[#F5F5F5] w-[32%] rounded-none p-4 text-appGreen placeholder:text-appGreen" />
-            <Input type="email" placeholder="Your Email" className="bg-[#F5F5F5] w-[32%] rounded-none p-4 text-appGreen placeholder:text-appGreen" />
-            <Input type="tel" placeholder="Your Phone" className="bg-[#F5F5F5] w-[32%] rounded-none p-4 text-appGreen placeholder:text-appGreen" />
-          </div>
-          <Textarea placeholder="Your message" className="bg-[#F5F5F5] my-8 p-4 text-appGreen placeholder:text-appGreen h-[220px]" />
-
-          <div className="flex justify-end">
-            <Button className="text-appGreen font-semibold px-6 py-4 rounded-none">
-              Send Message
-              <ArrowRight />
-            </Button>
-          </div>
-        </CardContent>
-      </Card> */}
       <ContactForm />
     </div>
   );

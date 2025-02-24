@@ -31,7 +31,7 @@ const ContactForm = () => {
       toast({
         variant: "destructive",
         title: "Error",
-        description: error?.message || "Error loading properties data",
+        description: error?.message || "Error sending message",
       });
     },
   });
@@ -48,7 +48,6 @@ const ContactForm = () => {
 
   function onSubmit(values: z.infer<typeof contactMessageSchema>, event?: React.BaseSyntheticEvent) {
     event?.preventDefault();
-    console.log(values);
     mutate(values);
   }
 

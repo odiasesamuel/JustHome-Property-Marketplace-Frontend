@@ -1,7 +1,5 @@
+import SubscriptionForm from "../subscriptionForm";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 type FooterProps = {
@@ -16,14 +14,7 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
           <Image alt="send icon" src="/images/send_icon.svg" width={100} height={100} className="w-12 h-12" />
           <h1 className="text-3xl font-medium"> Stay Up to Date</h1>
           <p className="text-xs font-light">Subscribe to our newsletter to receive our weekly feed.</p>
-
-          <div className="w-full relative">
-            <Input type="email" className="w-full rounded-full px-7 py-4 text-xs border-none focus:outline-none placeholder:text-white placeholder:text-xs bg-[#315952]" placeholder="Your e-mail" />
-            <Button type="submit" className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-transparent shadow-none hover:bg-transparent">
-              Send
-              <ArrowRight className="w-4 text-white" />
-            </Button>
-          </div>
+          <SubscriptionForm />
         </div>
       </div>
       <div className="bg-[#3D3E3F] w-full h-[80px]">

@@ -33,11 +33,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
         <div className="bg-white grid grid-cols-[repeat(12,_1fr)] grid-rows-[auto_1fr] min-h-screen max-w-[1535px] mx-auto">
-          <Header className="col-start-1 col-end-13 h-[100px]"></Header>
-          <Main className="col-start-1 col-end-13">
-            <QueryProvider>{children}</QueryProvider>
-          </Main>
-          <Footer className="col-start-1 col-end-13"></Footer>
+          <QueryProvider>
+            <Header className="col-start-1 col-end-13 h-[100px]"></Header>
+            <Main className="col-start-1 col-end-13">{children}</Main>
+            <Footer className="col-start-1 col-end-13"></Footer>
+          </QueryProvider>
         </div>
         <Toaster />
       </body>
