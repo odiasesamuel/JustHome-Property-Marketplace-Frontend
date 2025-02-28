@@ -8,8 +8,8 @@ export const sendMessage = async (message: z.infer<typeof contactMessageSchema>)
     const response = await apiClient.post(`${BASE_URL}/message`, message);
 
     return response.data;
-  } catch (error) {
-    throw error;
+  } catch (error: any) {
+    throw error.response;
   }
 };
 
@@ -18,7 +18,7 @@ export const subscribeToNewsletter = async (subscriptionData: z.infer<typeof sub
     const response = await apiClient.post(`${BASE_URL}/message/subscribe`, subscriptionData);
 
     return response.data;
-  } catch (error) {
-    throw error;
+  } catch (error: any) {
+    throw error.response;
   }
 };

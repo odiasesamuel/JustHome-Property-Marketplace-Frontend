@@ -1,11 +1,14 @@
 "use client";
 
+import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { z } from "zod";
 import { signUpFormSchema } from "@/schemas/authFormSchema";
+import { useMutation } from "@tanstack/react-query";
+import { signUp } from "@/api/authHttp";
 
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -15,6 +18,33 @@ import { Loader2 } from "lucide-react";
 
 const SignUpForm: React.FC<{}> = () => {
   const router = useRouter();
+  const { toast } = useToast();
+  const { mutate, isPending } = useMutation({
+    mutationFn: signUp,
+    onSuccess: (successData) => {
+      console.log("Success:", successData);
+      sessionStorage.setItem("userToken", successData.token.value);
+      sessionStorage.setItem("userInfo", JSON.stringify(successData.data));
+      router.push("/");
+    },
+    onError: (error: any) => {
+      if (error.status === 409) {
+        setErrorMessage((prevErrMsg) => {
+          return {
+            ...prevErrMsg,
+            email: error.data.message,
+          };
+        });
+        return;
+      }
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error.data.message || "An unknown Error occurred",
+      });
+    },
+  });
+
   const form = useForm<z.infer<typeof signUpFormSchema>>({
     resolver: zodResolver(signUpFormSchema),
     defaultValues: {
@@ -28,10 +58,8 @@ const SignUpForm: React.FC<{}> = () => {
   });
 
   const [errorMessage, setErrorMessage] = useState({ email: "", password: "" });
-  const [isLoading, setIsLoading] = useState(false);
 
   async function onSubmit(values: z.infer<typeof signUpFormSchema>) {
-    // setIsLoading(true);
     if (values.password !== values.confirmPassword) {
       setErrorMessage((prevErrMsg) => {
         return {
@@ -39,15 +67,16 @@ const SignUpForm: React.FC<{}> = () => {
           password: "Password isn't the same as confirm password",
         };
       });
-    } else {
-      setErrorMessage((prevErrMsg) => {
-        return {
-          ...prevErrMsg,
-          password: "",
-        };
-      });
+      return;
     }
-    console.log(values);
+    setErrorMessage((prevErrMsg) => {
+      return {
+        ...prevErrMsg,
+        password: "",
+      };
+    });
+
+    mutate({ firstName: values.firstName.trim(), lastName: values.lastName.trim(), email: values.email.trim().toLowerCase(), accountType: values.accountType, password: values.password, confirmPassword: values.confirmPassword });
   }
 
   return (
@@ -88,7 +117,7 @@ const SignUpForm: React.FC<{}> = () => {
               <FormControl>
                 <Input placeholder="kunle.ojo@gmail.com" {...field} className="p-3" />
               </FormControl>
-              <FormMessage />
+              <FormMessage>{errorMessage.email}</FormMessage>
             </FormItem>
           )}
         />
@@ -146,9 +175,9 @@ const SignUpForm: React.FC<{}> = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full text-sm">
+        <Button type="submit" className="w-full text-sm" disabled={isPending}>
           Submit
-          {isLoading && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
+          {isPending && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
         </Button>
       </form>
     </Form>

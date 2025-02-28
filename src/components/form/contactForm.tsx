@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -27,11 +26,11 @@ const ContactForm = () => {
         description: "Your message has been sent successfully!",
       });
     },
-    onError: (error) => {
+    onError: (error: any) => {
       toast({
         variant: "destructive",
         title: "Error",
-        description: error?.message || "Error sending message",
+        description: error.data.message || "Error sending message",
       });
     },
   });

@@ -23,11 +23,11 @@ const SubscriptionForm = () => {
         description: "Subscribed successfully!",
       });
     },
-    onError: (error) => {
+    onError: (error: any) => {
       toast({
         variant: "destructive",
         title: "Error",
-        description: error?.message || "Unable to subscribe, try again",
+        description: error.data.message || "Error sending message",
       });
     },
   });
