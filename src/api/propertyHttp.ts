@@ -1,5 +1,6 @@
 import axios from "axios";
 import apiClient from "./apiClient";
+import { BASE_URL } from "./apiClient";
 
 type GetPropertyListParams = {
   signal?: AbortSignal;
@@ -16,8 +17,6 @@ type GetPropertyDetails = {
   signal?: AbortSignal;
   propertyId: string | undefined;
 };
-
-export const BASE_URL = "http://localhost:5000";
 
 export const getPropertyList = async ({ signal, page, perPage, search, forSaleOrRent, propertyType, minPrice, maxPrice }: GetPropertyListParams) => {
   try {

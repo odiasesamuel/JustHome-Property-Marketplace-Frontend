@@ -1,8 +1,7 @@
 import apiClient from "./apiClient";
+import { BASE_URL } from "./apiClient";
 import { z } from "zod";
 import { contactMessageSchema, subscribeToNewsletterSchema } from "@/schemas/contactMessageSchema";
-
-export const BASE_URL = "http://localhost:5000";
 
 export const sendMessage = async (message: z.infer<typeof contactMessageSchema>) => {
   try {
