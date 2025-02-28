@@ -47,7 +47,7 @@ const ContactForm = () => {
 
   function onSubmit(values: z.infer<typeof contactMessageSchema>, event?: React.BaseSyntheticEvent) {
     event?.preventDefault();
-    mutate(values);
+    mutate({ name: values.name.trim(), email: values.email.trim(), phoneNumber: values.phoneNumber.trim(), message: values.message.trim() });
   }
 
   return (
