@@ -117,7 +117,7 @@ const PropertyFilter: React.FC<{}> = () => {
             Min Price
           </Label>
           <Select value={minPrice ? minPrice : ""} onValueChange={filterMinPriceProperties}>
-            <SelectTrigger id="min-price" className={`w-[180px] ${minPrice ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`}>
+            <SelectTrigger id="min-price" className={`w-[180px] rounded-full border border-appBlack ${minPrice ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`}>
               <SelectValue placeholder="No Min" />
             </SelectTrigger>
             <SelectContent>
@@ -138,7 +138,7 @@ const PropertyFilter: React.FC<{}> = () => {
             Max Price
           </Label>
           <Select value={maxPrice ? maxPrice : ""} onValueChange={filterMaxPriceProperties}>
-            <SelectTrigger id="max-price" className={`w-[180px] ${maxPrice ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`}>
+            <SelectTrigger id="max-price" className={`w-[180px] rounded-full border border-appBlack ${maxPrice ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`}>
               <SelectValue placeholder="No Max" />
             </SelectTrigger>
             <SelectContent>

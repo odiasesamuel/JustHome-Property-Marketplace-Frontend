@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowRight, Mail, Phone } from "lucide-react";
-import ContactForm from "@/components/contactForm";
+import ContactForm from "@/components/form/contactForm";
 
 const Contact = () => {
   return (

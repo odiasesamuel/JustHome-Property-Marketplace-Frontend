@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { User } from "lucide-react";
 import NavLink from "./navLink";

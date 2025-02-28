@@ -1,4 +1,4 @@
-import SubscriptionForm from "../subscriptionForm";
+import SubscriptionForm from "../form/subscriptionForm";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,7 +8,7 @@ type FooterProps = {
 
 const Footer: React.FC<FooterProps> = ({ className }) => {
   return (
-    <footer className={`${className} mt-[100px] text-white`}>
+    <footer className={`${className} mt-24 text-white`}>
       <div className="bg-appGreen">
         <div className="flex flex-col items-center justify-center max-w-[500px] mx-auto h-[350px] gap-5">
           <Image alt="send icon" src="/images/send_icon.svg" width={100} height={100} className="w-12 h-12" />
