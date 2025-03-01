@@ -12,3 +12,14 @@ export const signUp = async (registrationData: z.infer<typeof signUpFormSchema>)
     throw error.response;
   }
 };
+
+export const signIn = async (signInData: z.infer<typeof signInFormSchema>) => {
+  try {
+    const response = await apiClient.post(`${BASE_URL}/auth/login`, signInData);
+
+    return response.data;
+  } catch (error: any) {
+    throw error.response;
+  }
+};
+

@@ -28,7 +28,7 @@ const SignUpForm: React.FC<{}> = () => {
       router.push("/");
     },
     onError: (error: any) => {
-      if (error.status === 409) {
+      if (error?.status === 409 && error?.data?.message) {
         setErrorMessage((prevErrMsg) => {
           return {
             ...prevErrMsg,

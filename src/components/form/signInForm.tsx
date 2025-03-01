@@ -1,11 +1,14 @@
 "use client";
 
+import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { z } from "zod";
 import { signInFormSchema } from "@/schemas/authFormSchema";
+import { useMutation } from "@tanstack/react-query";
+import { signIn } from "@/api/authHttp";
 
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -14,6 +17,29 @@ import { Loader2 } from "lucide-react";
 
 const SignInForm: React.FC<{}> = () => {
   const router = useRouter();
+  const { toast } = useToast();
+  const { mutate, isPending } = useMutation({
+    mutationFn: signIn,
+    onSuccess: (successData) => {
+      console.log("Success:", successData);
+      sessionStorage.setItem("userToken", successData.token.value);
+      sessionStorage.setItem("userInfo", JSON.stringify(successData.loggedInUser));
+      router.push("/");
+    },
+    onError: (error: any) => {
+      if (error?.status === 401) {
+        setErrorMessage("Oops! We couldn't verify your details. Please check your email and password.");
+        return;
+      }
+
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error?.data?.message || "An unknown error occurred",
+      });
+    },
+  });
+
   const form = useForm<z.infer<typeof signInFormSchema>>({
     resolver: zodResolver(signInFormSchema),
     defaultValues: {
@@ -22,12 +48,11 @@ const SignInForm: React.FC<{}> = () => {
     },
   });
 
-  const [errorMessage, setErrorMessage] = useState<string>("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function onSubmit(values: z.infer<typeof signInFormSchema>) {
-    setIsLoading(true);
     console.log(values);
+    mutate({ email: values.email.trim().toLowerCase(), password: values.password });
   }
 
   return (
@@ -55,13 +80,13 @@ const SignInForm: React.FC<{}> = () => {
               <FormControl>
                 <Input placeholder="********" type="password" {...field} className="p-3" />
               </FormControl>
-              <FormMessage>{!isLoading && errorMessage}</FormMessage>
+              <FormMessage>{errorMessage}</FormMessage>
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full text-sm" disabled={isLoading}>
+        <Button type="submit" className="w-full text-sm" disabled={isPending}>
           Sign in
-          {isLoading && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
+          {isPending && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
         </Button>
       </form>
     </Form>
