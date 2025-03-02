@@ -3,9 +3,27 @@ import { BASE_URL } from "./apiClient";
 import { z } from "zod";
 import { signUpFormSchema, signInFormSchema } from "@/schemas/authFormSchema";
 
+type VerifySignUpType = {
+  signal: AbortSignal;
+  token: string | null;
+};
+
 export const signUp = async (registrationData: z.infer<typeof signUpFormSchema>) => {
   try {
     const response = await apiClient.post(`${BASE_URL}/auth/signup`, registrationData);
+
+    return response.data;
+  } catch (error: any) {
+    throw error.response;
+  }
+};
+
+export const verifySignUp = async ({ signal, token }: VerifySignUpType) => {
+  try {
+    const params = new URLSearchParams();
+    if (token) params.append("token", token);
+
+    const response = await apiClient.get(`${BASE_URL}/auth/verify?${params.toString()}`);
 
     return response.data;
   } catch (error: any) {
@@ -22,4 +40,3 @@ export const signIn = async (signInData: z.infer<typeof signInFormSchema>) => {
     throw error.response;
   }
 };
-

@@ -21,7 +21,6 @@ const SignInForm: React.FC<{}> = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: signIn,
     onSuccess: (successData) => {
-      console.log("Success:", successData);
       sessionStorage.setItem("userToken", successData.token.value);
       sessionStorage.setItem("userInfo", JSON.stringify(successData.loggedInUser));
       router.push("/");
@@ -51,7 +50,6 @@ const SignInForm: React.FC<{}> = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   async function onSubmit(values: z.infer<typeof signInFormSchema>) {
-    console.log(values);
     mutate({ email: values.email.trim().toLowerCase(), password: values.password });
   }
 

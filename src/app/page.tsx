@@ -50,9 +50,11 @@ const Home: React.FC<HomeProps> = () => {
               <p className="text-sm font-light">Save Properties, create alerts and keep track of enquires you send to agents.</p>
             </div>
 
-            <Button className="text-appGreen font-semibold px-6 py-4">
-              Sign in or create an account
-              <ArrowRight />
+            <Button asChild className="text-appGreen font-semibold px-6 py-4">
+              <Link href="/auth?mode=signin">
+                Sign in or create an account
+                <ArrowRight />
+              </Link>
             </Button>
           </CardContent>
         </Card>

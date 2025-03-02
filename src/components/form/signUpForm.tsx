@@ -22,10 +22,11 @@ const SignUpForm: React.FC<{}> = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: signUp,
     onSuccess: (successData) => {
-      console.log("Success:", successData);
-      sessionStorage.setItem("userToken", successData.token.value);
-      sessionStorage.setItem("userInfo", JSON.stringify(successData.data));
-      router.push("/");
+      toast({
+        variant: "default",
+        title: "You got mail!",
+        description: "We've sent a verification link to your email. Please verify your account to continue.",
+      });
     },
     onError: (error: any) => {
       if (error?.status === 409 && error?.data?.message) {

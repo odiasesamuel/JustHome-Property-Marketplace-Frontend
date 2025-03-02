@@ -41,7 +41,6 @@ const SubscriptionForm = () => {
 
   function onSubmit(values: z.infer<typeof subscribeToNewsletterSchema>, event?: React.BaseSyntheticEvent) {
     event?.preventDefault();
-    console.log(values);
     mutate({ email: values.email.trim() });
   }
 
