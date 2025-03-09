@@ -60,7 +60,8 @@ const SignUpForm: React.FC<{}> = () => {
 
   const [errorMessage, setErrorMessage] = useState({ email: "", password: "" });
 
-  async function onSubmit(values: z.infer<typeof signUpFormSchema>) {
+  async function onSubmit(values: z.infer<typeof signUpFormSchema>, event?: React.BaseSyntheticEvent) {
+    event?.preventDefault();
     if (values.password !== values.confirmPassword) {
       setErrorMessage((prevErrMsg) => {
         return {

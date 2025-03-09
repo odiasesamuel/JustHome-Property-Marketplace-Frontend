@@ -16,10 +16,10 @@ import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 
-const SignInForm: React.FC<{}> = () => {
+const ForgotPassword: React.FC<{}> = () => {
   const router = useRouter();
   const { toast } = useToast();
-  const { mutate, isPending, isError } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: signIn,
     onSuccess: (successData) => {
       sessionStorage.setItem("userToken", successData.token.value);
@@ -50,8 +50,7 @@ const SignInForm: React.FC<{}> = () => {
 
   const [errorMessage, setErrorMessage] = useState("");
 
-  async function onSubmit(values: z.infer<typeof signInFormSchema>, event?: React.BaseSyntheticEvent) {
-    event?.preventDefault();
+  async function onSubmit(values: z.infer<typeof signInFormSchema>) {
     mutate({ email: values.email.trim().toLowerCase(), password: values.password });
   }
 
@@ -71,31 +70,20 @@ const SignInForm: React.FC<{}> = () => {
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem className="text-black w-full">
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <Input placeholder="********" type="password" {...field} className="p-3" />
-              </FormControl>
-              <FormMessage>{errorMessage}</FormMessage>
-            </FormItem>
-          )}
-        />
-        {isError && (
-          <Link href="/auth/forgot-password" className="text-appGreen cursor-pointer underline underline-offset-4 text-sm">
-            Forgot password?
-          </Link>
-        )}
+
         <Button type="submit" className="w-full text-sm" disabled={isPending}>
-          Sign in
+          Continue
           {isPending && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
         </Button>
+        <p className="text-black text-sm mt-6 text-center">
+          Remembered your password?
+          <Link href="/auth?mode=signin" className="text-appGreen cursor-pointer underline underline-offset-4 ml-1">
+            Sign in here
+          </Link>
+        </p>
       </form>
     </Form>
   );
 };
 
-export default SignInForm;
+export default ForgotPassword;
