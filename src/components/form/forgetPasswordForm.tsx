@@ -6,9 +6,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { z } from "zod";
-import { signInFormSchema } from "@/schemas/authFormSchema";
+import { resetPasswordSchema } from "@/schemas/authFormSchema";
 import { useMutation } from "@tanstack/react-query";
-import { signIn } from "@/api/authHttp";
+import { signIn, requestResetPassword } from "@/api/authHttp";
 
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -20,11 +20,11 @@ const ForgotPassword: React.FC<{}> = () => {
   const router = useRouter();
   const { toast } = useToast();
   const { mutate, isPending } = useMutation({
-    mutationFn: signIn,
+    mutationFn: requestResetPassword,
     onSuccess: (successData) => {
-      sessionStorage.setItem("userToken", successData.token.value);
-      sessionStorage.setItem("userInfo", JSON.stringify(successData.loggedInUser));
-      router.push("/");
+      // sessionStorage.setItem("userToken", successData.token.value);
+      // sessionStorage.setItem("userInfo", JSON.stringify(successData.loggedInUser));
+      // router.push("/");
     },
     onError: (error: any) => {
       if (error?.status === 401) {
@@ -40,18 +40,17 @@ const ForgotPassword: React.FC<{}> = () => {
     },
   });
 
-  const form = useForm<z.infer<typeof signInFormSchema>>({
-    resolver: zodResolver(signInFormSchema),
+  const form = useForm<z.infer<typeof resetPasswordSchema>>({
+    resolver: zodResolver(resetPasswordSchema),
     defaultValues: {
       email: "",
-      password: "",
     },
   });
 
   const [errorMessage, setErrorMessage] = useState("");
 
-  async function onSubmit(values: z.infer<typeof signInFormSchema>) {
-    mutate({ email: values.email.trim().toLowerCase(), password: values.password });
+  async function onSubmit(values: z.infer<typeof resetPasswordSchema>) {
+    mutate({ email: values.email.trim().toLowerCase() });
   }
 
   return (
