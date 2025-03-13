@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { z } from "zod";
-import { resetPasswordSchema } from "@/schemas/authFormSchema";
+import { requestResetPasswordSchema } from "@/schemas/authFormSchema";
 import { useMutation } from "@tanstack/react-query";
 import { signIn, requestResetPassword } from "@/api/authHttp";
 
@@ -16,22 +16,19 @@ import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 
-const ForgotPassword: React.FC<{}> = () => {
+const ForgotPasswordForm: React.FC<{}> = () => {
   const router = useRouter();
   const { toast } = useToast();
   const { mutate, isPending } = useMutation({
     mutationFn: requestResetPassword,
     onSuccess: (successData) => {
-      // sessionStorage.setItem("userToken", successData.token.value);
-      // sessionStorage.setItem("userInfo", JSON.stringify(successData.loggedInUser));
-      // router.push("/");
+      toast({
+        variant: "default",
+        title: "You got mail!",
+        description: "We've sent a password reset link to your email. Click the link to reset your password.",
+      });
     },
     onError: (error: any) => {
-      if (error?.status === 401) {
-        setErrorMessage("Oops! We couldn't verify your details. Please check your email and password.");
-        return;
-      }
-
       toast({
         variant: "destructive",
         title: "Error",
@@ -40,16 +37,14 @@ const ForgotPassword: React.FC<{}> = () => {
     },
   });
 
-  const form = useForm<z.infer<typeof resetPasswordSchema>>({
-    resolver: zodResolver(resetPasswordSchema),
+  const form = useForm<z.infer<typeof requestResetPasswordSchema>>({
+    resolver: zodResolver(requestResetPasswordSchema),
     defaultValues: {
       email: "",
     },
   });
 
-  const [errorMessage, setErrorMessage] = useState("");
-
-  async function onSubmit(values: z.infer<typeof resetPasswordSchema>) {
+  async function onSubmit(values: z.infer<typeof requestResetPasswordSchema>) {
     mutate({ email: values.email.trim().toLowerCase() });
   }
 
@@ -85,4 +80,4 @@ const ForgotPassword: React.FC<{}> = () => {
   );
 };
 
-export default ForgotPassword;
+export default ForgotPasswordForm;

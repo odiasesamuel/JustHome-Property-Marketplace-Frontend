@@ -14,6 +14,11 @@ export const signUpFormSchema = z.object({
   confirmPassword: z.string().trim().min(6, { message: "Password must be at least 6 characters" }),
 });
 
-export const resetPasswordSchema = z.object({
+export const requestResetPasswordSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
+});
+
+export const resetPasswordSchema = z.object({
+  password: z.string().trim().min(6, { message: "Password must be at least 6 characters" }),
+  confirmPassword: z.string().trim().min(6, { message: "Password must be at least 6 characters" }),
 });

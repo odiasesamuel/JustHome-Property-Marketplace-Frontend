@@ -1,7 +1,7 @@
 import apiClient from "./apiClient";
 import { BASE_URL } from "./apiClient";
 import { z } from "zod";
-import { signUpFormSchema, signInFormSchema, resetPasswordSchema } from "@/schemas/authFormSchema";
+import { signUpFormSchema, signInFormSchema, requestResetPasswordSchema, resetPasswordSchema } from "@/schemas/authFormSchema";
 
 type VerifySignUpType = {
   signal: AbortSignal;
@@ -41,13 +41,21 @@ export const signIn = async (signInData: z.infer<typeof signInFormSchema>) => {
   }
 };
 
-export const requestResetPassword = async (resetPasswordData: z.infer<typeof resetPasswordSchema>) => {
+export const requestResetPassword = async (requestResetPasswordData: z.infer<typeof requestResetPasswordSchema>) => {
   try {
-    console.log(resetPasswordData);
-    // const response = await apiClient.post(`${BASE_URL}/auth/request-reset-password`, resetPasswordData);
+    const response = await apiClient.post(`${BASE_URL}/auth/request-reset-password`, requestResetPasswordData);
 
-    // return response.data;
+    return response.data;
   } catch (error: any) {
     throw error.response;
+  }
+};
+export const resetPassword = async (resetPasswordData: z.infer<typeof resetPasswordSchema> & { token: string | null }) => {
+  try {
+    const response = await apiClient.post(`${BASE_URL}/auth/reset-password`, { ...resetPasswordData });
+
+    return response.data;
+  } catch (error: any) {
+    throw error.message;
   }
 };
