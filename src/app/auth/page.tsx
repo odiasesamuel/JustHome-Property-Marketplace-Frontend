@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import SignInForm from "@/components/form/signInForm";
 import SignUpForm from "@/components/form/signUpForm";
@@ -13,9 +12,7 @@ type AuthPageProps = {
 };
 
 const AuthPage: React.FC<AuthPageProps> = async ({ searchParams }) => {
-  const mode = searchParams.mode || "signin";
-  // const { mode } = await searchParams;
-  console.log(mode);
+  const { mode = "signin" } = await searchParams;
 
   return (
     <>
