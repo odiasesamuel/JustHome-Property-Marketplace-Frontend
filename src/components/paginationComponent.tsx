@@ -1,17 +1,18 @@
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import React from "react";
 
 type PaginationProps = {
   page: number;
   perPage: number;
   pageCount: number;
-  search: string | null;
-  forSaleOrRent: string | null;
-  propertyType: string | null;
-  minPrice: string | null;
-  maxPrice: string | null;
+  search?: string | null;
+  forSaleOrRent?: string | null;
+  propertyType?: string | null;
+  minPrice?: string | null;
+  maxPrice?: string | null;
 };
 
-export const PaginationComponent = ({ page, perPage, pageCount, search, forSaleOrRent, propertyType, minPrice, maxPrice }: PaginationProps) => {
+export const PaginationComponent: React.FC<PaginationProps> = ({ page, perPage, pageCount, search, forSaleOrRent, propertyType, minPrice, maxPrice }) => {
   const params = new URLSearchParams();
   if (search) params.append("search", search);
   if (forSaleOrRent) params.append("forSaleOrRent", forSaleOrRent);

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getPropertyList } from "@/api/propertyHttp";
+import { getUserListedProperty } from "@/api/propertyHttp";
 // import data from "@/api/propertyList.json";
 import { useToast } from "@/hooks/use-toast";
 import { PaginationComponent } from "./paginationComponent";
@@ -20,15 +20,20 @@ const UserPropertyList = () => {
   const searchParams = useSearchParams();
   const perPage = Number(searchParams.get("perPage")) || 12;
   const page = Number(searchParams.get("page")) || 1;
-  const search = searchParams.get("search");
-  const forSaleOrRent = searchParams.get("forSaleOrRent");
-  const propertyType = searchParams.get("propertyType");
-  const minPrice = searchParams.get("minPrice");
-  const maxPrice = searchParams.get("maxPrice");
+
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    const userInfo = sessionStorage.getItem("userInfo");
+    if (userInfo) {
+      const parsedUser = JSON.parse(userInfo);
+      setEmail(parsedUser.email);
+    }
+  }, []);
 
   const { data, isPending, isError, error } = useQuery<PropertyListResponse>({
-    queryKey: ["propertyList", page, perPage, search, forSaleOrRent, propertyType, minPrice, maxPrice],
-    queryFn: ({ signal }) => getPropertyList({ signal, perPage, page, search, forSaleOrRent, propertyType, minPrice, maxPrice }),
+    queryKey: ["userListedProperty", email, page, perPage],
+    queryFn: ({ signal }) => getUserListedProperty({ signal, perPage, page }),
     gcTime: 10 * 60 * 1000,
   });
 
@@ -97,7 +102,7 @@ const UserPropertyList = () => {
           })}
         </CardContent>
 
-        <PaginationComponent page={page} perPage={perPage} pageCount={pageCount} search={search} forSaleOrRent={forSaleOrRent} propertyType={propertyType} minPrice={minPrice} maxPrice={maxPrice} />
+        <PaginationComponent page={page} perPage={perPage} pageCount={pageCount} />
       </>
     );
   }

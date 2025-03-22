@@ -1,5 +1,4 @@
 import apiClient from "./apiClient";
-import { BASE_URL } from "./apiClient";
 import { z } from "zod";
 import { signUpFormSchema, signInFormSchema, requestResetPasswordSchema, resetPasswordSchema } from "@/schemas/authFormSchema";
 
@@ -10,7 +9,7 @@ type VerifySignUpType = {
 
 export const signUp = async (registrationData: z.infer<typeof signUpFormSchema>) => {
   try {
-    const response = await apiClient.post(`${BASE_URL}/auth/signup`, registrationData);
+    const response = await apiClient.post("/auth/signup", registrationData);
 
     return response.data;
   } catch (error: any) {
@@ -23,7 +22,7 @@ export const verifySignUp = async ({ signal, token }: VerifySignUpType) => {
     const params = new URLSearchParams();
     if (token) params.append("token", token);
 
-    const response = await apiClient.get(`${BASE_URL}/auth/verify?${params.toString()}`);
+    const response = await apiClient.get(`/auth/verify?${params.toString()}`);
 
     return response.data;
   } catch (error: any) {
@@ -33,7 +32,7 @@ export const verifySignUp = async ({ signal, token }: VerifySignUpType) => {
 
 export const signIn = async (signInData: z.infer<typeof signInFormSchema>) => {
   try {
-    const response = await apiClient.post(`${BASE_URL}/auth/login`, signInData);
+    const response = await apiClient.post("/auth/login", signInData);
 
     return response.data;
   } catch (error: any) {
@@ -43,7 +42,7 @@ export const signIn = async (signInData: z.infer<typeof signInFormSchema>) => {
 
 export const requestResetPassword = async (requestResetPasswordData: z.infer<typeof requestResetPasswordSchema>) => {
   try {
-    const response = await apiClient.post(`${BASE_URL}/auth/request-reset-password`, requestResetPasswordData);
+    const response = await apiClient.post("/auth/request-reset-password", requestResetPasswordData);
 
     return response.data;
   } catch (error: any) {
@@ -52,7 +51,7 @@ export const requestResetPassword = async (requestResetPasswordData: z.infer<typ
 };
 export const resetPassword = async (resetPasswordData: z.infer<typeof resetPasswordSchema> & { token: string | null }) => {
   try {
-    const response = await apiClient.post(`${BASE_URL}/auth/reset-password`, { ...resetPasswordData });
+    const response = await apiClient.post("/auth/reset-password", { ...resetPasswordData });
 
     return response.data;
   } catch (error: any) {
