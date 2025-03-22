@@ -1,7 +1,9 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import AuthButton from "../authButton";
 import { User } from "lucide-react";
 import NavLink from "./navLink";
+import Link from "next/link";
 
 type HeaderType = {
   className: string;
@@ -21,14 +23,7 @@ const Header: React.FC<HeaderType> = ({ className }) => {
         <NavLink href="/contact">Contact</NavLink>
       </nav>
 
-      <div className="w-[17%] h-[30px] flex justify-end">
-        <Button className="w-[30px] h-full rounded-full">
-          <User className="w-4" />
-        </Button>
-        <Button variant="outline" className="px-6 ml-3 text-sm">
-          Add Property
-        </Button>
-      </div>
+      <AuthButton />
     </div>
   );
 };

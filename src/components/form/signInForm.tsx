@@ -24,6 +24,7 @@ const SignInForm: React.FC<{}> = () => {
     onSuccess: (successData) => {
       sessionStorage.setItem("userToken", successData.token.value);
       sessionStorage.setItem("userInfo", JSON.stringify(successData.loggedInUser));
+      window.dispatchEvent(new Event("authChanged"));
       router.push("/");
     },
     onError: (error: any) => {

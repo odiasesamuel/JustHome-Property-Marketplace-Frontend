@@ -46,13 +46,13 @@ const Home: React.FC<HomeProps> = () => {
         <Card className="bg-appGreen h-[200px] flex items-center px-20 border-none">
           <CardContent className="w-full flex justify-between items-end">
             <div className="text-white">
-              <h1 className="text-2xl font-medium mb-2">Sign in to streamline your search</h1>
-              <p className="text-sm font-light">Save Properties, create alerts and keep track of enquires you send to agents.</p>
+              <h1 className="text-2xl font-medium mb-2">List Your Property & Connect with Buyers</h1>
+              <p className="text-sm font-light">Showcase your property, attract the right buyers, and manage inquiries with ease—all in one place.</p>
             </div>
 
             <Button asChild className="text-appGreen font-semibold px-6 py-4">
-              <Link href="/auth?mode=signin">
-                Sign in or create an account
+              <Link href="/add-property">
+                List your property
                 <ArrowRight />
               </Link>
             </Button>
