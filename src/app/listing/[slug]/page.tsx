@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useEffect } from "react";
+import { useAuth } from "@/context/authContext";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
@@ -28,6 +29,7 @@ const Property = () => {
     gcTime: 10 * 60 * 1000,
   });
 
+  const { isAuth } = useAuth();
   const { toast } = useToast();
 
   useEffect(() => {
@@ -120,9 +122,21 @@ const Property = () => {
             </div>
           </CardFooter>
 
-          <Button variant="outline" className="rounded-lg m-6 text-sm" onClick={navigateBackToPropertyList}>
-            Back to property list
-          </Button>
+          {isAuth && (
+            <div className="flex justify-between m-6">
+              <div>
+                <Button variant="default" className="rounded-lg text-sm mr-6" onClick={navigateBackToPropertyList}>
+                  Edit property
+                </Button>
+                <Button variant="destructive" className="rounded-lg text-sm" onClick={navigateBackToPropertyList}>
+                  Delete property
+                </Button>
+              </div>
+              <Button variant="outline" className="rounded-lg text-sm" onClick={navigateBackToPropertyList}>
+                Back to property list
+              </Button>
+            </div>
+          )}
         </Card>
       </div>
     );

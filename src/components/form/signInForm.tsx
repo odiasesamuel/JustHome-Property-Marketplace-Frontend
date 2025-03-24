@@ -1,5 +1,6 @@
 "use client";
 
+import { useAuth } from "@/context/authContext";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,14 +18,15 @@ import { Loader2 } from "lucide-react";
 import Link from "next/link";
 
 const SignInForm: React.FC<{}> = () => {
+  const { login } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
   const { mutate, isPending, isError } = useMutation({
     mutationFn: signIn,
     onSuccess: (successData) => {
-      sessionStorage.setItem("userToken", successData.token.value);
-      sessionStorage.setItem("userInfo", JSON.stringify(successData.loggedInUser));
-      window.dispatchEvent(new Event("authChanged"));
+      const loggedInUser = successData.loggedInUser;
+      const userToken = successData.token.value;
+      login(loggedInUser, userToken);
       router.push("/");
     },
     onError: (error: any) => {

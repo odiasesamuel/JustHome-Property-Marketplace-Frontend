@@ -1,22 +1,19 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useAuth } from "@/context/authContext";
 import UserPropertyList from "@/components/userPropertyList";
 import AddPropertyForm from "@/components/form/addPropertyForm";
 import { Card, CardDescription, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
 
 const AddProperty = () => {
   const router = useRouter();
-  const [isAuth, setIsAuth] = useState(false);
+  const { isAuth } = useAuth();
 
   useEffect(() => {
-    const token = sessionStorage.getItem("userToken");
-
-    if (!token) {
+    if (!isAuth) {
       router.replace("/auth?mode=signin");
-    } else {
-      setIsAuth(true);
     }
   }, []);
 

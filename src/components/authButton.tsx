@@ -1,31 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useAuth } from "@/context/authContext";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { User } from "lucide-react";
 import Link from "next/link";
 
 const AuthButton = () => {
-  const [isAuth, setIsAuth] = useState(false);
-
-  useEffect(() => {
-    const checkAuth = () => {
-      setIsAuth(!!sessionStorage.getItem("userToken"));
-    };
-
-    checkAuth();
-
-    window.addEventListener("authChanged", checkAuth);
-
-    return () => window.removeEventListener("authChanged", checkAuth);
-  }, []);
-
-  const signOutHandler = () => {
-    sessionStorage.removeItem("userToken");
-    sessionStorage.removeItem("userInfo");
-    window.dispatchEvent(new Event("authChanged"));
-  };
+  const { isAuth, login, logout } = useAuth();
 
   return (
     <>
@@ -47,7 +29,7 @@ const AuthButton = () => {
               </AlertDialogHeader>
               <AlertDialogFooter>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction className="bg-destructive" onClick={signOutHandler}>
+                <AlertDialogAction className="bg-destructive" onClick={logout}>
                   Continue
                 </AlertDialogAction>
               </AlertDialogFooter>

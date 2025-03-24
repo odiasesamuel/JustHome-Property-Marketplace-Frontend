@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getUserListedProperty } from "@/api/propertyHttp";
-// import data from "@/api/propertyList.json";
 import { useToast } from "@/hooks/use-toast";
 import { PaginationComponent } from "./paginationComponent";
 import { useSearchParams, useRouter } from "next/navigation";

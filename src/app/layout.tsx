@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import QueryProvider from "@/provider/queryProvider";
+import { AuthProvider } from "@/context/authContext";
 import Main from "@/components/layout/main";
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
@@ -34,9 +35,11 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased`}>
         <div className="bg-white grid grid-cols-[repeat(12,_1fr)] grid-rows-[auto_1fr] min-h-screen max-w-[1535px] mx-auto">
           <QueryProvider>
-            <Header className="col-start-1 col-end-13 h-[100px]"></Header>
-            <Main className="col-start-1 col-end-13">{children}</Main>
-            <Footer className="col-start-1 col-end-13"></Footer>
+            <AuthProvider>
+              <Header className="col-start-1 col-end-13 h-[100px]"></Header>
+              <Main className="col-start-1 col-end-13">{children}</Main>
+              <Footer className="col-start-1 col-end-13"></Footer>
+            </AuthProvider>
           </QueryProvider>
         </div>
         <Toaster />
