@@ -1,5 +1,7 @@
 import axios from "axios";
 import apiClient from "./apiClient";
+import { addPropertySchema } from "@/schemas/propertySchema";
+import { z } from "zod";
 
 type GetPropertyListParams = {
   signal?: AbortSignal;
@@ -71,6 +73,30 @@ export const getUserListedProperty = async ({ signal, page, perPage }: getUserLi
 export const getPropertyDetails = async ({ signal, propertyId }: GetPropertyDetails) => {
   try {
     const response = await apiClient.get(`/property/${propertyId}`, { signal });
+
+    return response.data;
+  } catch (error) {
+    if (axios.isCancel(error)) {
+      console.log("Request canceled:", error.message);
+      return;
+    }
+    // console.error("Error fetching properties:", error);
+    throw error;
+  }
+};
+
+export const addProperty = async (addPropertyFormData: FormData) => {
+  try {
+    console.log("FormData entries:");
+    for (const pair of addPropertyFormData.entries()) {
+      console.log(pair[0], pair[1]);
+    }
+
+    const response = await apiClient.post("/property", addPropertyFormData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
 
     return response.data;
   } catch (error) {

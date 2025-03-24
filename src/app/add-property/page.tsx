@@ -3,9 +3,8 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import UserPropertyList from "@/components/userPropertyList";
+import AddPropertyForm from "@/components/form/addPropertyForm";
 import { Card, CardDescription, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 const AddProperty = () => {
   const router = useRouter();
@@ -35,9 +34,7 @@ const AddProperty = () => {
               <p>Start earning from your property today!</p>
             </CardDescription>
 
-            <Button asChild variant="outline" className="px-6 text-sm">
-              <Link href="/add-property">List Property</Link>
-            </Button>
+            <AddPropertyForm />
           </CardHeader>
 
           <UserPropertyList />

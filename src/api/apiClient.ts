@@ -13,7 +13,7 @@ const apiClient = axios.create({
 apiClient.interceptors.request.use(
   (config) => {
     const token = sessionStorage.getItem("userToken");
-    if (token && config.url?.includes("/property/my-listing")) {
+    if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
@@ -23,15 +23,15 @@ apiClient.interceptors.request.use(
   }
 );
 
-apiClient.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    if (error.response?.status === 401) {
-      sessionStorage.removeItem("userToken");
-      window.location.href = "/auth?mode=signin";
-    }
-    return Promise.reject(error);
-  }
-);
+// apiClient.interceptors.response.use(
+//   (response) => response,
+//   async (error) => {
+//     if (error.response?.status === 401) {
+//       sessionStorage.removeItem("userToken");
+//       window.location.href = "/auth?mode=signin";
+//     }
+//     return Promise.reject(error);
+//   }
+// );
 
 export default apiClient;
