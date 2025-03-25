@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useAuth } from "@/context/authContext";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
@@ -15,13 +15,21 @@ import { AnimatedHand } from "@/components/ui/loader";
 import { MapPin } from "lucide-react";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { PropertyResponse } from "@/types/apiResponse";
-// import data from "@/api/property.json";
 
 const Property = () => {
   const param = useParams();
   const slug = param.slug as string;
   const propertyId = slug.split("-").pop();
-  console.log(propertyId);
+
+  const [userId, setUserId] = useState("");
+
+  useEffect(() => {
+    const userInfo = sessionStorage.getItem("userInfo");
+    if (userInfo) {
+      const parsedUser = JSON.parse(userInfo);
+      setUserId(parsedUser.userId);
+    }
+  }, []);
 
   const { data, isPending, isError, error } = useQuery<PropertyResponse>({
     queryKey: ["property", propertyId],
@@ -122,8 +130,8 @@ const Property = () => {
             </div>
           </CardFooter>
 
-          {isAuth && (
-            <div className="flex justify-between m-6">
+          <div className="flex justify-between m-6">
+            {isAuth && userId === data.property.propertyOwnerId && (
               <div>
                 <Button variant="default" className="rounded-lg text-sm mr-6" onClick={navigateBackToPropertyList}>
                   Edit property
@@ -132,11 +140,11 @@ const Property = () => {
                   Delete property
                 </Button>
               </div>
-              <Button variant="outline" className="rounded-lg text-sm" onClick={navigateBackToPropertyList}>
-                Back to property list
-              </Button>
-            </div>
-          )}
+            )}
+            <Button variant="outline" className="rounded-lg text-sm" onClick={navigateBackToPropertyList}>
+              Back to property list
+            </Button>
+          </div>
         </Card>
       </div>
     );

@@ -12,6 +12,7 @@ type Property = {
   propertyType: string;
   forSaleOrRent: string;
   price: number;
+  propertyOwnerId: string;
   imageUrls: string[];
 };
 
