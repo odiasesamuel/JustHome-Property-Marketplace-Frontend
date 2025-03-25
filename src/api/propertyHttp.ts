@@ -1,5 +1,5 @@
 import axios from "axios";
-import apiClient from "./apiClient";
+import apiClient, { BASE_URL } from "./apiClient";
 import { addPropertySchema } from "@/schemas/propertySchema";
 import { z } from "zod";
 
@@ -97,6 +97,21 @@ export const addProperty = async (addPropertyFormData: FormData) => {
         "Content-Type": "multipart/form-data",
       },
     });
+
+    return response.data;
+  } catch (error) {
+    if (axios.isCancel(error)) {
+      console.log("Request canceled:", error.message);
+      return;
+    }
+    // console.error("Error fetching properties:", error);
+    throw error;
+  }
+};
+
+export const deleteProperty = async (propertyId: string) => {
+  try {
+    const response = await apiClient.delete(`/property/${propertyId}`);
 
     return response.data;
   } catch (error) {

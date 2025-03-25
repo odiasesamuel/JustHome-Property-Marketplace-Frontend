@@ -29,6 +29,7 @@ const AddPropertyForm = () => {
         description: "Added property successfully!",
       });
       queryClient.invalidateQueries({ queryKey: ["userListedProperty"] });
+      queryClient.invalidateQueries({ queryKey: ["property"] });
     },
     onError: (error: any) => {
       setIsOpen(false);
