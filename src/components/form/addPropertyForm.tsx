@@ -306,7 +306,7 @@ const AddPropertyForm = () => {
               )}
             />
 
-            <Button type="submit" className="w-full text-sm col-start-1 col-end-3" disabled={false}>
+            <Button type="submit" className="w-full text-sm col-start-1 col-end-3" disabled={isPending}>
               Submit
               {isPending && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
             </Button>

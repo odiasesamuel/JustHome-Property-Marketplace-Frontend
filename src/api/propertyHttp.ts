@@ -109,7 +109,7 @@ export const addProperty = async (addPropertyFormData: FormData) => {
   }
 };
 
-export const deleteProperty = async (propertyId: string) => {
+export const deleteProperty = async (propertyId: string | undefined) => {
   try {
     const response = await apiClient.delete(`/property/${propertyId}`);
 

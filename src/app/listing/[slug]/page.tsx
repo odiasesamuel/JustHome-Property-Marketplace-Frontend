@@ -4,17 +4,18 @@ import { Fragment, useEffect, useState } from "react";
 import { useAuth } from "@/context/authContext";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
-import { getPropertyDetails } from "@/api/propertyHttp";
+import { deleteProperty, getPropertyDetails } from "@/api/propertyHttp";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
 import ImageViewer from "@/components/imageViewer";
 import { AnimatedHand } from "@/components/ui/loader";
-import { MapPin } from "lucide-react";
+import { Loader2, MapPin } from "lucide-react";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { PropertyResponse } from "@/types/apiResponse";
+import { queryClient } from "@/api/queryClient";
 
 const Property = () => {
   const param = useParams();
@@ -36,6 +37,23 @@ const Property = () => {
     queryFn: ({ signal }) => getPropertyDetails({ signal, propertyId }),
     gcTime: 10 * 60 * 1000,
   });
+
+  const { mutate, isPending: isPendingDeletion } = useMutation({
+    mutationFn: deleteProperty,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["userListedProperty"] });
+      queryClient.invalidateQueries({ queryKey: ["property"] });
+      router.push("/add-property");
+    },
+    onError: (error: any) => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error.data.message || "Error deleting property",
+      });
+    },
+  });
+  const handlePropertyDeletion = () => mutate(propertyId);
 
   const { isAuth } = useAuth();
   const { toast } = useToast();
@@ -136,8 +154,9 @@ const Property = () => {
                 <Button variant="default" className="rounded-lg text-sm mr-6" onClick={navigateBackToPropertyList}>
                   Edit property
                 </Button>
-                <Button variant="destructive" className="rounded-lg text-sm" onClick={navigateBackToPropertyList}>
+                <Button variant="destructive" className="rounded-lg text-sm" onClick={handlePropertyDeletion} disabled={isPending}>
                   Delete property
+                  {isPendingDeletion && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
                 </Button>
               </div>
             )}
