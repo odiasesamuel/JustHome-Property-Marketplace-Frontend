@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { deleteProperty, getPropertyDetails } from "@/api/propertyHttp";
+import DeleteProjectButton from "@/components/deleteProjectButton";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
@@ -46,6 +47,8 @@ const Property = () => {
       router.push("/add-property");
     },
     onError: (error: any) => {
+      // Error not working
+      console.log(error);
       toast({
         variant: "destructive",
         title: "Error",
@@ -65,7 +68,6 @@ const Property = () => {
         title: "Error",
         description: error?.message || "Error loading properties data",
       });
-      console.log(error);
     }
   }, [isError, error, toast]);
 
@@ -154,10 +156,7 @@ const Property = () => {
                 <Button variant="default" className="rounded-lg text-sm mr-6" onClick={navigateBackToPropertyList}>
                   Edit property
                 </Button>
-                <Button variant="destructive" className="rounded-lg text-sm" onClick={handlePropertyDeletion} disabled={isPending}>
-                  Delete property
-                  {isPendingDeletion && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
-                </Button>
+                <DeleteProjectButton isPendingDeletion={isPendingDeletion} handlePropertyDeletion={handlePropertyDeletion} />
               </div>
             )}
             <Button variant="outline" className="rounded-lg text-sm" onClick={navigateBackToPropertyList}>

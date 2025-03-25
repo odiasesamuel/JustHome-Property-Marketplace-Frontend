@@ -32,6 +32,7 @@ const AddPropertyForm = () => {
       queryClient.invalidateQueries({ queryKey: ["property"] });
     },
     onError: (error: any) => {
+      // Error not working
       setIsOpen(false);
       toast({
         variant: "destructive",

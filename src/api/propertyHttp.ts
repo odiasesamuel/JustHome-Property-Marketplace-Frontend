@@ -87,11 +87,6 @@ export const getPropertyDetails = async ({ signal, propertyId }: GetPropertyDeta
 
 export const addProperty = async (addPropertyFormData: FormData) => {
   try {
-    console.log("FormData entries:");
-    for (const pair of addPropertyFormData.entries()) {
-      console.log(pair[0], pair[1]);
-    }
-
     const response = await apiClient.post("/property", addPropertyFormData, {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -111,6 +106,7 @@ export const addProperty = async (addPropertyFormData: FormData) => {
 
 export const deleteProperty = async (propertyId: string | undefined) => {
   try {
+    throw new Error("unable to delete files");
     const response = await apiClient.delete(`/property/${propertyId}`);
 
     return response.data;
