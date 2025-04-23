@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { deleteProperty, getPropertyDetails } from "@/api/propertyHttp";
+import EditPropertyForm from "@/components/form/editPropertyForm";
 import DeleteProjectButton from "@/components/deleteProjectButton";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -47,8 +48,6 @@ const Property = () => {
       router.push("/add-property");
     },
     onError: (error: any) => {
-      // Error not working
-      console.log(error);
       toast({
         variant: "destructive",
         title: "Error",
@@ -153,9 +152,7 @@ const Property = () => {
           <div className="flex justify-between m-6">
             {isAuth && userId === data.property.propertyOwnerId && (
               <div>
-                <Button variant="default" className="rounded-lg text-sm mr-6" onClick={navigateBackToPropertyList}>
-                  Edit property
-                </Button>
+                <EditPropertyForm propertyData={data.property} />
                 <DeleteProjectButton isPendingDeletion={isPendingDeletion} handlePropertyDeletion={handlePropertyDeletion} />
               </div>
             )}

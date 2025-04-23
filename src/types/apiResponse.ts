@@ -1,4 +1,4 @@
-type Property = {
+export type Property = {
   _id: string;
   name: string;
   email: string;

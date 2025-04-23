@@ -106,7 +106,6 @@ export const addProperty = async (addPropertyFormData: FormData) => {
 
 export const deleteProperty = async (propertyId: string | undefined) => {
   try {
-    throw new Error("unable to delete files");
     const response = await apiClient.delete(`/property/${propertyId}`);
 
     return response.data;
