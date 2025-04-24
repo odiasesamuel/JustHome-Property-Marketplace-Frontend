@@ -123,11 +123,23 @@ const PropertyFilter: React.FC<{}> = () => {
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>Min Price</SelectLabel>
-                <SelectItem value="100000">{formatCurrency(100000)}</SelectItem>
                 <SelectItem value="200000">{formatCurrency(200000)}</SelectItem>
-                <SelectItem value="300000">{formatCurrency(300000)}</SelectItem>
                 <SelectItem value="400000">{formatCurrency(400000)}</SelectItem>
-                <SelectItem value="500000">{formatCurrency(500000)}</SelectItem>
+                <SelectItem value="600000">{formatCurrency(600000)}</SelectItem>
+                <SelectItem value="800000">{formatCurrency(800000)}</SelectItem>
+                <SelectItem value="1000000">{formatCurrency(1000000)}</SelectItem>
+                <SelectItem value="2000000">{formatCurrency(2000000)}</SelectItem>
+                <SelectItem value="5000000">{formatCurrency(5000000)}</SelectItem>
+                <SelectItem value="10000000">{formatCurrency(10000000)}</SelectItem>
+                <SelectItem value="20000000">{formatCurrency(20000000)}</SelectItem>
+                <SelectItem value="50000000">{formatCurrency(50000000)}</SelectItem>
+                <SelectItem value="1000000000">{formatCurrency(100000000)}</SelectItem>
+                <SelectItem value="2000000000">{formatCurrency(200000000)}</SelectItem>
+                <SelectItem value="5000000000">{formatCurrency(500000000)}</SelectItem>
+                <SelectItem value="10000000000">{formatCurrency(1000000000)}</SelectItem>
+                <SelectItem value="50000000000">{formatCurrency(5000000000)}</SelectItem>
+                <SelectItem value="100000000000">{formatCurrency(10000000000)}</SelectItem>
+                <SelectItem value="200000000000">{formatCurrency(20000000000)}</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
@@ -144,11 +156,23 @@ const PropertyFilter: React.FC<{}> = () => {
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>Max Price</SelectLabel>
-                <SelectItem value="100000">{formatCurrency(100000)}</SelectItem>
                 <SelectItem value="200000">{formatCurrency(200000)}</SelectItem>
-                <SelectItem value="300000">{formatCurrency(300000)}</SelectItem>
                 <SelectItem value="400000">{formatCurrency(400000)}</SelectItem>
-                <SelectItem value="500000">{formatCurrency(500000)}</SelectItem>
+                <SelectItem value="600000">{formatCurrency(600000)}</SelectItem>
+                <SelectItem value="800000">{formatCurrency(800000)}</SelectItem>
+                <SelectItem value="1000000">{formatCurrency(1000000)}</SelectItem>
+                <SelectItem value="2000000">{formatCurrency(2000000)}</SelectItem>
+                <SelectItem value="5000000">{formatCurrency(5000000)}</SelectItem>
+                <SelectItem value="10000000">{formatCurrency(10000000)}</SelectItem>
+                <SelectItem value="20000000">{formatCurrency(20000000)}</SelectItem>
+                <SelectItem value="50000000">{formatCurrency(50000000)}</SelectItem>
+                <SelectItem value="1000000000">{formatCurrency(100000000)}</SelectItem>
+                <SelectItem value="2000000000">{formatCurrency(200000000)}</SelectItem>
+                <SelectItem value="5000000000">{formatCurrency(500000000)}</SelectItem>
+                <SelectItem value="10000000000">{formatCurrency(1000000000)}</SelectItem>
+                <SelectItem value="50000000000">{formatCurrency(5000000000)}</SelectItem>
+                <SelectItem value="100000000000">{formatCurrency(10000000000)}</SelectItem>
+                <SelectItem value="200000000000">{formatCurrency(20000000000)}</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
