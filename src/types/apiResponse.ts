@@ -3,14 +3,14 @@ export type Property = {
   name: string;
   email: string;
   phoneNumber: string;
-  state: string;
+  state: "Lagos" | "Abuja";
   LGA: string;
   city: string;
   area: string;
   description: string;
   numberOfRooms: number;
-  propertyType: string;
-  forSaleOrRent: string;
+  propertyType: "Duplex" | "Flat";
+  forSaleOrRent: "Rent" | "Sale";
   price: number;
   propertyOwnerId: string;
   imageUrls: string[];

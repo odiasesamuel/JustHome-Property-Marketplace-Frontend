@@ -1,10 +1,11 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import React, { useState } from "react";
 import { z } from "zod";
-import { addPropertySchema } from "@/schemas/propertySchema";
+import { editPropertySchema } from "@/schemas/propertySchema";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -13,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "../ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
-import { addProperty } from "@/api/propertyHttp";
+import { editProperty } from "@/api/propertyHttp";
 import { Loader2 } from "lucide-react";
 import { queryClient } from "@/api/queryClient";
 import { Property } from "@/types/apiResponse";
@@ -23,19 +24,34 @@ type EditPropertyFormProps = {
 };
 
 const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => {
-  console.log(propertyData);
+  const [isOpen, setIsOpen] = useState(false);
+  const { name, email, phoneNumber, state, LGA, city, description, numberOfRooms, propertyType, forSaleOrRent, price } = propertyData;
+  const form = useForm<z.infer<typeof editPropertySchema>>({
+    resolver: zodResolver(editPropertySchema),
+    defaultValues: { name, email, phoneNumber, state, LGA, city, description, numberOfRooms, propertyType, forSaleOrRent, price },
+  });
+  useEffect(() => {
+    if (isOpen) {
+      form.reset({ name, email, phoneNumber, state, LGA, city, description, numberOfRooms, propertyType, forSaleOrRent, price });
+    }
+  }, [isOpen, propertyData, form]);
+
+  const param = useParams();
+  const slug = param.slug as string;
+  const propertyId = slug.split("-").pop();
+
   const { toast } = useToast();
   const { mutate, isPending } = useMutation({
-    mutationFn: addProperty,
+    mutationFn: editProperty,
     onSuccess: () => {
       setIsOpen(false);
-      form.reset();
       toast({
         title: "Success",
-        description: "Added property successfully!",
+        description: "Edited property successfully!",
       });
       queryClient.invalidateQueries({ queryKey: ["userListedProperty"] });
       queryClient.invalidateQueries({ queryKey: ["property"] });
+      queryClient.invalidateQueries({ queryKey: ["property", propertyId] });
     },
     onError: (error: any) => {
       // Error not working
@@ -43,48 +59,32 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
       toast({
         variant: "destructive",
         title: "Error",
-        description: error.data.message || "Error adding property",
+        description: error.data.message || "Error editing property",
       });
     },
   });
 
-  const { name, email, phoneNumber, state, LGA, city, description, numberOfRooms, propertyType, forSaleOrRent, price } = propertyData;
-  const form = useForm<z.infer<typeof addPropertySchema>>({
-    resolver: zodResolver(addPropertySchema),
-    defaultValues: {
-      name,
-      email,
-      phoneNumber,
-      state: "Lagos",
-      LGA,
-      city,
-      description,
-      numberOfRooms: numberOfRooms.toString(),
-      propertyType: "Flat",
-      forSaleOrRent: "Rent",
-      price: price.toString(),
-    },
-  });
-
-  const [isOpen, setIsOpen] = useState(false);
   const [imageErrorMessage, setImageErrorMessage] = useState("");
 
-  async function onSubmit(values: z.infer<typeof addPropertySchema>, event?: React.BaseSyntheticEvent) {
+  async function onSubmit(values: z.infer<typeof editPropertySchema>, event?: React.BaseSyntheticEvent) {
     event?.preventDefault();
     setImageErrorMessage("");
-    const formData = new FormData();
-    formData.append("name", values.name);
-    formData.append("email", values.email);
-    formData.append("phoneNumber", values.phoneNumber);
-    formData.append("state", values.state);
-    formData.append("LGA", values.LGA);
-    formData.append("city", values.city);
-    formData.append("area", values.LGA);
-    formData.append("description", values.description);
-    formData.append("numberOfRooms", values.numberOfRooms.toString());
-    formData.append("propertyType", values.propertyType);
-    formData.append("forSaleOrRent", values.forSaleOrRent);
-    formData.append("price", values.price.toString());
+    const editedPropertyData = {
+      name: values.name,
+      email: values.email,
+      phoneNumber: values.phoneNumber,
+      state: values.state,
+      LGA: values.LGA,
+      city: values.city,
+      area: values.LGA,
+      description: values.description,
+      numberOfRooms: values.numberOfRooms,
+      propertyType: values.propertyType,
+      forSaleOrRent: values.forSaleOrRent,
+      price: values.price,
+    };
+
+    const imageFormData = new FormData();
     if (values.imageFiles) {
       if (values.imageFiles.length > 10) {
         setImageErrorMessage("You can upload a maximum of 10 images.");
@@ -95,11 +95,11 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
         if (file.size > 10 * 1024 * 1024) {
           return;
         }
-        formData.append("propertyImage", file);
+        imageFormData.append("propertyImage", file);
       }
     }
 
-    mutate(formData);
+    mutate({ editedPropertyData, imageFormData, propertyId });
   }
 
   return (

@@ -1,6 +1,6 @@
 import axios from "axios";
 import apiClient, { BASE_URL } from "./apiClient";
-import { addPropertySchema } from "@/schemas/propertySchema";
+import { addPropertySchema, editPropertySchema } from "@/schemas/propertySchema";
 import { z } from "zod";
 
 type GetPropertyListParams = {
@@ -115,6 +115,34 @@ export const deleteProperty = async (propertyId: string | undefined) => {
       return;
     }
     // console.error("Error fetching properties:", error);
+    throw error;
+  }
+};
+
+export const editProperty = async (editPropertyFormData: { editedPropertyData: z.infer<typeof editPropertySchema>; imageFormData: FormData; propertyId: string | undefined }) => {
+  const { editedPropertyData, imageFormData, propertyId } = editPropertyFormData;
+
+  console.log(propertyId);
+
+  try {
+    const [response, imgResponse] = await Promise.all([
+      apiClient.patch(`/property/${propertyId}`, editedPropertyData),
+      apiClient.patch(`/property/image/${propertyId}`, imageFormData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }),
+    ]);
+
+    return {
+      data: response.data,
+      image: imgResponse.data,
+    };
+  } catch (error) {
+    if (axios.isCancel(error)) {
+      console.log("Request canceled:", error.message);
+      return;
+    }
     throw error;
   }
 };
