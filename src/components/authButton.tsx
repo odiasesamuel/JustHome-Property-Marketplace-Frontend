@@ -6,13 +6,13 @@ import { Button } from "@/components/ui/button";
 import { User } from "lucide-react";
 import Link from "next/link";
 
-const AuthButton = () => {
+const AuthButton: React.FC<{ className?: string }> = ({ className }) => {
   const { isAuth, login, logout } = useAuth();
 
   return (
     <>
       {isAuth ? (
-        <div className="w-[17%] h-[30px] flex justify-end">
+        <div className={`${className} w-[17%] h-[30px] flex justify-end`}>
           <Button className="w-[30px] h-full rounded-full">
             <User className="w-4" />
           </Button>
@@ -37,7 +37,7 @@ const AuthButton = () => {
           </AlertDialog>
         </div>
       ) : (
-        <Button asChild variant="outline" className="px-6 ml-3 text-sm">
+        <Button asChild variant="outline" className={`${className} px-6 ml-3 text-sm`}>
           <Link href="/auth?mode=signin">Sign in</Link>
         </Button>
       )}
