@@ -55,7 +55,7 @@ const ForgotPasswordForm: React.FC<{}> = () => {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem className="text-black w-full">
+            <FormItem className="w-full text-black">
               <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input placeholder="kunle.ojo@gmail.com" {...field} className="p-3" />
@@ -69,9 +69,9 @@ const ForgotPasswordForm: React.FC<{}> = () => {
           Continue
           {isPending && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
         </Button>
-        <p className="text-black text-sm mt-6 text-center">
+        <p className="mt-6 text-center text-sm text-black">
           Remembered your password?
-          <Link href="/auth?mode=signin" className="text-appGreen cursor-pointer underline underline-offset-4 ml-1">
+          <Link href="/auth?mode=signin" className="ml-1 cursor-pointer text-appGreen underline underline-offset-4">
             Sign in here
           </Link>
         </p>

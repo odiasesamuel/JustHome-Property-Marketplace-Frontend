@@ -45,7 +45,7 @@ const SubscriptionForm = () => {
   }
 
   return (
-    <div className="w-full relative">
+    <div className="relative w-full">
       <Form {...form}>
         <form onSubmit={form.handleSubmit((values, event) => onSubmit(values, event))} className="">
           <FormField
@@ -54,9 +54,9 @@ const SubscriptionForm = () => {
             render={({ field }) => (
               <FormItem className="">
                 <FormControl className="">
-                  <div className="w-full relative">
-                    <Input {...field} className="w-full rounded-full px-7 py-4 text-xs border-none focus:outline-none placeholder:text-white placeholder:text-xs bg-[#315952]" placeholder="Your e-mail" />
-                    <Button type="submit" className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-transparent shadow-none hover:bg-transparent">
+                  <div className="relative w-full">
+                    <Input {...field} className="w-full rounded-full border-none bg-[#315952] px-7 py-4 text-xs placeholder:text-xs placeholder:text-white focus:outline-none" placeholder="Your e-mail" />
+                    <Button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 transform bg-transparent shadow-none hover:bg-transparent">
                       Send
                       {isPending ? <Loader2 className="animate-spin" /> : <ArrowRight className="w-4 text-white" />}
                     </Button>

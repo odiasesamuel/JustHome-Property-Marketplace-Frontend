@@ -16,7 +16,7 @@ const AuthPage: React.FC<AuthPageProps> = async ({ searchParams }) => {
 
   return (
     <>
-      <div className="px-[3.5%] flex flex-col items-center -mb-10">
+      <div className="-mb-10 flex flex-col items-center px-[3.5%]">
         <Card className="w-[600px]">
           <CardHeader>
             <CardTitle>
@@ -30,17 +30,17 @@ const AuthPage: React.FC<AuthPageProps> = async ({ searchParams }) => {
           </CardContent>
         </Card>
         {mode === "signin" && (
-          <p className="text-black text-sm mt-6 text-center">
+          <p className="mt-6 text-center text-sm text-black">
             Don&apos;t have an account?
-            <Link href="/auth?mode=signup" className="text-appGreen cursor-pointer underline underline-offset-4 ml-1">
+            <Link href="/auth?mode=signup" className="ml-1 cursor-pointer text-appGreen underline underline-offset-4">
               Register now and list properties
             </Link>
           </p>
         )}
         {mode === "signup" && (
-          <p className="text-black text-sm mt-6 text-center">
+          <p className="mt-6 text-center text-sm text-black">
             Already have an account?
-            <Link href="/auth?mode=signin" className="text-appGreen cursor-pointer underline underline-offset-4 ml-1">
+            <Link href="/auth?mode=signin" className="ml-1 cursor-pointer text-appGreen underline underline-offset-4">
               Sign in
             </Link>
           </p>

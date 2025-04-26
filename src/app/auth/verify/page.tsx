@@ -9,7 +9,7 @@ const Verify = () => {
   const status = searchParams.get("status");
   const message = searchParams.get("message");
   return (
-    <div className="px-[3.5%] text-center space-y-3">
+    <div className="space-y-3 px-[3.5%] text-center">
       <h1>{status === "success" ? "✅ Verification Successful" : "❌ Verification Failed"}</h1>
       <p>{message}</p>
       {status === "success" && (

@@ -17,7 +17,7 @@ const MobileSideNavBar: React.FC<{ children: React.ReactNode }> = ({ children })
         <SheetHeader>
           <SheetTitle className="flex justify-center">
             {" "}
-            <div className="w-[10%] h-[30px] flex items-center mb-10">
+            <div className="mb-10 flex h-[30px] w-[10%] items-center">
               <Image alt="Logo of the company" src="/images/logo.svg" width={20} height={20} className="mr-3 w-6" />
               <h1 className="text-lg font-medium">JustHome</h1>
             </div>

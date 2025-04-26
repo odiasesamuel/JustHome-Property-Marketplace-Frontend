@@ -30,8 +30,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ className }) => {
 
   return (
     <form className={`${className} relative`} onSubmit={handlePropertySearch}>
-      <Input type="text" className="w-full rounded-full px-5 py-4 text-sm shadow-md focus:outline-none placeholder:text-appGreen" placeholder="Enter state, area, Keywords..." ref={searchRef} defaultValue={searchParams.get("search") || ""} />
-      <Button type="submit" className="bg-[#E7C873] rounded-full absolute top-1/2 right-2 transform -translate-y-1/2 w-10 h-10 flex items-center justify-center">
+      <Input type="text" className="w-full rounded-full px-5 py-4 text-sm shadow-md placeholder:text-appGreen focus:outline-none" placeholder="Enter state, area, Keywords..." ref={searchRef} defaultValue={searchParams.get("search") || ""} />
+      <Button type="submit" className="absolute right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 transform items-center justify-center rounded-full bg-[#E7C873]">
         <Search className="w-4 text-appGreen" />
       </Button>
     </form>

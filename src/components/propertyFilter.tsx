@@ -93,25 +93,25 @@ const PropertyFilter: React.FC<{}> = () => {
 
   return (
     <>
-      <div className="w-3/4 flex justify-between text-xs">
-        <Button variant="outline" className={`border px-3 py-1 rounded-full ${!search && !propertyType && !forSaleOrRent && !minPrice && !maxPrice ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`} onClick={showAllProperties}>
+      <div className="flex w-3/4 justify-between text-xs">
+        <Button variant="outline" className={`rounded-full border px-3 py-1 ${!search && !propertyType && !forSaleOrRent && !minPrice && !maxPrice ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`} onClick={showAllProperties}>
           All Properties
         </Button>
-        <Button variant="outline" className={`border px-3 py-1 rounded-full ${forSaleOrRent === "Sale" ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`} onClick={filterPropertiesForSale}>
+        <Button variant="outline" className={`rounded-full border px-3 py-1 ${forSaleOrRent === "Sale" ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`} onClick={filterPropertiesForSale}>
           For Sale
         </Button>
-        <Button variant="outline" className={`border px-3 py-1 rounded-full ${forSaleOrRent === "Rent" ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`} onClick={filterPropertiesForRent}>
+        <Button variant="outline" className={`rounded-full border px-3 py-1 ${forSaleOrRent === "Rent" ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`} onClick={filterPropertiesForRent}>
           For Rent
         </Button>
-        <Button variant="outline" className={`border px-3 py-1 rounded-full ${propertyType === "Duplex" ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`} onClick={filterDuplexProperties}>
+        <Button variant="outline" className={`rounded-full border px-3 py-1 ${propertyType === "Duplex" ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`} onClick={filterDuplexProperties}>
           Duplex
         </Button>
-        <Button variant="outline" className={`border px-3 py-1 rounded-full ${propertyType === "Flat" ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`} onClick={filterFlatProperties}>
+        <Button variant="outline" className={`rounded-full border px-3 py-1 ${propertyType === "Flat" ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`} onClick={filterFlatProperties}>
           Flat
         </Button>
       </div>
 
-      <div className="w-3/4 flex justify-center text-xs gap-x-8">
+      <div className="flex w-3/4 justify-center gap-x-8 text-xs">
         <div className="flex flex-col gap-2">
           <Label htmlFor="min-price" className="text-left text-xs">
             Min Price

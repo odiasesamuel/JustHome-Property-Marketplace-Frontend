@@ -105,11 +105,11 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="default" className="rounded-lg text-sm mr-6">
+        <Button variant="default" className="mr-6 rounded-lg text-sm">
           Edit property
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-h-[90vh] max-w-3xl overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Edit Your Property</DialogTitle>
         </DialogHeader>
@@ -119,7 +119,7 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
               control={form.control}
               name="name"
               render={({ field }) => (
-                <FormItem className="text-black w-full">
+                <FormItem className="w-full text-black">
                   <FormLabel>Property Name</FormLabel>
                   <FormControl>
                     <Input placeholder="Grandeur Homes" {...field} className="p-3" />
@@ -132,7 +132,7 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
               control={form.control}
               name="email"
               render={({ field }) => (
-                <FormItem className="text-black w-full">
+                <FormItem className="w-full text-black">
                   <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input placeholder="kunle.ojo@gmail.com" {...field} className="p-3" />
@@ -145,10 +145,10 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
               control={form.control}
               name="phoneNumber"
               render={({ field }) => (
-                <FormItem className="text-black w-full">
+                <FormItem className="w-full text-black">
                   <FormLabel>Phone Number</FormLabel>
                   <FormControl>
-                    <Input placeholder="08046817395" {...field} type="number" className="p-3 appearance-none" />
+                    <Input placeholder="08046817395" {...field} type="number" className="appearance-none p-3" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -162,7 +162,7 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
                   <FormLabel>State</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger className="text-sm py-[22px]">
+                      <SelectTrigger className="py-[22px] text-sm">
                         <SelectValue placeholder="" className="text-sm" />
                       </SelectTrigger>
                     </FormControl>
@@ -183,7 +183,7 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
               control={form.control}
               name="LGA"
               render={({ field }) => (
-                <FormItem className="text-black w-full">
+                <FormItem className="w-full text-black">
                   <FormLabel> Local Government Area</FormLabel>
                   <FormControl>
                     <Input placeholder="Ifako-ijaye" {...field} className="p-3" />
@@ -197,7 +197,7 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
               control={form.control}
               name="city"
               render={({ field }) => (
-                <FormItem className="text-black w-full">
+                <FormItem className="w-full text-black">
                   <FormLabel>City</FormLabel>
                   <FormControl>
                     <Input placeholder="Ikeja" {...field} className="p-3" />
@@ -225,10 +225,10 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
               control={form.control}
               name="numberOfRooms"
               render={({ field }) => (
-                <FormItem className="text-black w-full">
+                <FormItem className="w-full text-black">
                   <FormLabel>Number of Rooms</FormLabel>
                   <FormControl>
-                    <Input placeholder="5" {...field} type="number" className="p-3 appearance-none" />
+                    <Input placeholder="5" {...field} type="number" className="appearance-none p-3" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -243,7 +243,7 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
                   <FormLabel>Property Type</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger className="text-sm py-[22px]">
+                      <SelectTrigger className="py-[22px] text-sm">
                         <SelectValue placeholder="" className="text-sm" />
                       </SelectTrigger>
                     </FormControl>
@@ -269,7 +269,7 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
                   <FormLabel>Listing Type</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger className="text-sm py-[22px]">
+                      <SelectTrigger className="py-[22px] text-sm">
                         <SelectValue placeholder="" className="text-sm" />
                       </SelectTrigger>
                     </FormControl>
@@ -291,10 +291,10 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
               control={form.control}
               name="price"
               render={({ field }) => (
-                <FormItem className="text-black w-full">
+                <FormItem className="w-full text-black">
                   <FormLabel>Price</FormLabel>
                   <FormControl>
-                    <Input placeholder="80000000" {...field} type="number" className="p-3 appearance-none" />
+                    <Input placeholder="80000000" {...field} type="number" className="appearance-none p-3" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -305,7 +305,7 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
               control={form.control}
               name="imageFiles"
               render={({ field }) => (
-                <FormItem className="text-black w-full col-start-1 col-end-3">
+                <FormItem className="col-start-1 col-end-3 w-full text-black">
                   <FormLabel>Upload Images</FormLabel>
                   <FormControl>
                     <Input type="file" multiple accept="image/*" onChange={(event) => field.onChange(event.target.files)} className="p-3" />
@@ -315,7 +315,7 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
               )}
             />
 
-            <Button type="submit" className="w-full text-sm col-start-1 col-end-3" disabled={isPending}>
+            <Button type="submit" className="col-start-1 col-end-3 w-full text-sm" disabled={isPending}>
               Submit
               {isPending && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
             </Button>

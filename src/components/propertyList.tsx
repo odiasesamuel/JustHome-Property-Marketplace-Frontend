@@ -61,26 +61,26 @@ const PropertyList = () => {
 
     return (
       <>
-        <CardContent className="w-full flex justify-center flex-wrap gap-5 my-5">
+        <CardContent className="my-5 flex w-full flex-wrap justify-center gap-5">
           {propertyList.map((property) => {
             const hasValidImage = property.imageUrls.length > 0 && !imageError[property._id];
             const backgroundImg = hasValidImage ? property.imageUrls[0] : "/images/image_placeholder.jpg";
 
             return (
-              <Card className="w-[23%] h-[380px] bg-no-repeat bg-center bg-cover relative text-black text-sm border-none shadow-none cursor-pointer" style={{ backgroundImage: `url(${backgroundImg})` }} key={property._id} onClick={() => navigateToPropertyDetails(property)}>
+              <Card className="relative h-[380px] w-[23%] cursor-pointer border-none bg-cover bg-center bg-no-repeat text-sm text-black shadow-none" style={{ backgroundImage: `url(${backgroundImg})` }} key={property._id} onClick={() => navigateToPropertyDetails(property)}>
                 {/* Fallback image trick */}
                 <img src={backgroundImg} onError={() => handleImageError(property._id)} className="hidden" />
 
                 <CardHeader>
-                  <CardTitle className={`absolute text-xs px-4 py-2 rounded-full font-normal ${property.forSaleOrRent === "Sale" ? "bg-appGreen text-white" : property.forSaleOrRent === "Rent" ? "bg-appYellow text-appBlack" : "bg-appYellow text-appBlack"}`}>{property.forSaleOrRent === "Sale" ? "FOR SALE" : property.forSaleOrRent === "Rent" ? "FOR RENT" : "FOR RENT"}</CardTitle>
+                  <CardTitle className={`absolute rounded-full px-4 py-2 text-xs font-normal ${property.forSaleOrRent === "Sale" ? "bg-appGreen text-white" : property.forSaleOrRent === "Rent" ? "bg-appYellow text-appBlack" : "bg-appYellow text-appBlack"}`}>{property.forSaleOrRent === "Sale" ? "FOR SALE" : property.forSaleOrRent === "Rent" ? "FOR RENT" : "FOR RENT"}</CardTitle>
                 </CardHeader>
-                <CardContent className="w-[90%] absolute left-1/2 transform -translate-x-1/2 bottom-3 bg-white rounded-md p-3">
+                <CardContent className="absolute bottom-3 left-1/2 w-[90%] -translate-x-1/2 transform rounded-md bg-white p-3">
                   <p className="text-left font-semibold">{property.name}</p>
-                  <div className="flex items-center gap-2 mt-2">
+                  <div className="mt-2 flex items-center gap-2">
                     <MapPin strokeWidth={1.5} size={20} />
-                    <span className="font-light text-xs">{property.area}</span>
+                    <span className="text-xs font-light">{property.area}</span>
                   </div>
-                  <div className="flex justify-between mt-3">
+                  <div className="mt-3 flex justify-between">
                     <p className="font-semibold text-[#EB664E]">{formatCurrency(property.price)}</p>
                     <div className="flex gap-2">
                       <Image alt="icon of bed" src="/images/bed.svg" width={20} height={20} className="" />
@@ -91,7 +91,7 @@ const PropertyList = () => {
                     </div>
                   </div>
                 </CardContent>
-                <CardFooter className="absolute bottom-3 flex justify-between w-full"></CardFooter>
+                <CardFooter className="absolute bottom-3 flex w-full justify-between"></CardFooter>
               </Card>
             );
           })}

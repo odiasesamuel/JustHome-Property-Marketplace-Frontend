@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 
 const ResetPassword = () => {
   return (
-    <div className="px-[3.5%] flex flex-col items-center -mb-10">
+    <div className="-mb-10 flex flex-col items-center px-[3.5%]">
       <Card className="w-[600px]">
         <CardHeader>
           <CardTitle>Reset your password</CardTitle>

@@ -88,7 +88,7 @@ const SignUpForm: React.FC<{}> = () => {
           control={form.control}
           name="firstName"
           render={({ field }) => (
-            <FormItem className="text-black w-full">
+            <FormItem className="w-full text-black">
               <FormLabel>First Name</FormLabel>
               <FormControl>
                 <Input placeholder="kunle" {...field} className="p-3" />
@@ -101,7 +101,7 @@ const SignUpForm: React.FC<{}> = () => {
           control={form.control}
           name="lastName"
           render={({ field }) => (
-            <FormItem className="text-black w-full">
+            <FormItem className="w-full text-black">
               <FormLabel>Last Name</FormLabel>
               <FormControl>
                 <Input placeholder="Ojo" {...field} className="p-3" />
@@ -114,7 +114,7 @@ const SignUpForm: React.FC<{}> = () => {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem className="text-black w-full">
+            <FormItem className="w-full text-black">
               <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input placeholder="kunle.ojo@gmail.com" {...field} className="p-3" />
@@ -131,7 +131,7 @@ const SignUpForm: React.FC<{}> = () => {
               <FormLabel>Account Type</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
-                  <SelectTrigger className="text-sm py-5">
+                  <SelectTrigger className="py-5 text-sm">
                     <SelectValue placeholder="" className="text-sm" />
                   </SelectTrigger>
                 </FormControl>
@@ -155,7 +155,7 @@ const SignUpForm: React.FC<{}> = () => {
           control={form.control}
           name="password"
           render={({ field }) => (
-            <FormItem className="text-black w-full">
+            <FormItem className="w-full text-black">
               <FormLabel>Password</FormLabel>
               <FormControl>
                 <Input placeholder="********" type="password" {...field} className="p-3" />
@@ -168,7 +168,7 @@ const SignUpForm: React.FC<{}> = () => {
           control={form.control}
           name="confirmPassword"
           render={({ field }) => (
-            <FormItem className="text-black w-full">
+            <FormItem className="w-full text-black">
               <FormLabel>Confirm Password</FormLabel>
               <FormControl>
                 <Input placeholder="********" type="password" {...field} className="p-3" />

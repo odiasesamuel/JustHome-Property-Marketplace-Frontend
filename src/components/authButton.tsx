@@ -12,13 +12,13 @@ const AuthButton: React.FC<{ className?: string }> = ({ className }) => {
   return (
     <>
       {isAuth ? (
-        <div className={`${className} w-[17%] h-[30px] flex justify-end`}>
-          <Button className="w-[30px] h-full rounded-full">
+        <div className={`${className} flex h-[30px] w-[17%] justify-end`}>
+          <Button className="h-full w-[30px] rounded-full">
             <User className="w-4" />
           </Button>
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button variant="outline" className="px-6 ml-3 text-sm">
+              <Button variant="outline" className="ml-3 px-6 text-sm">
                 Sign out
               </Button>
             </AlertDialogTrigger>
@@ -37,7 +37,7 @@ const AuthButton: React.FC<{ className?: string }> = ({ className }) => {
           </AlertDialog>
         </div>
       ) : (
-        <Button asChild variant="outline" className={`${className} px-6 ml-3 text-sm`}>
+        <Button asChild variant="outline" className={`${className} ml-3 px-6 text-sm`}>
           <Link href="/auth?mode=signin">Sign in</Link>
         </Button>
       )}

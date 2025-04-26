@@ -65,7 +65,7 @@ const SignInForm: React.FC<{}> = () => {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem className="text-black w-full">
+            <FormItem className="w-full text-black">
               <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input placeholder="kunle.ojo@gmail.com" {...field} className="p-3" />
@@ -78,7 +78,7 @@ const SignInForm: React.FC<{}> = () => {
           control={form.control}
           name="password"
           render={({ field }) => (
-            <FormItem className="text-black w-full">
+            <FormItem className="w-full text-black">
               <FormLabel>Password</FormLabel>
               <FormControl>
                 <Input placeholder="********" type="password" {...field} className="p-3" />
@@ -88,7 +88,7 @@ const SignInForm: React.FC<{}> = () => {
           )}
         />
         {isError && (
-          <Link href="/auth/forgot-password" className="text-appGreen cursor-pointer underline underline-offset-4 text-sm">
+          <Link href="/auth/forgot-password" className="cursor-pointer text-sm text-appGreen underline underline-offset-4">
             Forgot password?
           </Link>
         )}

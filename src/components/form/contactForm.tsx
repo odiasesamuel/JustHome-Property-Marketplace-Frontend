@@ -52,7 +52,7 @@ const ContactForm = () => {
 
   return (
     <>
-      <Card className="rounded-none w-[70%]">
+      <Card className="w-[70%] rounded-none">
         <CardContent className="pt-6">
           <Form {...form}>
             <form onSubmit={form.handleSubmit((values, event) => onSubmit(values, event))} className="space-y-8">
@@ -63,7 +63,7 @@ const ContactForm = () => {
                   render={({ field }) => (
                     <FormItem className="w-[32%]">
                       <FormControl className="w-full">
-                        <Input placeholder="Your Name" {...field} className="bg-[#F5F5F5] rounded-none p-4 text-appGreen placeholder:text-appGreen" />
+                        <Input placeholder="Your Name" {...field} className="rounded-none bg-[#F5F5F5] p-4 text-appGreen placeholder:text-appGreen" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -75,7 +75,7 @@ const ContactForm = () => {
                   render={({ field }) => (
                     <FormItem className="w-[32%]">
                       <FormControl className="w-full">
-                        <Input placeholder="Your Email" {...field} className="bg-[#F5F5F5] rounded-none p-4 text-appGreen placeholder:text-appGreen" />
+                        <Input placeholder="Your Email" {...field} className="rounded-none bg-[#F5F5F5] p-4 text-appGreen placeholder:text-appGreen" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -87,7 +87,7 @@ const ContactForm = () => {
                   render={({ field }) => (
                     <FormItem className="w-[32%]">
                       <FormControl className="w-full">
-                        <Input placeholder="Your Phone" {...field} className="bg-[#F5F5F5] rounded-none p-4 text-appGreen placeholder:text-appGreen" />
+                        <Input placeholder="Your Phone" {...field} className="rounded-none bg-[#F5F5F5] p-4 text-appGreen placeholder:text-appGreen" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -101,7 +101,7 @@ const ContactForm = () => {
                   render={({ field }) => (
                     <FormItem className="">
                       <FormControl className="w-full">
-                        <Textarea placeholder="Your message" {...field} className="bg-[#F5F5F5] mt-8 p-4 text-appGreen placeholder:text-appGreen h-[220px] rounded-none" />
+                        <Textarea placeholder="Your message" {...field} className="mt-8 h-[220px] rounded-none bg-[#F5F5F5] p-4 text-appGreen placeholder:text-appGreen" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -110,7 +110,7 @@ const ContactForm = () => {
               </div>
 
               <div className="flex justify-end">
-                <Button className="text-appGreen font-semibold px-6 py-4 rounded-none">
+                <Button className="rounded-none px-6 py-4 font-semibold text-appGreen">
                   Send Message
                   {isPending ? <Loader2 className="animate-spin" /> : <ArrowRight />}
                 </Button>

@@ -20,7 +20,7 @@ const AddProperty = () => {
   if (isAuth) {
     return (
       <div className="flex flex-col gap-3 px-[3.5%]">
-        <Card className="rounded-none  border-none shadow-none flex flex-col items-center text-center text-appBlack">
+        <Card className="flex flex-col items-center rounded-none border-none text-center text-appBlack shadow-none">
           <CardHeader className="flex items-center gap-y-3">
             <CardTitle className="text-5xl font-medium">
               {/* Your<span className="text-[#E7C873]"> Property</span>, Our Priority */}

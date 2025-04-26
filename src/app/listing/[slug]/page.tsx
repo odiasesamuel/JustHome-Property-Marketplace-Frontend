@@ -75,7 +75,7 @@ const Property = () => {
 
   if (isPending) {
     return (
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex h-screen items-center justify-center">
         <AnimatedHand />
       </div>
     );
@@ -86,7 +86,7 @@ const Property = () => {
       <div className="px-[3.5%]">
         <Card className="">
           <CardHeader>
-            <CardTitle className="flex justify-between mb-2 text-lg">
+            <CardTitle className="mb-2 flex justify-between text-lg">
               <span>{data.property.name}</span>
               <span>{formatCurrency(data.property.price)}</span>
             </CardTitle>
@@ -94,7 +94,7 @@ const Property = () => {
             <div className="flex items-center gap-x-8">
               <div className="flex items-center gap-x-1">
                 <MapPin strokeWidth={1.5} size={20} />
-                <span className="font-light text-sm">Parkview, Ikoyi, Lagos</span>
+                <span className="text-sm font-light">Parkview, Ikoyi, Lagos</span>
               </div>
               <div className="flex gap-2">
                 <Image alt="icon of bed" src="/images/bed.svg" width={20} height={20} className="" />
@@ -106,23 +106,22 @@ const Property = () => {
             </div>
           </CardHeader>
 
-          <CardContent className="flex justify-center mb-3">
+          <CardContent className="mb-3 flex justify-center">
             <Carousel
               opts={{
                 align: "start",
               }}
-              className="w-[95%]"
-            >
+              className="w-[95%]">
               <CarouselContent>
                 {data.property.imageUrls.map((imageUrl, index) => (
                   <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                     <div className="p-0">
                       <Card className="border-none">
-                        <CardContent className="p-0 cursor-pointer">
+                        <CardContent className="cursor-pointer p-0">
                           <ImageViewer currentImg={imageUrl} imageUrls={data.property.imageUrls}>
                             {/* Used img over Image for placeholder image on error */}
-                            <div className="w-full h-[500px] overflow-hidden">
-                              <img src={`${imageUrl}`} alt={`property image ${index}`} className="w-full h-full object-cover rounded-lg" onError={(e) => (e.currentTarget.src = "/images/image_placeholder.jpg")} />
+                            <div className="h-[500px] w-full overflow-hidden">
+                              <img src={`${imageUrl}`} alt={`property image ${index}`} className="h-full w-full rounded-lg object-cover" onError={(e) => (e.currentTarget.src = "/images/image_placeholder.jpg")} />
                             </div>
                           </ImageViewer>
                         </CardContent>
@@ -138,18 +137,18 @@ const Property = () => {
 
           <CardFooter className="flex-col items-start gap-y-8">
             <div>
-              <h1 className="text-lg font-semibold leading-none tracking-tight mb-3">Description</h1>
+              <h1 className="mb-3 text-lg font-semibold leading-none tracking-tight">Description</h1>
               <DescriptionBody description={data.property.description} />
             </div>
 
             <div>
-              <h1 className="text-lg font-semibold leading-none tracking-tight mb-3">Contact</h1>
+              <h1 className="mb-3 text-lg font-semibold leading-none tracking-tight">Contact</h1>
               {data.property.email !== "xxxxxx@gmail.com" && <p>{`Email: ${data.property.email}`}</p>}
               <p>{`Phone Number: ${data.property.phoneNumber}`}</p>
             </div>
           </CardFooter>
 
-          <div className="flex justify-between m-6">
+          <div className="m-6 flex justify-between">
             {isAuth && userId === data.property.propertyOwnerId && (
               <div>
                 <EditPropertyForm propertyData={data.property} />

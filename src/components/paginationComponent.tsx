@@ -30,7 +30,7 @@ export const PaginationComponent: React.FC<PaginationProps> = ({ page, perPage, 
         </PaginationItem>
 
         <PaginationItem>
-          <PaginationLink href={`?page=1&perPage=${perPage}&${params.toString()}`} className={`px-3 py-2 rounded-md ${page === 1 ? "bg-appGreen text-white font-bold" : "hover:bg-gray-200"}`}>
+          <PaginationLink href={`?page=1&perPage=${perPage}&${params.toString()}`} className={`rounded-md px-3 py-2 ${page === 1 ? "bg-appGreen font-bold text-white" : "hover:bg-gray-200"}`}>
             1
           </PaginationLink>
         </PaginationItem>
@@ -48,7 +48,7 @@ export const PaginationComponent: React.FC<PaginationProps> = ({ page, perPage, 
           if (pageNum >= page - 2 && pageNum <= page + 2) {
             return (
               <PaginationItem key={pageNum}>
-                <PaginationLink href={`?page=${pageNum}&perPage=${perPage}&${params.toString()}`} className={`px-3 py-2 rounded-md ${pageNum === page ? "bg-appGreen text-white font-bold" : "hover:bg-gray-200"}`}>
+                <PaginationLink href={`?page=${pageNum}&perPage=${perPage}&${params.toString()}`} className={`rounded-md px-3 py-2 ${pageNum === page ? "bg-appGreen font-bold text-white" : "hover:bg-gray-200"}`}>
                   {pageNum}
                 </PaginationLink>
               </PaginationItem>
@@ -63,7 +63,7 @@ export const PaginationComponent: React.FC<PaginationProps> = ({ page, perPage, 
         )}
 
         <PaginationItem>
-          <PaginationLink href={`?page=${pageCount}&perPage=${perPage}&${params.toString()}`} className={`px-3 py-2 rounded-md ${page === pageCount ? "bg-appGreen text-white font-bold" : "hover:bg-gray-200"}`}>
+          <PaginationLink href={`?page=${pageCount}&perPage=${perPage}&${params.toString()}`} className={`rounded-md px-3 py-2 ${page === pageCount ? "bg-appGreen font-bold text-white" : "hover:bg-gray-200"}`}>
             {pageCount}
           </PaginationLink>
         </PaginationItem>

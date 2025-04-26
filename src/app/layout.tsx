@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        <div className="bg-white grid grid-cols-[repeat(12,_1fr)] grid-rows-[auto_1fr] min-h-screen max-w-[1535px] mx-auto">
+        <div className="mx-auto grid min-h-screen max-w-[1535px] grid-cols-[repeat(12,_1fr)] grid-rows-[auto_1fr] bg-white">
           <QueryProvider>
             <AuthProvider>
               <Header className="col-start-1 col-end-13 h-[100px]"></Header>

@@ -12,13 +12,13 @@ const ImageViewer: React.FC<ImageViewer> = ({ currentImg, imageUrls, children })
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="p-0 border-none">
+      <DialogContent className="border-none p-0">
         <DialogHeader className="hidden">
           <DialogTitle></DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
         {/* Used img over Image for placeholder image on error */}
-        <img src={currentImg} alt={`property image`} width={500} height={500} className="w-full h-auto object-contain rounded-lg" onError={(e) => (e.currentTarget.src = "/images/image_placeholder.jpg")} />
+        <img src={currentImg} alt={`property image`} width={500} height={500} className="h-auto w-full rounded-lg object-contain" onError={(e) => (e.currentTarget.src = "/images/image_placeholder.jpg")} />
       </DialogContent>
     </Dialog>
   );
