@@ -11,7 +11,7 @@ type HeaderType = {
 const Header: React.FC<HeaderType> = ({ className }) => {
   return (
     <div className={`${className} relative flex w-full items-center justify-between px-[3.5%] text-appGreen`}>
-      <div className="flex h-[30px] w-[10%] items-center">
+      <div className="flex h-[30px] items-center">
         <Image alt="Logo of the company" src="/images/logo.svg" width={20} height={20} className="mr-3 w-6" />
         <h1 className="text-lg font-medium">JustHome</h1>
       </div>

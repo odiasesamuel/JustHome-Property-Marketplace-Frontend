@@ -6,13 +6,23 @@ import { Button } from "@/components/ui/button";
 import { User } from "lucide-react";
 import Link from "next/link";
 
-const AuthButton: React.FC<{ className?: string }> = ({ className }) => {
+type AuthButtonProps = {
+  className?: string;
+  onClick?: () => void;
+};
+
+const AuthButton: React.FC<AuthButtonProps> = ({ className, onClick }) => {
   const { isAuth, login, logout } = useAuth();
+
+  const signoutHandler = () => {
+    logout();
+    onClick?.();
+  };
 
   return (
     <>
       {isAuth ? (
-        <div className={`${className} flex h-[30px] w-[17%] justify-end`}>
+        <div className={`${className} flex h-[30px] justify-end`}>
           <Button className="h-full w-[30px] rounded-full">
             <User className="w-4" />
           </Button>
@@ -29,7 +39,7 @@ const AuthButton: React.FC<{ className?: string }> = ({ className }) => {
               </AlertDialogHeader>
               <AlertDialogFooter>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction className="bg-destructive" onClick={logout}>
+                <AlertDialogAction className="bg-destructive" onClick={signoutHandler}>
                   Continue
                 </AlertDialogAction>
               </AlertDialogFooter>
@@ -37,7 +47,7 @@ const AuthButton: React.FC<{ className?: string }> = ({ className }) => {
           </AlertDialog>
         </div>
       ) : (
-        <Button asChild variant="outline" className={`${className} ml-3 px-6 text-sm`}>
+        <Button asChild variant="outline" className={`${className} ml-3 px-6 text-sm`} onClick={onClick}>
           <Link href="/auth?mode=signin">Sign in</Link>
         </Button>
       )}

@@ -34,7 +34,7 @@ const MobileSideNavBar: React.FC<{ children: React.ReactNode }> = ({ children })
             Contact
           </NavLink>
 
-          <AuthButton />
+          <AuthButton onClick={closeSheetHandler} />
         </div>
       </SheetContent>
     </Sheet>
