@@ -52,18 +52,18 @@ const ContactForm = () => {
 
   return (
     <>
-      <Card className="w-[70%] rounded-none">
+      <Card className="w-full rounded-none lg:w-[70%]">
         <CardContent className="pt-6">
           <Form {...form}>
             <form onSubmit={form.handleSubmit((values, event) => onSubmit(values, event))} className="space-y-8">
-              <div className="flex justify-between">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-12">
                 <FormField
                   control={form.control}
                   name="name"
                   render={({ field }) => (
-                    <FormItem className="w-[32%]">
+                    <FormItem className="col-span-full md:col-span-4">
                       <FormControl className="w-full">
-                        <Input placeholder="Your Name" {...field} className="rounded-none bg-[#F5F5F5] p-4 text-appGreen placeholder:text-appGreen" />
+                        <Input placeholder="Your Name" {...field} className="rounded-none bg-[#F5F5F5] p-4 text-xs text-appGreen placeholder:text-appGreen" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -73,9 +73,9 @@ const ContactForm = () => {
                   control={form.control}
                   name="email"
                   render={({ field }) => (
-                    <FormItem className="w-[32%]">
+                    <FormItem className="col-span-full md:col-span-4">
                       <FormControl className="w-full">
-                        <Input placeholder="Your Email" {...field} className="rounded-none bg-[#F5F5F5] p-4 text-appGreen placeholder:text-appGreen" />
+                        <Input placeholder="Your Email" {...field} className="rounded-none bg-[#F5F5F5] p-4 text-xs text-appGreen placeholder:text-appGreen" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -85,23 +85,22 @@ const ContactForm = () => {
                   control={form.control}
                   name="phoneNumber"
                   render={({ field }) => (
-                    <FormItem className="w-[32%]">
+                    <FormItem className="col-span-full md:col-span-4">
                       <FormControl className="w-full">
-                        <Input placeholder="Your Phone" {...field} className="rounded-none bg-[#F5F5F5] p-4 text-appGreen placeholder:text-appGreen" />
+                        <Input placeholder="Your Phone" {...field} className="rounded-none bg-[#F5F5F5] p-4 text-xs text-appGreen placeholder:text-appGreen" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-              </div>
-              <div>
+
                 <FormField
                   control={form.control}
                   name="message"
                   render={({ field }) => (
-                    <FormItem className="">
+                    <FormItem className="col-span-full md:col-span-12">
                       <FormControl className="w-full">
-                        <Textarea placeholder="Your message" {...field} className="mt-8 h-[220px] rounded-none bg-[#F5F5F5] p-4 text-appGreen placeholder:text-appGreen" />
+                        <Textarea placeholder="Your message" {...field} className="h-[220px] rounded-none bg-[#F5F5F5] p-4 text-xs text-appGreen placeholder:text-appGreen" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
