@@ -54,7 +54,7 @@ const SubscriptionForm = () => {
             render={({ field }) => (
               <FormItem className="">
                 <FormControl className="">
-                  <div className="relative w-full">
+                  <div className="relative w-full px-4 sm:px-0">
                     <Input {...field} className="w-full rounded-full border-none bg-[#315952] px-7 py-4 text-xs placeholder:text-xs placeholder:text-white focus:outline-none" placeholder="Your e-mail" />
                     <Button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 transform bg-transparent shadow-none hover:bg-transparent">
                       Send

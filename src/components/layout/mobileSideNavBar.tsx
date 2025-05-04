@@ -15,10 +15,10 @@ const MobileSideNavBar: React.FC<{ children: React.ReactNode }> = ({ children })
       <SheetTrigger asChild>{children}</SheetTrigger>
       <SheetContent side="top">
         <SheetHeader>
-          <SheetTitle className="flex justify-center">
+          <SheetTitle className="mx-auto flex">
             {" "}
-            <div className="mb-10 flex h-[30px] w-[10%] items-center">
-              <Image alt="Logo of the company" src="/images/logo.svg" width={20} height={20} className="mr-3 w-6" />
+            <div className="mb-10 flex h-[30px] items-center">
+              <Image alt="Logo of the company" src="/images/logo.svg" width={100} height={100} className="mr-3 w-6" />
               <h1 className="text-lg font-medium">JustHome</h1>
             </div>
           </SheetTitle>
