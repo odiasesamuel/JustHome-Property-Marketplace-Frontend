@@ -9,10 +9,10 @@ import { useRouter } from "next/navigation";
 
 const AddProperty = () => {
   const router = useRouter();
-  const { isAuth } = useAuth();
+  const { isAuth, loading } = useAuth();
 
   useEffect(() => {
-    if (!isAuth) {
+    if (!loading && !isAuth) {
       router.replace("/auth?mode=signin");
     }
   }, []);

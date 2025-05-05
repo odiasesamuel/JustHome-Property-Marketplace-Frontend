@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 type AuthContextType = {
   isAuth: boolean;
+  loading: boolean;
   login: (userInfo: UserInfo, userToken: string) => void;
   logout: () => void;
 };
@@ -19,10 +20,12 @@ const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isAuth, setIsAuth] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = sessionStorage.getItem("userToken");
     setIsAuth(!!token);
+    setLoading(false);
   }, []);
 
   const login = (userInfo: UserInfo, userToken: string) => {
@@ -37,7 +40,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setIsAuth(false);
   };
 
-  return <AuthContext.Provider value={{ isAuth, login, logout }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ isAuth, loading, login, logout }}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => useContext(AuthContext)!;
