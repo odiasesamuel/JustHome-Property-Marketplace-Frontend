@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/authContext";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
@@ -8,15 +9,17 @@ import Link from "next/link";
 
 type AuthButtonProps = {
   className?: string;
-  onClick?: () => void;
+  closeSheetHandler?: () => void;
 };
 
-const AuthButton: React.FC<AuthButtonProps> = ({ className, onClick }) => {
+const AuthButton: React.FC<AuthButtonProps> = ({ className, closeSheetHandler }) => {
   const { isAuth, login, logout } = useAuth();
 
+  const route = useRouter();
   const signoutHandler = () => {
     logout();
-    onClick?.();
+    closeSheetHandler?.();
+    route.push("/auth");
   };
 
   return (
@@ -47,7 +50,7 @@ const AuthButton: React.FC<AuthButtonProps> = ({ className, onClick }) => {
           </AlertDialog>
         </div>
       ) : (
-        <Button asChild variant="outline" className={`${className} ml-3 px-6 text-sm`} onClick={onClick}>
+        <Button asChild variant="outline" className={`${className} ml-3 px-6 text-sm`} onClick={closeSheetHandler}>
           <Link href="/auth?mode=signin">Sign in</Link>
         </Button>
       )}

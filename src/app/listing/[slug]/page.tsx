@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "@/context/authContext";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
