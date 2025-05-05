@@ -94,7 +94,7 @@ const Property = () => {
             <div className="flex items-center gap-x-8">
               <div className="flex items-center gap-x-1">
                 <MapPin strokeWidth={1.5} size={20} />
-                <span className="text-sm font-light">Parkview, Ikoyi, Lagos</span>
+                <span className="text-sm font-light">{data.property.area}</span>
               </div>
               <span className="text-[#E2E2E2]">|</span>
               <div className="flex gap-2">

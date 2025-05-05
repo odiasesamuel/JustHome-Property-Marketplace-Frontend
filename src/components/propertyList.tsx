@@ -85,9 +85,6 @@ const PropertyList = () => {
                     <div className="flex gap-2">
                       <Image alt="icon of bed" src="/images/bed.svg" width={20} height={20} className="" />
                       <span>{property.numberOfRooms}</span>
-                      <span className="text-[#E2E2E2]">|</span>
-                      <Image alt="icon of bed" src="/images/shower.svg" width={20} height={20} className="" />
-                      <span>1</span>
                     </div>
                   </div>
                 </CardContent>

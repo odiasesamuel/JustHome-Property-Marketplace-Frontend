@@ -49,7 +49,7 @@ const AddPropertyForm = () => {
       phoneNumber: "",
       state: "Lagos",
       LGA: "",
-      city: "",
+      area: "",
       description: "",
       numberOfRooms: "",
       propertyType: "Flat",
@@ -70,7 +70,7 @@ const AddPropertyForm = () => {
     formData.append("phoneNumber", values.phoneNumber);
     formData.append("state", values.state);
     formData.append("LGA", values.LGA);
-    formData.append("city", values.city);
+    formData.append("area", values.area);
     formData.append("area", values.LGA);
     formData.append("description", values.description);
     formData.append("numberOfRooms", values.numberOfRooms.toString());
@@ -191,12 +191,12 @@ const AddPropertyForm = () => {
 
             <FormField
               control={form.control}
-              name="city"
+              name="area"
               render={({ field }) => (
                 <FormItem className="w-full text-black">
-                  <FormLabel>City</FormLabel>
+                  <FormLabel>Address</FormLabel>
                   <FormControl>
-                    <Input placeholder="Ikeja" {...field} className="p-3" />
+                    <Input placeholder="Parkview, Ikoyi, Lagos" {...field} className="p-3" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

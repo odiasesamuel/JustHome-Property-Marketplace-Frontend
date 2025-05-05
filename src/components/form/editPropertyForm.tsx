@@ -25,14 +25,14 @@ type EditPropertyFormProps = {
 
 const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { name, email, phoneNumber, state, LGA, city, description, numberOfRooms, propertyType, forSaleOrRent, price } = propertyData;
+  const { name, email, phoneNumber, state, LGA, area, description, numberOfRooms, propertyType, forSaleOrRent, price } = propertyData;
   const form = useForm<z.infer<typeof editPropertySchema>>({
     resolver: zodResolver(editPropertySchema),
-    defaultValues: { name, email, phoneNumber, state, LGA, city, description, numberOfRooms, propertyType, forSaleOrRent, price },
+    defaultValues: { name, email, phoneNumber, state, LGA, area, description, numberOfRooms, propertyType, forSaleOrRent, price },
   });
   useEffect(() => {
     if (isOpen) {
-      form.reset({ name, email, phoneNumber, state, LGA, city, description, numberOfRooms, propertyType, forSaleOrRent, price });
+      form.reset({ name, email, phoneNumber, state, LGA, area, description, numberOfRooms, propertyType, forSaleOrRent, price });
     }
   }, [isOpen, propertyData, form]);
 
@@ -75,8 +75,8 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
       phoneNumber: values.phoneNumber,
       state: values.state,
       LGA: values.LGA,
-      city: values.city,
-      area: values.LGA,
+      area: values.area,
+      city: values.LGA,
       description: values.description,
       numberOfRooms: values.numberOfRooms,
       propertyType: values.propertyType,
@@ -199,12 +199,12 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
 
             <FormField
               control={form.control}
-              name="city"
+              name="area"
               render={({ field }) => (
                 <FormItem className="w-full text-black">
-                  <FormLabel>City</FormLabel>
+                  <FormLabel>Address</FormLabel>
                   <FormControl>
-                    <Input placeholder="Ikeja" {...field} className="p-3" />
+                    <Input placeholder="Parkview, Ikoyi, Lagos" {...field} className="p-3" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
