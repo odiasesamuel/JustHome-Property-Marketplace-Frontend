@@ -23,15 +23,4 @@ apiClient.interceptors.request.use(
   }
 );
 
-// apiClient.interceptors.response.use(
-//   (response) => response,
-//   async (error) => {
-//     if (error.response?.status === 401) {
-//       sessionStorage.removeItem("userToken");
-//       window.location.href = "/auth?mode=signin";
-//     }
-//     return Promise.reject(error);
-//   }
-// );
-
 export default apiClient;

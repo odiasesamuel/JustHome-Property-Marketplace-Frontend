@@ -17,7 +17,7 @@ const AuthPage: React.FC<AuthPageProps> = async ({ searchParams }) => {
   return (
     <>
       <div className="-mb-10 flex flex-col items-center px-[3.5%]">
-        <Card className="w-[300px] 2xs:w-[350px] xs:w-[400px] sm:w-[600px]">
+        <Card className="w-[350px] 2xs:w-[380px] xs:w-[460px] sm:w-[600px]">
           <CardHeader>
             <CardTitle>
               {mode === "signin" && "Sign in to your account"}

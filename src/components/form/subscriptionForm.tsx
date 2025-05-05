@@ -62,7 +62,7 @@ const SubscriptionForm = () => {
                     </Button>
                   </div>
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-center" />
               </FormItem>
             )}
           />
