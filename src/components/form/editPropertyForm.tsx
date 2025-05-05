@@ -114,7 +114,7 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
           <DialogTitle>Edit Your Property</DialogTitle>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="grid grid-cols-[repeat(2,_1fr)] gap-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <FormField
               control={form.control}
               name="name"
@@ -128,6 +128,7 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="email"
@@ -141,6 +142,7 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="phoneNumber"
@@ -154,6 +156,7 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="state"
@@ -179,12 +182,13 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="LGA"
               render={({ field }) => (
                 <FormItem className="w-full text-black">
-                  <FormLabel> Local Government Area</FormLabel>
+                  <FormLabel>Local Government Area</FormLabel>
                   <FormControl>
                     <Input placeholder="Ifako-ijaye" {...field} className="p-3" />
                   </FormControl>
@@ -211,7 +215,7 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
               control={form.control}
               name="description"
               render={({ field }) => (
-                <FormItem className="col-start-1 col-end-3">
+                <FormItem className="w-full md:col-span-2">
                   <FormLabel>Description</FormLabel>
                   <FormControl className="w-full">
                     <Textarea placeholder="Give a description about your property" {...field} className="h-20" />
@@ -305,7 +309,7 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
               control={form.control}
               name="imageFiles"
               render={({ field }) => (
-                <FormItem className="col-start-1 col-end-3 w-full text-black">
+                <FormItem className="w-full text-black md:col-span-2">
                   <FormLabel>Upload Images</FormLabel>
                   <FormControl>
                     <Input type="file" multiple accept="image/*" onChange={(event) => field.onChange(event.target.files)} className="p-3" />
@@ -315,15 +319,12 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
               )}
             />
 
-            <Button type="submit" className="col-start-1 col-end-3 w-full text-sm" disabled={isPending}>
+            <Button type="submit" className="w-full text-sm md:col-span-2" disabled={isPending}>
               Submit
               {isPending && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
             </Button>
           </form>
         </Form>
-        {/* <DialogFooter>
-          <Button type="submit">Save changes</Button>
-        </DialogFooter> */}
       </DialogContent>
     </Dialog>
   );
