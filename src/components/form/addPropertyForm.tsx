@@ -97,7 +97,7 @@ const AddPropertyForm = () => {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" className="px-6 text-sm">
+        <Button variant="outline" className="px-6 text-xs xs:text-sm">
           Add Property
         </Button>
       </DialogTrigger>

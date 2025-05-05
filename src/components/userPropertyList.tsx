@@ -71,7 +71,7 @@ const UserPropertyList = () => {
             const backgroundImg = hasValidImage ? property.imageUrls[0] : "/images/image_placeholder.jpg";
 
             return (
-              <Card className="relative h-[380px] w-[23%] cursor-pointer border-none bg-cover bg-center bg-no-repeat text-sm text-black shadow-none" style={{ backgroundImage: `url(${backgroundImg})` }} key={property._id} onClick={() => navigateToPropertyDetails(property)}>
+              <Card className="relative h-[380px] w-full cursor-pointer border-none bg-cover bg-center bg-no-repeat text-sm text-black shadow-none sm:w-[48%] md:w-[31%] lg:w-[23%]" style={{ backgroundImage: `url(${backgroundImg})` }} key={property._id} onClick={() => navigateToPropertyDetails(property)}>
                 {/* Fallback image trick */}
                 <img src={backgroundImg} onError={() => handleImageError(property._id)} className="hidden" />
 

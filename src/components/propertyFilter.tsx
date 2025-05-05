@@ -93,7 +93,7 @@ const PropertyFilter: React.FC<{}> = () => {
 
   return (
     <>
-      <div className="flex w-3/4 justify-between text-xs">
+      <div className="flex w-1/2 flex-col justify-between gap-y-3 text-xs xs:w-full xs:flex-row sm:w-3/4">
         <Button variant="outline" className={`rounded-full border px-3 py-1 ${!search && !propertyType && !forSaleOrRent && !minPrice && !maxPrice ? "border-appYellow bg-appYellow hover:bg-appYellow" : "border-appBlack"}`} onClick={showAllProperties}>
           All Properties
         </Button>
@@ -111,7 +111,7 @@ const PropertyFilter: React.FC<{}> = () => {
         </Button>
       </div>
 
-      <div className="flex w-3/4 justify-center gap-x-8 text-xs">
+      <div className="flex w-full flex-col items-center justify-center gap-x-8 gap-y-4 text-xs xs:flex-row sm:w-3/4">
         <div className="flex flex-col gap-2">
           <Label htmlFor="min-price" className="text-left text-xs">
             Min Price
