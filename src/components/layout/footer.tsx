@@ -13,7 +13,7 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
         <div className="mx-auto flex h-[300px] max-w-[500px] flex-col items-center justify-center gap-5 sm:h-[350px]">
           <Image alt="send icon" src="/images/send_icon.svg" width={100} height={100} className="h-12 w-12" />
           <h1 className="text-2xl font-medium sm:text-3xl"> Stay Up to Date</h1>
-          <p className="text-xs font-light">Subscribe to our newsletter to receive our weekly feed.</p>
+          <p className="text-xs font-light 2xs:text-sm">Subscribe to our newsletter to receive our weekly feed.</p>
           <SubscriptionForm />
         </div>
       </div>

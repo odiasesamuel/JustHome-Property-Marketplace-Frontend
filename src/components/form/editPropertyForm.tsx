@@ -105,7 +105,7 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="default" className="mr-6 rounded-lg text-sm">
+        <Button variant="default" className="rounded-lg text-sm">
           Edit property
         </Button>
       </DialogTrigger>

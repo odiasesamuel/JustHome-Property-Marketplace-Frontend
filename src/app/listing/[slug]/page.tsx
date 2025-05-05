@@ -86,7 +86,7 @@ const Property = () => {
       <div className="px-[3.5%]">
         <Card className="">
           <CardHeader>
-            <CardTitle className="mb-2 flex justify-between text-lg">
+            <CardTitle className="mb-2 flex flex-col justify-between gap-y-3 text-lg sm:flex-row">
               <span>{data.property.name}</span>
               <span>{formatCurrency(data.property.price)}</span>
             </CardTitle>
@@ -96,12 +96,10 @@ const Property = () => {
                 <MapPin strokeWidth={1.5} size={20} />
                 <span className="text-sm font-light">Parkview, Ikoyi, Lagos</span>
               </div>
+              <span className="text-[#E2E2E2]">|</span>
               <div className="flex gap-2">
                 <Image alt="icon of bed" src="/images/bed.svg" width={20} height={20} className="" />
                 <span>{data.property.numberOfRooms}</span>
-                <span className="text-[#E2E2E2]">|</span>
-                <Image alt="icon of bed" src="/images/shower.svg" width={20} height={20} className="" />
-                <span>1</span>
               </div>
             </div>
           </CardHeader>
@@ -137,20 +135,20 @@ const Property = () => {
 
           <CardFooter className="flex-col items-start gap-y-8">
             <div>
-              <h1 className="mb-3 text-lg font-semibold leading-none tracking-tight">Description</h1>
+              <h1 className="mb-3 text-base font-semibold leading-none tracking-tight sm:text-lg">Description</h1>
               <DescriptionBody description={data.property.description} />
             </div>
 
             <div>
-              <h1 className="mb-3 text-lg font-semibold leading-none tracking-tight">Contact</h1>
-              {data.property.email !== "xxxxxx@gmail.com" && <p>{`Email: ${data.property.email}`}</p>}
-              <p>{`Phone Number: ${data.property.phoneNumber}`}</p>
+              <h1 className="mb-3 text-base font-semibold leading-none tracking-tight sm:text-lg">Contact</h1>
+              {data.property.email !== "xxxxxx@gmail.com" && <p className="text-sm sm:text-base">{`Email: ${data.property.email}`}</p>}
+              <p className="text-sm sm:text-base">{`Phone Number: ${data.property.phoneNumber}`}</p>
             </div>
           </CardFooter>
 
-          <div className="m-6 flex justify-between">
+          <div className="m-6 flex flex-col items-start justify-between gap-y-8 sm:flex-row">
             {isAuth && userId === data.property.propertyOwnerId && (
-              <div>
+              <div className="flex flex-col gap-6 sm:flex-row">
                 <EditPropertyForm propertyData={data.property} />
                 <DeleteProjectButton isPendingDeletion={isPendingDeletion} handlePropertyDeletion={handlePropertyDeletion} />
               </div>
@@ -166,15 +164,15 @@ const Property = () => {
 };
 
 const DescriptionBody: React.FC<{ description: string }> = ({ description }) => {
-  if (!description.includes("\n")) return <p>{description}</p>;
+  if (!description.includes("\n")) return <p className="text-sm sm:text-base">{description}</p>;
 
   return (
     <>
       {description.split("\n").map((line, index) => (
-        <Fragment key={index}>
+        <p className="text-sm sm:text-base" key={index}>
           {line}
           <br />
-        </Fragment>
+        </p>
       ))}
     </>
   );
