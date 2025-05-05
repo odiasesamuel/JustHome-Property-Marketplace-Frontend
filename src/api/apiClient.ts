@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const BASE_URL = "https://property-marketplace-backend.onrender.com";
+export const BASE_URL = "https://just-home-property-marketplace-backend.onrender.com";
 
 const apiClient = axios.create({
   baseURL: BASE_URL,
