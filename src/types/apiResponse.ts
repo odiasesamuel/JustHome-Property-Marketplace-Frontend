@@ -26,3 +26,8 @@ export type PropertyListResponse = {
   properties: Property[];
   totalProperties: number;
 };
+
+export type ApiErrorType = Error & {
+  statusCode: number;
+  data?: unknown;
+};

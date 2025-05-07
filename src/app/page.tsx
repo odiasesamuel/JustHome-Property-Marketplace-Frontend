@@ -1,14 +1,12 @@
 import ExploreCities from "@/components/exploreCities";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import SearchBar from "@/components/searchBar";
 import { ArrowRight, House } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-type HomeProps = {};
-
-const Home: React.FC<HomeProps> = () => {
+const Home = () => {
   return (
     <>
       <div className="px-[3.5%]">

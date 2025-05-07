@@ -8,6 +8,7 @@ import { subscribeToNewsletterSchema } from "@/schemas/contactMessageSchema";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { subscribeToNewsletter } from "@/api/contactMessageHttp";
+import { ApiErrorType } from "@/types/apiResponse";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, Loader2 } from "lucide-react";
@@ -23,11 +24,11 @@ const SubscriptionForm = () => {
         description: "Subscribed successfully!",
       });
     },
-    onError: (error: any) => {
+    onError: (error: ApiErrorType) => {
       toast({
         variant: "destructive",
         title: "Error",
-        description: error.data.message || "Error sending message",
+        description: error.message,
       });
     },
   });

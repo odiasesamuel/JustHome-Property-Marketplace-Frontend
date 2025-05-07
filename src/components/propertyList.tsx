@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getPropertyList } from "@/api/propertyHttp";
-// import data from "@/api/propertyList.json";
 import { useToast } from "@/hooks/use-toast";
 import { PaginationComponent } from "./paginationComponent";
 import { useSearchParams, useRouter } from "next/navigation";
@@ -39,7 +38,7 @@ const PropertyList = () => {
       toast({
         variant: "destructive",
         title: "Error",
-        description: error?.message || "Error loading properties data",
+        description:  "Error loading properties data",
       });
     }
   }, [isError, error, toast]);

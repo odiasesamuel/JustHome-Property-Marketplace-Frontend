@@ -9,6 +9,7 @@ import { z } from "zod";
 import { signUpFormSchema } from "@/schemas/authFormSchema";
 import { useMutation } from "@tanstack/react-query";
 import { signUp } from "@/api/authHttp";
+import { ApiErrorType } from "@/types/apiResponse";
 
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -28,12 +29,12 @@ const SignUpForm: React.FC<{}> = () => {
         description: "We've sent a verification link to your email. Please verify your account to continue.",
       });
     },
-    onError: (error: any) => {
-      if (error?.status === 409 && error?.data?.message) {
+    onError: (error: ApiErrorType) => {
+      if (error.statusCode === 409) {
         setErrorMessage((prevErrMsg) => {
           return {
             ...prevErrMsg,
-            email: error.data.message,
+            email: error.message,
           };
         });
         return;
@@ -41,7 +42,7 @@ const SignUpForm: React.FC<{}> = () => {
       toast({
         variant: "destructive",
         title: "Error",
-        description: error.data.message || "An unknown Error occurred",
+        description: error.message,
       });
     },
   });

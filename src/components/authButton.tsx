@@ -13,7 +13,7 @@ type AuthButtonProps = {
 };
 
 const AuthButton: React.FC<AuthButtonProps> = ({ className, closeSheetHandler }) => {
-  const { isAuth, login, logout } = useAuth();
+  const { isAuth, logout } = useAuth();
 
   const route = useRouter();
   const signoutHandler = () => {

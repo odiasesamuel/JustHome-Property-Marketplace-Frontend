@@ -11,8 +11,6 @@ type NavLinkProps = {
 
 const NavLink: React.FC<NavLinkProps> = ({ children, href, onClick }) => {
   const pathname = usePathname();
-
-  // Extract only the pathname from the href (removes query params)
   const hrefPathname = href.split("?")[0];
 
   return (

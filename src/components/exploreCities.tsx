@@ -12,7 +12,7 @@ const ExploreCities: React.FC<{ className: string }> = ({ className }) => {
             <CardDescription className="text-xs xs:text-sm">Explore a curated selection of properties across prime locations, tailored to meet your lifestyle and investment needs.</CardDescription>
           </CardHeader>
           <CardContent className="mt-5 flex h-fit w-full flex-wrap justify-center gap-x-10 gap-y-10 sm:pl-24">
-            {data.location.map((city, index) => (
+            {data.location.map((city) => (
               <CityCard key={city._id} city={city.name} image={city.image} />
             ))}
           </CardContent>

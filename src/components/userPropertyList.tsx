@@ -43,7 +43,7 @@ const UserPropertyList = () => {
       toast({
         variant: "destructive",
         title: "Error",
-        description: error?.message || "Error loading properties data",
+        description: "Error loading properties data",
       });
     }
   }, [isError, error, toast]);

@@ -9,6 +9,7 @@ import { z } from "zod";
 import { resetPasswordSchema } from "@/schemas/authFormSchema";
 import { useMutation } from "@tanstack/react-query";
 import { resetPassword } from "@/api/authHttp";
+import { ApiErrorType } from "@/types/apiResponse";
 
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -36,11 +37,11 @@ const ResetPasswordForm: React.FC<{}> = () => {
         ),
       });
     },
-    onError: (error: any) => {
+    onError: (error: ApiErrorType) => {
       toast({
         variant: "destructive",
         title: "Error",
-        description: error?.data?.message || "An unknown error occurred",
+        description: error.message,
       });
     },
   });

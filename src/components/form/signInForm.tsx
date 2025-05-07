@@ -10,6 +10,7 @@ import { z } from "zod";
 import { signInFormSchema } from "@/schemas/authFormSchema";
 import { useMutation } from "@tanstack/react-query";
 import { signIn } from "@/api/authHttp";
+import { ApiErrorType } from "@/types/apiResponse";
 
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -29,8 +30,8 @@ const SignInForm: React.FC<{}> = () => {
       login(loggedInUser, userToken);
       router.push("/");
     },
-    onError: (error: any) => {
-      if (error?.status === 401) {
+    onError: (error: ApiErrorType) => {
+      if (error.statusCode === 401) {
         setErrorMessage("Oops! We couldn't verify your details. Please check your email and password.");
         return;
       }
@@ -38,7 +39,7 @@ const SignInForm: React.FC<{}> = () => {
       toast({
         variant: "destructive",
         title: "Error",
-        description: error?.data?.message || "An unknown error occurred",
+        description: error.message,
       });
     },
   });

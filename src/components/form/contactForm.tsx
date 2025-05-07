@@ -7,13 +7,14 @@ import { z } from "zod";
 import { contactMessageSchema } from "@/schemas/contactMessageSchema";
 import { useMutation } from "@tanstack/react-query";
 import { sendMessage } from "@/api/contactMessageHttp";
+import { ApiErrorType } from "@/types/apiResponse";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowRight, Loader, Loader2 } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -26,11 +27,11 @@ const ContactForm = () => {
         description: "Your message has been sent successfully!",
       });
     },
-    onError: (error: any) => {
+    onError: (error: ApiErrorType) => {
       toast({
         variant: "destructive",
         title: "Error",
-        description: error.data.message || "Error sending message",
+        description: error.message,
       });
     },
   });

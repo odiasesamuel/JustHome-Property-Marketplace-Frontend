@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { deleteProperty, getPropertyDetails } from "@/api/propertyHttp";
+import { ApiError } from "next/dist/server/api-utils";
 import EditPropertyForm from "@/components/form/editPropertyForm";
 import DeleteProjectButton from "@/components/deleteProjectButton";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,7 +15,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Button } from "@/components/ui/button";
 import ImageViewer from "@/components/imageViewer";
 import { AnimatedHand } from "@/components/ui/loader";
-import { Loader2, MapPin } from "lucide-react";
+import {  MapPin } from "lucide-react";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { PropertyResponse } from "@/types/apiResponse";
 import { queryClient } from "@/api/queryClient";
@@ -47,11 +48,11 @@ const Property = () => {
       queryClient.invalidateQueries({ queryKey: ["property"] });
       router.push("/add-property");
     },
-    onError: (error: any) => {
+    onError: (error: ApiError) => {
       toast({
         variant: "destructive",
         title: "Error",
-        description: error.data.message || "Error deleting property",
+        description: error.message,
       });
     },
   });
@@ -65,7 +66,7 @@ const Property = () => {
       toast({
         variant: "destructive",
         title: "Error",
-        description: error?.message || "Error loading properties data",
+        description: "Error loading property data",
       });
     }
   }, [isError, error, toast]);

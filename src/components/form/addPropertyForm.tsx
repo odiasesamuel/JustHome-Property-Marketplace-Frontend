@@ -14,8 +14,9 @@ import { Textarea } from "../ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { addProperty } from "@/api/propertyHttp";
-import { Loader2 } from "lucide-react";
+import { ApiError } from "next/dist/server/api-utils";
 import { queryClient } from "@/api/queryClient";
+import { Loader2 } from "lucide-react";
 
 const AddPropertyForm = () => {
   const { toast } = useToast();
@@ -31,13 +32,12 @@ const AddPropertyForm = () => {
       queryClient.invalidateQueries({ queryKey: ["userListedProperty"] });
       queryClient.invalidateQueries({ queryKey: ["property"] });
     },
-    onError: (error: any) => {
-      // Error not working
+    onError: (error: ApiError) => {
       setIsOpen(false);
       toast({
         variant: "destructive",
         title: "Error",
-        description: error.data.message || "Error adding property",
+        description: error.message,
       });
     },
   });
@@ -70,8 +70,8 @@ const AddPropertyForm = () => {
     formData.append("phoneNumber", values.phoneNumber);
     formData.append("state", values.state);
     formData.append("LGA", values.LGA);
+    formData.append("city", values.LGA);
     formData.append("area", values.area);
-    formData.append("area", values.LGA);
     formData.append("description", values.description);
     formData.append("numberOfRooms", values.numberOfRooms.toString());
     formData.append("propertyType", values.propertyType);

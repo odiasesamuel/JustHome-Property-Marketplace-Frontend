@@ -17,7 +17,7 @@ import { useMutation } from "@tanstack/react-query";
 import { editProperty } from "@/api/propertyHttp";
 import { Loader2 } from "lucide-react";
 import { queryClient } from "@/api/queryClient";
-import { Property } from "@/types/apiResponse";
+import { ApiErrorType, Property } from "@/types/apiResponse";
 
 type EditPropertyFormProps = {
   propertyData: Property;
@@ -26,10 +26,12 @@ type EditPropertyFormProps = {
 const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { name, email, phoneNumber, state, LGA, area, description, numberOfRooms, propertyType, forSaleOrRent, price } = propertyData;
+
   const form = useForm<z.infer<typeof editPropertySchema>>({
     resolver: zodResolver(editPropertySchema),
     defaultValues: { name, email, phoneNumber, state, LGA, area, description, numberOfRooms, propertyType, forSaleOrRent, price },
   });
+
   useEffect(() => {
     if (isOpen) {
       form.reset({ name, email, phoneNumber, state, LGA, area, description, numberOfRooms, propertyType, forSaleOrRent, price });
@@ -53,13 +55,12 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
       queryClient.invalidateQueries({ queryKey: ["property"] });
       queryClient.invalidateQueries({ queryKey: ["property", propertyId] });
     },
-    onError: (error: any) => {
-      // Error not working
+    onError: (error: ApiErrorType) => {
       setIsOpen(false);
       toast({
         variant: "destructive",
         title: "Error",
-        description: error.data.message || "Error editing property",
+        description: error.message,
       });
     },
   });
@@ -69,22 +70,19 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
   async function onSubmit(values: z.infer<typeof editPropertySchema>, event?: React.BaseSyntheticEvent) {
     event?.preventDefault();
     setImageErrorMessage("");
-    const editedPropertyData = {
-      name: values.name,
-      email: values.email,
-      phoneNumber: values.phoneNumber,
-      state: values.state,
-      LGA: values.LGA,
-      area: values.area,
-      city: values.LGA,
-      description: values.description,
-      numberOfRooms: values.numberOfRooms,
-      propertyType: values.propertyType,
-      forSaleOrRent: values.forSaleOrRent,
-      price: values.price,
-    };
-
-    const imageFormData = new FormData();
+    const formData = new FormData();
+    formData.append("name", values.name);
+    formData.append("email", values.email);
+    formData.append("phoneNumber", values.phoneNumber);
+    formData.append("state", values.state);
+    formData.append("LGA", values.LGA);
+    formData.append("city", values.LGA);
+    formData.append("area", values.area);
+    formData.append("description", values.description);
+    formData.append("numberOfRooms", values.numberOfRooms.toString());
+    formData.append("propertyType", values.propertyType);
+    formData.append("forSaleOrRent", values.forSaleOrRent);
+    formData.append("price", values.price.toString());
     if (values.imageFiles) {
       if (values.imageFiles.length > 10) {
         setImageErrorMessage("You can upload a maximum of 10 images.");
@@ -95,11 +93,11 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
         if (file.size > 10 * 1024 * 1024) {
           return;
         }
-        imageFormData.append("propertyImage", file);
+        formData.append("propertyImage", file);
       }
     }
 
-    mutate({ editedPropertyData, imageFormData, propertyId });
+    mutate({ formData, propertyId });
   }
 
   return (

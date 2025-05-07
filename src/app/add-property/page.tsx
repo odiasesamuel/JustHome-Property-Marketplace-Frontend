@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useAuth } from "@/context/authContext";
 import UserPropertyList from "@/components/userPropertyList";
 import AddPropertyForm from "@/components/form/addPropertyForm";
-import { Card, CardDescription, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
 
 const AddProperty = () => {
@@ -15,7 +15,7 @@ const AddProperty = () => {
     if (!loading && !isAuth) {
       router.replace("/auth?mode=signin");
     }
-  }, []);
+  }, [loading, isAuth]);
 
   if (isAuth) {
     return (

@@ -4,11 +4,11 @@ import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import { z } from "zod";
 import { requestResetPasswordSchema } from "@/schemas/authFormSchema";
 import { useMutation } from "@tanstack/react-query";
-import { signIn, requestResetPassword } from "@/api/authHttp";
+import { requestResetPassword } from "@/api/authHttp";
+import { ApiErrorType } from "@/types/apiResponse";
 
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -28,11 +28,11 @@ const ForgotPasswordForm: React.FC<{}> = () => {
         description: "We've sent a password reset link to your email. Click the link to reset your password.",
       });
     },
-    onError: (error: any) => {
+    onError: (error: ApiErrorType) => {
       toast({
         variant: "destructive",
         title: "Error",
-        description: error?.data?.message || "An unknown error occurred",
+        description: error.message,
       });
     },
   });

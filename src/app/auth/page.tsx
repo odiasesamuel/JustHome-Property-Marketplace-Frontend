@@ -1,7 +1,7 @@
 import Link from "next/link";
 import SignInForm from "@/components/form/signInForm";
 import SignUpForm from "@/components/form/signUpForm";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 type SearchParams = {
   [key: string]: string | string[] | undefined;

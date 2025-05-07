@@ -1,7 +1,8 @@
 import axios from "axios";
-import apiClient, { BASE_URL } from "./apiClient";
-import { addPropertySchema, editPropertySchema } from "@/schemas/propertySchema";
+import apiClient from "./apiClient";
+import { editPropertySchema } from "@/schemas/propertySchema";
 import { z } from "zod";
+import { handleApiError } from "@/lib/handleApiError";
 
 type GetPropertyListParams = {
   signal?: AbortSignal;
@@ -25,6 +26,11 @@ type GetPropertyDetails = {
   propertyId: string | undefined;
 };
 
+type editPropertyDetails = {
+  formData: FormData;
+  propertyId: string | undefined;
+};
+
 export const getPropertyList = async ({ signal, page, perPage, search, forSaleOrRent, propertyType, minPrice, maxPrice }: GetPropertyListParams) => {
   try {
     const params = new URLSearchParams();
@@ -41,11 +47,7 @@ export const getPropertyList = async ({ signal, page, perPage, search, forSaleOr
 
     return response.data;
   } catch (error) {
-    if (axios.isCancel(error)) {
-      console.log("Request canceled:", error.message);
-      return;
-    }
-    // console.error("Error fetching properties:", error);
+    if (axios.isCancel(error)) return;
     throw error;
   }
 };
@@ -61,11 +63,7 @@ export const getUserListedProperty = async ({ signal, page, perPage }: getUserLi
 
     return response.data;
   } catch (error) {
-    if (axios.isCancel(error)) {
-      console.log("Request canceled:", error.message);
-      return;
-    }
-    // console.error("Error fetching properties:", error);
+    if (axios.isCancel(error)) return;
     throw error;
   }
 };
@@ -76,11 +74,7 @@ export const getPropertyDetails = async ({ signal, propertyId }: GetPropertyDeta
 
     return response.data;
   } catch (error) {
-    if (axios.isCancel(error)) {
-      console.log("Request canceled:", error.message);
-      return;
-    }
-    // console.error("Error fetching properties:", error);
+    if (axios.isCancel(error)) return;
     throw error;
   }
 };
@@ -95,12 +89,7 @@ export const addProperty = async (addPropertyFormData: FormData) => {
 
     return response.data;
   } catch (error) {
-    if (axios.isCancel(error)) {
-      console.log("Request canceled:", error.message);
-      return;
-    }
-    // console.error("Error fetching properties:", error);
-    throw error;
+    throw handleApiError(error);
   }
 };
 
@@ -110,39 +99,21 @@ export const deleteProperty = async (propertyId: string | undefined) => {
 
     return response.data;
   } catch (error) {
-    if (axios.isCancel(error)) {
-      console.log("Request canceled:", error.message);
-      return;
-    }
-    // console.error("Error fetching properties:", error);
-    throw error;
+    console.log(error);
+    throw handleApiError(error);
   }
 };
 
-export const editProperty = async (editPropertyFormData: { editedPropertyData: z.infer<typeof editPropertySchema>; imageFormData: FormData; propertyId: string | undefined }) => {
-  const { editedPropertyData, imageFormData, propertyId } = editPropertyFormData;
-
-  console.log(propertyId);
-
+export const editProperty = async ({ formData, propertyId }: editPropertyDetails) => {
   try {
-    const [response, imgResponse] = await Promise.all([
-      apiClient.patch(`/property/${propertyId}`, editedPropertyData),
-      apiClient.patch(`/property/image/${propertyId}`, imageFormData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }),
-    ]);
+    const response = await apiClient.patch(`/property/${propertyId}`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
 
-    return {
-      data: response.data,
-      image: imgResponse.data,
-    };
+    return response.data;
   } catch (error) {
-    if (axios.isCancel(error)) {
-      console.log("Request canceled:", error.message);
-      return;
-    }
-    throw error;
+    throw handleApiError(error);
   }
 };
