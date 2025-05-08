@@ -66,11 +66,11 @@ const PropertyFilter = () => {
   const { toast } = useToast();
 
   const filterMinPriceProperties = (value: string) => {
-    if (maxPrice !== null && maxPrice < value) {
+    if (maxPrice !== null && Number(maxPrice) <= Number(value)) {
       toast({
         variant: "destructive",
         title: "Error",
-        description: "Minimum Price can't be greater than maximum price",
+        description: "Minimum Price can't be greater than or equal Maximum Price",
       });
       return;
     }
@@ -79,11 +79,11 @@ const PropertyFilter = () => {
   };
 
   const filterMaxPriceProperties = (value: string) => {
-    if (minPrice !== null && minPrice > value) {
+    if (minPrice !== null && Number(minPrice) >= Number(value)) {
       toast({
         variant: "destructive",
         title: "Error",
-        description: "Minimum Price can't be greater than maximum price",
+        description: "Minimum Price can't be greater than or equal Maximum Price",
       });
       return;
     }
