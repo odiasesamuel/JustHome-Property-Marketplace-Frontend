@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/authContext";
+import RouterReady from "@/components/routerReady";
 import UserPropertyList from "@/components/userPropertyList";
 import AddPropertyForm from "@/components/form/addPropertyForm";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { useRouter } from "next/navigation";
 
 const AddProperty = () => {
   const router = useRouter();
@@ -32,7 +33,9 @@ const AddProperty = () => {
             <AddPropertyForm />
           </CardHeader>
 
-          <UserPropertyList />
+          <RouterReady>
+            <UserPropertyList />
+          </RouterReady>
         </Card>
       </div>
     );

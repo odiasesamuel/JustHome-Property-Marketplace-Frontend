@@ -1,6 +1,7 @@
 import ExploreCities from "@/components/exploreCities";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import RouterReady from "@/components/routerReady";
 import SearchBar from "@/components/searchBar";
 import { ArrowRight, House } from "lucide-react";
 import Image from "next/image";
@@ -20,7 +21,9 @@ const Home = () => {
               <CardDescription className="text-xs text-appGreen xs:text-sm">Search properties for sale and to rent in Lagos and Abuja</CardDescription>
             </CardHeader>
             <CardContent className="mt-2 flex w-full flex-col items-center px-0 sm:px-6 lg:mt-5">
-              <SearchBar className="mb-5 w-full sm:w-[80%] md:mb-8 lg:mb-10" />
+              <RouterReady>
+                <SearchBar className="mb-5 w-full sm:w-[80%] md:mb-8 lg:mb-10" />
+              </RouterReady>
               <div className="h-[150px] w-[80%] text-center xs:w-3/5 sm:w-[45%]">
                 <p className="text-sm font-medium">Explore all things Property</p>
                 <div className="mt-5 flex justify-between text-xs md:mt-8">

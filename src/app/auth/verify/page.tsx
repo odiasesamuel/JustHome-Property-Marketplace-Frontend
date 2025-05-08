@@ -1,13 +1,17 @@
-"use client";
-
-import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-const Verify = () => {
-  const searchParams = useSearchParams();
-  const status = searchParams.get("status");
-  const message = searchParams.get("message");
+type VerifyPageProps = {
+  searchParams?: Promise<{
+    status?: string;
+    message?: string;
+  }>;
+};
+
+const Verify = async (props: VerifyPageProps) => {
+  const searchParams = await props.searchParams;
+  const status = searchParams?.status;
+  const message = searchParams?.message;
   return (
     <div className="space-y-3 px-[3.5%] text-center">
       <h1>{status === "success" ? "✅ Verification Successful" : "❌ Verification Failed"}</h1>

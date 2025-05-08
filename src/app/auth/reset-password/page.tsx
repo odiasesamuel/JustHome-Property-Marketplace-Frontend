@@ -1,3 +1,4 @@
+import RouterReady from "@/components/routerReady";
 import ResetPasswordForm from "@/components/form/resetPasswordForm";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -10,7 +11,9 @@ const ResetPassword = () => {
           <CardDescription>Enter your new password to reset your password</CardDescription>
         </CardHeader>
         <CardContent>
-          <ResetPasswordForm />
+          <RouterReady>
+            <ResetPasswordForm />
+          </RouterReady>
         </CardContent>
       </Card>
     </div>

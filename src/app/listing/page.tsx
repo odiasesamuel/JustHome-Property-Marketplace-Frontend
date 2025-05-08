@@ -1,3 +1,4 @@
+import RouterReady from "@/components/routerReady";
 import PropertyList from "@/components/propertyList";
 import SearchBar from "@/components/searchBar";
 import PropertyFilter from "@/components/propertyFilter";
@@ -13,12 +14,15 @@ const Listing = () => {
           </CardTitle>
           <CardDescription className="text-xs xs:text-sm">Browse. Compare. Move in. Finding your ideal home has never been simpler.</CardDescription>
 
-          <SearchBar className="w-full" />
-
-          <PropertyFilter />
+          <RouterReady>
+            <SearchBar className="w-full" />
+            <PropertyFilter />
+          </RouterReady>
         </CardHeader>
 
-        <PropertyList />
+        <RouterReady>
+          <PropertyList />
+        </RouterReady>
       </Card>
     </div>
   );

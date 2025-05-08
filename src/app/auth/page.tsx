@@ -1,16 +1,17 @@
-"use client";
-
-export const dynamic = "force-dynamic";
-
-import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import SignInForm from "@/components/form/signInForm";
 import SignUpForm from "@/components/form/signUpForm";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-const AuthPage = () => {
-  const searchParams = useSearchParams();
-  const mode = searchParams.get("mode") || "signin";
+type AuthPageProps = {
+  searchParams?: Promise<{
+    mode?: string;
+  }>;
+};
+
+const AuthPage = async (props: AuthPageProps) => {
+  const searchParams = await props.searchParams;
+  const mode = searchParams?.mode || "signin";
 
   return (
     <div className="-mb-10 flex flex-col items-center px-[3.5%]">
