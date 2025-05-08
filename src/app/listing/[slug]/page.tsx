@@ -14,8 +14,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
 import ImageViewer from "@/components/imageViewer";
-import { AnimatedHand } from "@/components/ui/loader";
-import {  MapPin } from "lucide-react";
+import { MapPin, Loader2 } from "lucide-react";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { PropertyResponse } from "@/types/apiResponse";
 import { queryClient } from "@/api/queryClient";
@@ -77,7 +76,7 @@ const Property = () => {
   if (isPending) {
     return (
       <div className="flex h-screen items-center justify-center">
-        <AnimatedHand />
+        <Loader2 className="h-10 w-10 animate-spin text-appGreen" />
       </div>
     );
   }
