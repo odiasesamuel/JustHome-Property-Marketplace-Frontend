@@ -12,7 +12,7 @@ import { LoadingBar } from "./ui/loader";
 import Image from "next/image";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { generateSlug } from "@/utils/generateSlug";
-import { PropertyListResponse } from "@/types/apiResponse";
+import { PropertyListResponse, Property } from "@/types/apiResponse";
 
 const UserPropertyList = () => {
   const router = useRouter();
@@ -58,7 +58,7 @@ const UserPropertyList = () => {
   if (data) {
     const pageCount = Math.ceil(data.totalProperties / perPage);
     const propertyList = data.properties;
-    const navigateToPropertyDetails = (property: any) => {
+    const navigateToPropertyDetails = (property: Property) => {
       const id = generateSlug(property.name, property._id);
       router.push(`/listing/${id}`);
     };
@@ -73,7 +73,8 @@ const UserPropertyList = () => {
             return (
               <Card className="relative h-[380px] w-full cursor-pointer border-none bg-cover bg-center bg-no-repeat text-sm text-black shadow-none sm:w-[48%] md:w-[31%] lg:w-[23%]" style={{ backgroundImage: `url(${backgroundImg})` }} key={property._id} onClick={() => navigateToPropertyDetails(property)}>
                 {/* Fallback image trick */}
-                <img src={backgroundImg} onError={() => handleImageError(property._id)} className="hidden" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={backgroundImg} alt="fallback image" onError={() => handleImageError(property._id)} className="hidden" />
 
                 <CardHeader>
                   <CardTitle className={`absolute rounded-full px-4 py-2 text-xs font-normal ${property.forSaleOrRent === "Sale" ? "bg-appGreen text-white" : property.forSaleOrRent === "Rent" ? "bg-appYellow text-appBlack" : "bg-appYellow text-appBlack"}`}>{property.forSaleOrRent === "Sale" ? "FOR SALE" : property.forSaleOrRent === "Rent" ? "FOR RENT" : "FOR RENT"}</CardTitle>

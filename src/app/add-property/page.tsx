@@ -15,7 +15,7 @@ const AddProperty = () => {
     if (!loading && !isAuth) {
       router.replace("/auth?mode=signin");
     }
-  }, [loading, isAuth]);
+  }, [loading, isAuth, router]);
 
   if (isAuth) {
     return (

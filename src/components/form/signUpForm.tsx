@@ -1,7 +1,6 @@
 "use client";
 
 import { useToast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -17,12 +16,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
 
-const SignUpForm: React.FC<{}> = () => {
-  const router = useRouter();
+const SignUpForm = () => {
   const { toast } = useToast();
   const { mutate, isPending } = useMutation({
     mutationFn: signUp,
-    onSuccess: (successData) => {
+    onSuccess: () => {
       toast({
         variant: "default",
         title: "You got mail!",

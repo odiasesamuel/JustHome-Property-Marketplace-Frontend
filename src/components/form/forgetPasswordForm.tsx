@@ -1,7 +1,6 @@
 "use client";
 
 import { useToast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -16,12 +15,11 @@ import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 
-const ForgotPasswordForm: React.FC<{}> = () => {
-  const router = useRouter();
+const ForgotPasswordForm = () => {
   const { toast } = useToast();
   const { mutate, isPending } = useMutation({
     mutationFn: requestResetPassword,
-    onSuccess: (successData) => {
+    onSuccess: () => {
       toast({
         variant: "default",
         title: "You got mail!",

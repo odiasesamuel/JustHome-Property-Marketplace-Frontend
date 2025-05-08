@@ -1,7 +1,5 @@
 import axios from "axios";
 import apiClient from "./apiClient";
-import { editPropertySchema } from "@/schemas/propertySchema";
-import { z } from "zod";
 import { handleApiError } from "@/lib/handleApiError";
 
 type GetPropertyListParams = {

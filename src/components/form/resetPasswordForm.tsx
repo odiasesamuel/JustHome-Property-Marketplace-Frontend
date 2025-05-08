@@ -18,14 +18,14 @@ import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { ToastAction } from "../ui/toast";
 
-const ResetPasswordForm: React.FC<{}> = () => {
+const ResetPasswordForm = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
   const { toast } = useToast();
   const { mutate, isPending } = useMutation({
     mutationFn: resetPassword,
-    onSuccess: (successData) => {
+    onSuccess: () => {
       toast({
         variant: "default",
         title: "Password Reset Successful!",

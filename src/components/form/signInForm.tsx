@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 
-const SignInForm: React.FC<{}> = () => {
+const SignInForm = () => {
   const { login } = useAuth();
   const router = useRouter();
   const { toast } = useToast();

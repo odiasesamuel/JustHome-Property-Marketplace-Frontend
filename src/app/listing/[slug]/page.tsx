@@ -120,6 +120,7 @@ const Property = () => {
                           <ImageViewer currentImg={imageUrl} imageUrls={data.property.imageUrls}>
                             {/* Used img over Image for placeholder image on error */}
                             <div className="h-[500px] w-full overflow-hidden">
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
                               <img src={`${imageUrl}`} alt={`property image ${index}`} className="h-full w-full rounded-lg object-cover" onError={(e) => (e.currentTarget.src = "/images/image_placeholder.jpg")} />
                             </div>
                           </ImageViewer>

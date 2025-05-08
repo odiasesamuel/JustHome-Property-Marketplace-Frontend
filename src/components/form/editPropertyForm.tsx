@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -31,12 +31,6 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
     resolver: zodResolver(editPropertySchema),
     defaultValues: { name, email, phoneNumber, state, LGA, area, description, numberOfRooms, propertyType, forSaleOrRent, price },
   });
-
-  useEffect(() => {
-    if (isOpen) {
-      form.reset({ name, email, phoneNumber, state, LGA, area, description, numberOfRooms, propertyType, forSaleOrRent, price });
-    }
-  }, [isOpen, propertyData, form]);
 
   const param = useParams();
   const slug = param.slug as string;

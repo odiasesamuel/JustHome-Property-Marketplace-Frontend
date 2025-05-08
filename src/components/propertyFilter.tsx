@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import { formatCurrency } from "@/utils/formatCurrency";
 import { useSearchParams, useRouter } from "next/navigation";
 
-const PropertyFilter: React.FC<{}> = () => {
+const PropertyFilter = () => {
   const searchParams = useSearchParams();
 
   const search = searchParams.get("search");
@@ -17,7 +17,7 @@ const PropertyFilter: React.FC<{}> = () => {
   const maxPrice = searchParams.get("maxPrice");
 
   const router = useRouter();
-  let params = new URLSearchParams(searchParams);
+  const params = new URLSearchParams(searchParams);
 
   const showAllProperties = () => {
     router.push("/listing?page=1&perPage=12");
