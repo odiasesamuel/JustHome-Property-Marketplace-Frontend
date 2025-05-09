@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { useAuth } from "@/context/authContext";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
@@ -9,7 +10,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { signInFormSchema } from "@/schemas/authFormSchema";
 import { useMutation } from "@tanstack/react-query";
-import { signIn } from "@/api/authHttp";
+import { resendSignUpVerificationEmail, signIn } from "@/api/authHttp";
 import { ApiErrorType } from "@/types/apiResponse";
 
 import { Button } from "@/components/ui/button";
@@ -17,11 +18,38 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
+import { ToastAction } from "../ui/toast";
 
 const SignInForm = () => {
   const { login } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
+
+  const emailRef = useRef<HTMLInputElement | null>(null);
+  const { mutate: mutateResendEmailVerification } = useMutation({
+    mutationFn: resendSignUpVerificationEmail,
+    onSuccess: () => {
+      toast({
+        variant: "default",
+        title: "You got mail!",
+        description: "We've sent a verification link to your email. Please verify your account to continue.",
+      });
+    },
+    onError: (error: ApiErrorType) => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error.message,
+      });
+    },
+  });
+  const resendSignUpVerificationLink = () => {
+    const email = emailRef.current?.value;
+    if (!email) return;
+    console.log(email);
+    mutateResendEmailVerification(email);
+  };
+
   const { mutate, isPending, isError } = useMutation({
     mutationFn: signIn,
     onSuccess: (successData) => {
@@ -33,6 +61,21 @@ const SignInForm = () => {
     onError: (error: ApiErrorType) => {
       if (error.statusCode === 401) {
         setErrorMessage("Oops! We couldn't verify your details. Please check your email and password.");
+        return;
+      }
+
+      if (error.statusCode === 403) {
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: "Your account isn't verified. Please check your email to verify your account.",
+          action: (
+            <ToastAction altText="Resend Verification Link" onClick={resendSignUpVerificationLink}>
+              Resend Link
+            </ToastAction>
+          ),
+          duration: 10000,
+        });
         return;
       }
 
@@ -69,7 +112,7 @@ const SignInForm = () => {
             <FormItem className="w-full text-black">
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="kunle.ojo@gmail.com" {...field} className="p-3" />
+                <Input placeholder="kunle.ojo@gmail.com" {...field} className="p-3" ref={emailRef} />
               </FormControl>
               <FormMessage />
             </FormItem>

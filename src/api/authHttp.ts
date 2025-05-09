@@ -23,6 +23,16 @@ export const signIn = async (signInData: z.infer<typeof signInFormSchema>) => {
   }
 };
 
+export const resendSignUpVerificationEmail = async (email: string) => {
+  try {
+    const response = await apiClient.post("/auth/resend-verification", { email });
+
+    return response.data;
+  } catch (error) {
+    throw handleApiError(error);
+  }
+};
+
 export const requestResetPassword = async (requestResetPasswordData: z.infer<typeof requestResetPasswordSchema>) => {
   try {
     const response = await apiClient.post("/auth/request-reset-password", requestResetPasswordData);
