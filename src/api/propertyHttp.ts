@@ -104,7 +104,7 @@ export const deleteProperty = async (propertyId: string | undefined) => {
 
 export const editProperty = async ({ formData, propertyId }: editPropertyDetails) => {
   try {
-    const response = await apiClient.patch(`/property/${propertyId}`, formData, {
+    const response = await apiClient.put(`/property/${propertyId}`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
