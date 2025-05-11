@@ -87,7 +87,7 @@ const Home = () => {
       <div className="mt-[40px] bg-[#FFF8F6] px-[3.5%] xs:mt-[60px] sm:mt-[75px] lg:mt-[100px]">
         <div className="mx-auto flex w-[90%] flex-col items-center gap-20 py-[50px] text-appBlack sm:py-[75px] md:flex-row lg:w-[75%]">
           <div className="relative hidden h-[500px] w-full sm:block md:w-[50%]">
-            <div className="absolute h-[50%] w-[43%] rounded-xl bg-green-700 bg-[url('/images/family_photo.jpg')] bg-cover bg-center bg-no-repeat"></div>
+            <div className="absolute h-[50%] w-[43%] rounded-xl bg-[url('/images/family_photo.jpg')] bg-cover bg-center bg-no-repeat"></div>
 
             <div className="absolute bottom-[15%] left-[13%] h-[30%] w-[30%] rounded-xl bg-appYellow">
               <div className="ml-4 mt-6 flex h-10 w-10 items-center justify-center rounded-full bg-appGreen">
